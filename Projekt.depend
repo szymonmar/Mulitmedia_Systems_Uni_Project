@@ -1,0 +1,4449 @@
+# depslib dependency file v1.0
+1594976270 source:c:\uzytki\codeblocks\SM2024-Projekt\SM2024-Projekt.cpp
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\begin_code.h
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\close_code.h
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583890769 c:\uzytki\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1695384399 source:c:\codeblocks\SM2024-Projekt\SM2024-Projekt.cpp
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\begin_code.h
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\close_code.h
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\codeblocks\SM2024-Projekt\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1712571132 source:c:\uzytki\codeblocks\SM2024-projekt\SM2024-projekt.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\begin_code.h
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\close_code.h
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1704793531 source:c:\uzytki\codeblocks\SM2024-projekt-dga\SM2024-projekt.cpp
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+	<algorithm>
+	<fstream>
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\begin_code.h
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\close_code.h
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693556918 c:\uzytki\codeblocks\SM2024-projekt-dga\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1704791243 c:\uzytki\codeblocks\SM2024-projekt-dga\SM2024-projekt.cpp
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+	<algorithm>
+	<fstream>
+	"Funkcje.h"
+
+1715245673 source:c:\uzytki\codeblocks\SM2024-projekt\SM2024-paleta.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-Funkcje.h"
+
+1715245384 c:\uzytki\codeblocks\SM2024-projekt\SM2024-zmienne.h
+	<SDL2/SDL.h>
+
+1715245670 c:\uzytki\codeblocks\SM2024-projekt\SM2024-paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1715245372 source:c:\uzytki\codeblocks\SM2024-projekt\SM2024-zmienne.cpp
+	"SM2024-Zmienne.h"
+
+1712570122 source:c:\uzytki\codeblocks\SM2024-projekt\SM2024-mediancut.cpp
+	"SM2024-MedianCut.h"
+	"SM2024-Zmienne.h"
+	<iostream>
+
+1712570124 c:\uzytki\codeblocks\SM2024-projekt\SM2024-mediancut.h
+	<SDL2/SDL.h>
+
+1715245468 source:c:\uzytki\codeblocks\SM2024-projekt\SM2024-funkcje.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1712570162 c:\uzytki\codeblocks\SM2024-projekt\SM2024-funkcje.h
+	<SDL2/SDL.h>
+
+1715181712 source:c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-funkcje.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1712570162 c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-funkcje.h
+	<SDL2/SDL.h>
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\begin_code.h
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\close_code.h
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1715181543 c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-zmienne.h
+	<SDL2/SDL.h>
+
+1715181347 c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1712570124 c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-mediancut.h
+	<SDL2/SDL.h>
+
+1712570122 source:c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-mediancut.cpp
+	"SM2024-MedianCut.h"
+	"SM2024-Zmienne.h"
+	<iostream>
+
+1712571132 source:c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-projekt.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1715169986 source:c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-zmienne.cpp
+	"SM2024-Zmienne.h"
+
+1715182454 source:c:\uzytki\codeblocks\SM2024-projekt2-dg\SM2024-paleta.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-Funkcje.h"
+
+1715169966 source:c:\uzytki\SM2024-projekt2-dg\SM2024-funkcje.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1712570162 c:\uzytki\SM2024-projekt2-dg\SM2024-funkcje.h
+	<SDL2/SDL.h>
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\begin_code.h
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\close_code.h
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\SM2024-projekt2-dg\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1715169982 c:\uzytki\SM2024-projekt2-dg\SM2024-zmienne.h
+	<SDL2/SDL.h>
+
+1715169958 c:\uzytki\SM2024-projekt2-dg\SM2024-paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1712570124 c:\uzytki\SM2024-projekt2-dg\SM2024-mediancut.h
+	<SDL2/SDL.h>
+
+1712570122 source:c:\uzytki\SM2024-projekt2-dg\SM2024-mediancut.cpp
+	"SM2024-MedianCut.h"
+	"SM2024-Zmienne.h"
+	<iostream>
+
+1715169170 source:c:\uzytki\SM2024-projekt2-dg\SM2024-paleta.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-Funkcje.h"
+
+1712571132 source:c:\uzytki\SM2024-projekt2-dg\SM2024-projekt.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1715169986 source:c:\uzytki\SM2024-projekt2-dg\SM2024-zmienne.cpp
+	"SM2024-Zmienne.h"
+
+1712570122 source:c:\uzytki\codeblocks\SM2024-projekt2\SM2024-mediancut.cpp
+	"SM2024-MedianCut.h"
+	"SM2024-Zmienne.h"
+	<iostream>
+
+1712570124 c:\uzytki\codeblocks\SM2024-projekt2\SM2024-mediancut.h
+	<SDL2/SDL.h>
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\begin_code.h
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\close_code.h
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\uzytki\codeblocks\SM2024-projekt2\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1715245384 c:\uzytki\codeblocks\SM2024-projekt2\SM2024-zmienne.h
+	<SDL2/SDL.h>
+
+1712571132 source:c:\uzytki\codeblocks\SM2024-projekt2\SM2024-projekt.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1712570162 c:\uzytki\codeblocks\SM2024-projekt2\SM2024-funkcje.h
+	<SDL2/SDL.h>
+
+1715245670 c:\uzytki\codeblocks\SM2024-projekt2\SM2024-paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1715245468 source:c:\uzytki\codeblocks\SM2024-projekt2\SM2024-funkcje.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1715245673 source:c:\uzytki\codeblocks\SM2024-projekt2\SM2024-paleta.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-Funkcje.h"
+
+1715245372 source:c:\uzytki\codeblocks\SM2024-projekt2\SM2024-zmienne.cpp
+	"SM2024-Zmienne.h"
+
+1715246015 source:c:\uzytki\codeblocks\SM2024-projekt\SM2024-pliki.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1728381405 source:c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-funkcje.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Pliki.h"
+
+1728380193 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-funkcje.h
+	<stdio.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\begin_code.h
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\close_code.h
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1693560518 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728381363 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-zmienne.h
+	<SDL2/SDL.h>
+
+1728380397 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1728380528 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-mediancut.h
+	<SDL2/SDL.h>
+
+1728380471 c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-pliki.h
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1728379988 source:c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-paleta.cpp
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+
+1728379989 source:c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-pliki.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Pliki.h"
+
+1728381363 source:c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-projekt.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1728380812 source:c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-mediancut.cpp
+	"SM2024-MedianCut.h"
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+
+1728381363 source:c:\users\piotr\desktop\studia\sm\sm2024-projekt\sm2024-projekt\sm2024-zmienne.cpp
+	"SM2024-Zmienne.h"
+
+1728983788 source:c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-mediancut.cpp
+	"SM2024-MedianCut.h"
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+
+1728983788 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-mediancut.h
+	<SDL2/SDL.h>
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\begin_code.h
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\close_code.h
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983792 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983789 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983791 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983790 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728983788 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1728983788 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-zmienne.h
+	<SDL2/SDL.h>
+
+1728983788 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-funkcje.h
+	<stdio.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1728983788 source:c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-paleta.cpp
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+
+1728983788 source:c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-pliki.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Pliki.h"
+
+1728983788 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-pliki.h
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1728985828 source:c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-projekt.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Modele.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1728983788 source:c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-zmienne.cpp
+	"SM2024-Zmienne.h"
+
+1728988379 c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-modele.h
+	<SDL2/SDL.h>
+
+1728988237 source:c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-funkcje.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Pliki.h"
+	"SM2024-Modele.h"
+
+1728988274 source:c:\users\student\downloads\sm2024-projekt-z21-02\sm2024-projekt\sm2024-modele.cpp
+	<algorithm>
+	"SM2024-MedianCut.h"
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Modele.h"
+
+1730116432 source:d:\semestr 5\sm\sm2024-projekt\sm2024-funkcje.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Pliki.h"
+	"SM2024-Modele.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sm2024-funkcje.h
+	<stdio.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_guid.h"
+	"SDL_haptic.h"
+	"SDL_hidapi.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"close_code.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<winsdkver.h>
+	<sdkddkver.h>
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_platform.h
+	<AvailabilityMacros.h>
+	<TargetConditionals.h>
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\begin_code.h
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\close_code.h
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_assert.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<endian.h>
+	<endian.h>
+	<sys/endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<lsxintrin.h>
+	<lasxintrin.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980194 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_guid.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_guid.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_hidapi.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1728980192 d:\semestr 5\sm\sm2024-projekt\sdl2\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1730193830 d:\semestr 5\sm\sm2024-projekt\sm2024-zmienne.h
+	<SDL2/SDL.h>
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sm2024-paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sm2024-mediancut.h
+	<SDL2/SDL.h>
+
+1728980190 d:\semestr 5\sm\sm2024-projekt\sm2024-pliki.h
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1730193972 d:\semestr 5\sm\sm2024-projekt\sm2024-modele.h
+	<SDL2/SDL.h>
+
+1728980190 source:d:\semestr 5\sm\sm2024-projekt\sm2024-mediancut.cpp
+	"SM2024-MedianCut.h"
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+
+1728980190 source:d:\semestr 5\sm\sm2024-projekt\sm2024-paleta.cpp
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+
+1728980190 source:d:\semestr 5\sm\sm2024-projekt\sm2024-pliki.cpp
+	"SM2024-Funkcje.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Pliki.h"
+
+1728982230 source:d:\semestr 5\sm\sm2024-projekt\sm2024-projekt.cpp
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Paleta.h"
+	"SM2024-MedianCut.h"
+	"SM2024-Modele.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1729600151 source:d:\semestr 5\sm\sm2024-projekt\sm2024-zmienne.cpp
+	"SM2024-Zmienne.h"
+
+1730193696 source:d:\semestr 5\sm\sm2024-projekt\sm2024-modele.cpp
+	<algorithm>
+	"SM2024-MedianCut.h"
+	"SM2024-Paleta.h"
+	"SM2024-Zmienne.h"
+	"SM2024-Funkcje.h"
+	"SM2024-Modele.h"
+
+1730194829 source:d:\semestr 5\sm\sm2024-projekt\mediancut.cpp
+	"MedianCut.h"
+	"Paleta.h"
+	"Zmienne.h"
+	"Funkcje.h"
+
+1730194937 d:\semestr 5\sm\sm2024-projekt\mediancut.h
+	<SDL2/SDL.h>
+
+1730194958 d:\semestr 5\sm\sm2024-projekt\paleta.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<iostream>
+	<cmath>
+
+1730195040 d:\semestr 5\sm\sm2024-projekt\zmienne.h
+	<SDL2/SDL.h>
+
+1730194923 d:\semestr 5\sm\sm2024-projekt\funkcje.h
+	<stdio.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1730194877 source:d:\semestr 5\sm\sm2024-projekt\paleta.cpp
+	"Paleta.h"
+	"Zmienne.h"
+	"Funkcje.h"
+
+1730201049 source:d:\semestr 5\sm\sm2024-projekt\pliki.cpp
+	"Funkcje.h"
+	"Zmienne.h"
+	"Paleta.h"
+	"MedianCut.h"
+	"Pliki.h"
+
+1730199829 d:\semestr 5\sm\sm2024-projekt\pliki.h
+	<stdio.h>
+	<math.h>
+	<fstream>
+	<SDL2/SDL.h>
+
+1730194768 source:d:\semestr 5\sm\sm2024-projekt\zmienne.cpp
+	"Zmienne.h"
+
+1730200374 source:d:\semestr 5\sm\sm2024-projekt\funkcje.cpp
+	"Funkcje.h"
+	"Zmienne.h"
+	"Paleta.h"
+	"MedianCut.h"
+	"Pliki.h"
+	"Modele.h"
+
+1730199280 d:\semestr 5\sm\sm2024-projekt\modele.h
+	<SDL2/SDL.h>
+	<algorithm>
+
+1730194795 source:d:\semestr 5\sm\sm2024-projekt\projekt.cpp
+	"Zmienne.h"
+	"Funkcje.h"
+	"Paleta.h"
+	"MedianCut.h"
+	"Modele.h"
+	<exception>
+	<string.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL2/SDL.h>
+
+1730199280 source:d:\semestr 5\sm\sm2024-projekt\modele.cpp
+	<algorithm>
+	"MedianCut.h"
+	"Paleta.h"
+	"Zmienne.h"
+	"Funkcje.h"
+	"Modele.h"
+

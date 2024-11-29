@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="SM2024-Projekt" />
+		<Option execution_dir="./" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/SM2024-Projekt" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/SM2024-Projekt" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="./SDL2/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-static-libstdc++" />
+			<Add option="-static-libgcc" />
+			<Add option="-static" />
+			<Add library="mingw32" />
+			<Add library="SDL2main" />
+			<Add library="SDL2.dll" />
+			<Add library="user32" />
+			<Add library="gdi32" />
+			<Add library="winmm" />
+			<Add library="dxguid" />
+			<Add directory="./SDL2/lib" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="XCOPY .\SDL2\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
+		</ExtraCommands>
+		<Unit filename="Funkcje.cpp" />
+		<Unit filename="Funkcje.h" />
+		<Unit filename="MedianCut.cpp" />
+		<Unit filename="MedianCut.h" />
+		<Unit filename="Modele.cpp" />
+		<Unit filename="Modele.h" />
+		<Unit filename="Paleta.cpp" />
+		<Unit filename="Paleta.h" />
+		<Unit filename="Pliki.cpp" />
+		<Unit filename="Pliki.h" />
+		<Unit filename="Projekt.cpp" />
+		<Unit filename="Zmienne.cpp" />
+		<Unit filename="Zmienne.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
