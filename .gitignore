@@ -19,6 +19,10 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 
+#Clion depend & layout files
+*.depend
+*.layout
+
 # Prerequisites
 *.d
 
