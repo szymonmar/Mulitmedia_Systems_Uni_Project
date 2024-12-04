@@ -1,3 +1,24 @@
+# CLion project settings
+.idea/
+
+# Build output directories
+bin/
+obj/
+cmake-build-*/
+
+# Debug build output
+Debug/
+*.exe
+*.o
+*.obj
+*.log
+
+# CMake cache and generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
 # Prerequisites
 *.d
 
