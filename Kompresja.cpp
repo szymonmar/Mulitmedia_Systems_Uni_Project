@@ -391,4 +391,69 @@ void RLEDekompresja(string fileName){
             k++;
         }
     }
-} 
+}
+
+struct token {
+    Uint16 tokLength;
+    Uint16 shift;
+    Uint8 rawValue;
+    token(Uint16 tokLength, Uint16 shift, Uint8 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
+};
+
+// Funkcja LZ77 - kompresuje wejściowy wektor danych
+void LZ77Kompresja(const vector<Uint8> input, int length, string filename) {
+    const int windowSize = 64000; // Rozmiar okna wyszukiwania
+    const int lookaheadBufferSize = 32000; // Rozmiar bufora podglądu
+
+    vector<token> resultArr;
+
+    int position = 0;
+
+    while (position < length) {
+        int matchDistance = 0;
+        int matchLength = 0;
+        int searchStart;
+        int searchEnd = position;
+        // Ustalenie granic okna wyszukiwania
+        if(position < windowSize) {
+            searchStart = 0;
+        } else {
+            searchStart = position - windowSize;
+        }
+
+        // Wyszukiwanie najdłuższego dopasowania w oknie wyszukiwania
+        for (int i = searchStart; i < searchEnd; i++) {
+            int currentMatchLength = 0;
+            while (currentMatchLength < lookaheadBufferSize &&
+                   position + currentMatchLength < length &&
+                   input[i + currentMatchLength] == input[position + currentMatchLength]) {
+                currentMatchLength++;
+            }
+
+            if (currentMatchLength > matchLength) {
+                matchLength = currentMatchLength;
+                matchDistance = position - i;
+            }
+        }
+
+        // Jeśli nie znaleziono dopasowania, zapisujemy literę bezpośrednio
+        if (matchLength < 2) {
+            resultArr.push_back(token((Uint16)0, (Uint16)0, (Uint8)input[position]));
+            cout << "(0, 0, " <<(int)input[position]<< ") ";
+            position++;
+        }
+            // W przeciwnym razie zapisujemy parę (odległość, długość, następny znak)
+        else {
+            Uint8 nextChar = (position + matchLength < length) ? input[position + matchLength] : 0;
+            resultArr.push_back(token((Uint16)matchLength, (Uint16)matchDistance, (Uint8)input[position]));
+            cout << "(" << matchDistance << ", " << matchLength << ", " << (int)nextChar << ") ";
+            position += matchLength + 1;
+        }
+    }
+    cout << endl;
+
+    saveVector<token>(resultArr, filename);
+
+    cout << "Plik zapisany";
+
+}

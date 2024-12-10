@@ -192,7 +192,8 @@ void Funkcja3() {
 //        //cout << "R:" << (int)paleta7DoPliku[x].r << "G:" << (int)paleta7DoPliku[x].g << "B:" << (int)paleta7DoPliku[x].b << endl;
 //    }
 
-    podprobkowanieYIQ();
+    vector<Uint8> inputData = zczytajDaneBW();
+    LZ77Kompresja(inputData, inputData.size(), "test");
 
 
     SDL_UpdateWindowSurface(window);
@@ -449,10 +450,8 @@ SDL_Color z7BWna24RGB (Uint8 szary7bit) {
 }
 
 Uint8 z24RGBna8BW (SDL_Color kolor) {
-
     Uint8 szary8bit = 0.299*kolor.r + 0.587*kolor.g + 0.114*kolor.b;
     return szary8bit;
-
 }
 
 SDL_Color z8BWna24RGB (Uint8 szary8bit) {
