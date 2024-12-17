@@ -155,6 +155,8 @@ void Funkcja2() {
 
 void Funkcja3() {
 
+
+
 //    ileKubelkow = 0;
 //    int numer = 0;
 //    Uint8 szary = 0;
@@ -201,6 +203,13 @@ void Funkcja3() {
 
 void Funkcja4() {
 
+    string filename;
+    cout << "Podaj nazwę pliku, który chcesz otworzyć: ";
+    cin >> filename;
+
+    LZ77Dekompresja(filename);
+    SDL_UpdateWindowSurface(window);
+
 //    czyscPalete();
 //    int indexKoloru;
 //    SDL_Color kolor;
@@ -232,7 +241,7 @@ void Funkcja4() {
 //    }
 //    narysujPalete(paleta7);
 
-    podprobkowanieYCBCR();
+    //podprobkowanieYCBCR();
 
 
     SDL_UpdateWindowSurface(window);

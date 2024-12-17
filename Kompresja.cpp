@@ -290,8 +290,14 @@ void ByteRunDekompresja(string fileName){
     int k = 0;
     for(int x = 0; x < szerokosc/2; x++){
         for(int y = 0; y < wysokosc/2; y++){
+            if(k >= 64000) {
+                break;
+            }
             setPixel(x, y, output[k], output[k], output[k]);
             k++;
+        }
+        if(k >= 64000) {
+            break;
         }
     }
 }
@@ -387,8 +393,14 @@ void RLEDekompresja(string fileName){
     int k = 0;
     for(int x = 0; x < szerokosc/2; x++){
         for(int y = 0; y < wysokosc/2; y++){
+            if(k >= 64000) {
+                break;
+            }
             setPixel(x, y, output[k], output[k], output[k]);
             k++;
+        }
+        if(k >= 64000) {
+            break;
         }
     }
 }
@@ -397,6 +409,7 @@ struct token {
     Uint16 tokLength;
     Uint16 shift;
     Uint8 rawValue;
+    token() : tokLength(0), shift(0), rawValue(0) {}
     token(Uint16 tokLength, Uint16 shift, Uint8 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
 };
 
@@ -404,9 +417,7 @@ struct token {
 void LZ77Kompresja(const vector<Uint8> input, int length, string filename) {
     const int windowSize = 64000; // Rozmiar okna wyszukiwania
     const int lookaheadBufferSize = 32000; // Rozmiar bufora podglądu
-
     vector<token> resultArr;
-
     int position = 0;
 
     while (position < length) {
@@ -414,6 +425,7 @@ void LZ77Kompresja(const vector<Uint8> input, int length, string filename) {
         int matchLength = 0;
         int searchStart;
         int searchEnd = position;
+
         // Ustalenie granic okna wyszukiwania
         if(position < windowSize) {
             searchStart = 0;
@@ -437,23 +449,54 @@ void LZ77Kompresja(const vector<Uint8> input, int length, string filename) {
         }
 
         // Jeśli nie znaleziono dopasowania, zapisujemy literę bezpośrednio
-        if (matchLength < 2) {
+        if (matchLength < 3) {
             resultArr.push_back(token((Uint16)0, (Uint16)0, (Uint8)input[position]));
-            cout << "(0, 0, " <<(int)input[position]<< ") ";
             position++;
         }
             // W przeciwnym razie zapisujemy parę (odległość, długość, następny znak)
         else {
             Uint8 nextChar = (position + matchLength < length) ? input[position + matchLength] : 0;
-            resultArr.push_back(token((Uint16)matchLength, (Uint16)matchDistance, (Uint8)input[position]));
-            cout << "(" << matchDistance << ", " << matchLength << ", " << (int)nextChar << ") ";
+            resultArr.push_back(token((Uint16)matchLength, (Uint16)matchDistance, (Uint8)nextChar));
             position += matchLength + 1;
         }
     }
-    cout << endl;
-
     saveVector<token>(resultArr, filename);
-
-    cout << "Plik zapisany";
-
 }
+
+// Funkcja LZ77 - dekompresuje wejściowy wektor danych
+void LZ77Dekompresja(string filename) {
+    vector<token> tokens = readVector<token>(filename);
+    vector<Uint8> output;
+    int j = 0;
+    for (token tok : tokens) {
+        // Jeśli tokLength to 0, oznacza to, że zapisujemy surową wartość rawValue
+        if (tok.tokLength == 0) {
+            output.push_back(tok.rawValue);
+        } else {
+            // Zapisujemy odwołanie do wcześniejszych danych w strumieniu
+            int startPos = output.size() - tok.shift;
+            for (int i = 0; i < tok.tokLength; ++i) {
+                output.push_back(output[startPos + i]);
+            }
+
+            // Zapisujemy dodatkowy znak rawValue
+            output.push_back(tok.rawValue);
+        }
+    }
+
+    int k = 0;
+    for(int x = 0; x < szerokosc/2; x++){
+        for(int y = 0; y < wysokosc/2; y++){
+            if(k >= 64000) {
+                break;
+            }
+            setPixel(x, y, output[k], output[k], output[k]);
+            k++;
+        }
+        if(k >= 64000) {
+            break;
+        }
+    }
+}
+
+

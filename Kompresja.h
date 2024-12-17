@@ -33,6 +33,7 @@ void LZWKompresja(vector<Uint8> wejscie, int dlugosc, string fileName);
 void LZWDekompresja(string fileName);
 
 void LZ77Kompresja(const vector<Uint8> input, int length, string filename);
+void LZ77Dekompresja(string filename);
 
 void ByteRunKompresja(vector<Uint8> wejscie, int dlugosc, string fileName);
 void ByteRunDekompresja(string fileName);
