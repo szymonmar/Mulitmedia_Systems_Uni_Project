@@ -93,7 +93,8 @@ void Funkcja1() {
 
     vector<Uint8> array = zczytajDaneBW();
 
-    LZWKompresja(array, array.size(), filename);
+    saveVector(array, filename);
+    //LZWKompresja(array, array.size(), filename);
 
     SDL_UpdateWindowSurface(window);
 }
@@ -103,7 +104,16 @@ void Funkcja2() {
     cout << "Podaj nazwę pliku, który chcesz otworzyć: ";
     cin >> filename;
 
-    LZWDekompresja(filename);
+    //LZWDekompresja(filename);
+
+    vector<Uint8> array = readVector<Uint8>(filename);
+    int i = 0;
+    for(int x = 0; x < szerokosc / 2; x++) {
+        for(int y = 0; y < wysokosc / 2; y++) {
+            setPixel(x, y, array[i], array[i], array[i]);
+            i++;
+        }
+    }
     SDL_UpdateWindowSurface(window);
 
 //    SDL_Color kolor, tymczasowyKolor, newNewColor;

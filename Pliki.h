@@ -18,7 +18,7 @@ void ZapiszByteRun(string a, int tryb);
 void OdczytajByteRun(string a, int tryb);
 
 template <typename T>
-void saveVector(vector<T> v, string fileName){
+void saveVector(vector<T> v1, string fileName){
     ofstream output((fileName + ".z21").c_str(), ios::binary);
 
     if (!output) {
@@ -27,7 +27,8 @@ void saveVector(vector<T> v, string fileName){
     }
 
 
-    output.write(reinterpret_cast<char*>(v.data()), v.size()*sizeof(T));
+    output.write(reinterpret_cast<char*>(v1.data()), v1.size()*sizeof(T));
+
     cout << "Zapisano plik \n";
     output.close();
 };
