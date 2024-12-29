@@ -13,7 +13,7 @@ using namespace std;
 
 struct slowo{
     Uint16 kod =0;
-    Uint8 dlugosc = 0;
+    Uint8 length = 0;
     Uint8 element[4096];
     bool wSlowniku = false;
 };
@@ -24,7 +24,7 @@ slowo slownik[65535];
 slowo noweSlowo(){
     slowo noweSlowo;
     noweSlowo.kod = 0;
-    noweSlowo.dlugosc = 0;
+    noweSlowo.length = 0;
     noweSlowo.wSlowniku = false;
     return noweSlowo;
 }
@@ -32,7 +32,7 @@ slowo noweSlowo(){
 slowo noweSlowo(Uint8 znak){
     slowo noweSlowo;
     noweSlowo.kod=0;
-    noweSlowo.dlugosc=1;
+    noweSlowo.length=1;
     noweSlowo.element[0]=znak;
     noweSlowo.wSlowniku=false;
     return noweSlowo;
@@ -41,18 +41,18 @@ slowo noweSlowo(Uint8 znak){
 slowo polaczSlowo(slowo aktualneSlowo, Uint8 znak){
     slowo noweSlowo;
 
-    if(aktualneSlowo.dlugosc<4096){
+    if(aktualneSlowo.length<4096){
         noweSlowo.kod=0;
-        noweSlowo.dlugosc = aktualneSlowo.dlugosc+1;
+        noweSlowo.length = aktualneSlowo.length+1;
         noweSlowo.wSlowniku = false;
         copy(begin(aktualneSlowo.element), end(aktualneSlowo.element), begin(noweSlowo.element));
-        noweSlowo.element[aktualneSlowo.dlugosc] = znak;
+        noweSlowo.element[aktualneSlowo.length] = znak;
         return noweSlowo;
     }
     else{
         cout<<"UWAGA! przepelnienie rozmiaru znakow w pojedynczym slowie"<<endl;
         noweSlowo.kod =0;
-        noweSlowo.dlugosc=0;
+        noweSlowo.length=0;
         noweSlowo.wSlowniku=false;
         noweSlowo.element[0] = znak;
         return noweSlowo;
@@ -60,9 +60,9 @@ slowo polaczSlowo(slowo aktualneSlowo, Uint8 znak){
 }
 
 bool porownajSlowa(slowo slowo1, slowo slowo2){
-    if(slowo1.dlugosc!=slowo2.dlugosc)
+    if(slowo1.length!=slowo2.length)
         return false;
-    for(int s=0; s<slowo1.dlugosc; s++){
+    for(int s=0; s<slowo1.length; s++){
         if(slowo1.element[s] != slowo2.element[s])
             return false;
     }
@@ -81,20 +81,20 @@ void wyswietlSlowo(slowo aktualneSlowo){
         cout<<"["<<aktualneSlowo.kod<<"] ";
     else
         cout<<"[X] ";
-    for(int s=0; s<aktualneSlowo.dlugosc; s++){
+    for(int s=0; s<aktualneSlowo.length; s++){
         cout<<(int)aktualneSlowo.element[s];
-        if(s<aktualneSlowo.dlugosc-1)
+        if(s<aktualneSlowo.length-1)
             cout<<", ";
     }
     cout<<endl;
 }
 
-int dodajDoSLownika(slowo nowy, bool czyWyswietlac = true){
+int dodajDoSLownika(slowo nowy, bool czyWyswietlac = false){
 
     if(rozmiarSlownika <65536){
         Uint16 nr = rozmiarSlownika;
         slownik[nr].kod = nr;
-        slownik[nr].dlugosc = nowy.dlugosc;
+        slownik[nr].length = nowy.length;
 
         copy(begin(nowy.element), end(nowy.element), begin(slownik[nr].element));
         slownik[nr].wSlowniku = true;
@@ -111,21 +111,21 @@ void LZWinicjalizacja(){
 
     for(int s=0; s<65536; s++){
         slownik[s].kod = 0;
-        slownik[s].dlugosc=0;
+        slownik[s].length=0;
         slownik[s].wSlowniku = false;
         memset(slownik[s].element, 0, sizeof(slownik[s].element));
     }
 
     slowo noweSlowo;
     for(int s=0; s<256; s++){
-        noweSlowo.dlugosc =1;
+        noweSlowo.length =1;
         noweSlowo.element[0] = s;
         noweSlowo.kod = dodajDoSLownika(noweSlowo, false);
     }
 }
 
 
-void LZWKompresja(vector<Uint8> wejscie, int dlugosc, string fileName){
+void LZWKompresja(vector<Uint8> input, int length, string fileName){
     cout << "Zapisywanie pliku z kompresją LZW..." << endl;
     LZWinicjalizacja();
     slowo aktualneSlowo = noweSlowo();
@@ -134,9 +134,9 @@ void LZWKompresja(vector<Uint8> wejscie, int dlugosc, string fileName){
     int kod;
     int i=0;
     vector<Uint16> resultArr;
-    while(i<dlugosc){
+    while(i<length){
 
-        znak=wejscie[i];
+        znak=input[i];
         slowoZnak = polaczSlowo(aktualneSlowo, znak);
 
 
@@ -171,7 +171,7 @@ void LZWKompresja(vector<Uint8> wejscie, int dlugosc, string fileName){
 
 void LZWDekompresja(string fileName) {
     vector<Uint16> skompresowane = readVector<Uint16>(fileName);
-    int dlugosc = skompresowane.size();
+    int length = skompresowane.size();
 
     // Inicjalizacja słownika
     LZWinicjalizacja();
@@ -184,7 +184,7 @@ void LZWDekompresja(string fileName) {
     slowo poprzednieSlowo = slownik[poprzedniKod];
     slowo noweSlowo;
 
-    for (int i = 1; i < dlugosc; i++) {
+    for (int i = 1; i < length; i++) {
         int obecnyKod = skompresowane[i];
         slowo obecneSlowo;
 
@@ -197,7 +197,7 @@ void LZWDekompresja(string fileName) {
         }
 
         // Dodaj słowo do wyniku
-        for (int j = 0; j < obecneSlowo.dlugosc; j++) {
+        for (int j = 0; j < obecneSlowo.length; j++) {
             wynik.push_back(obecneSlowo.element[j]);
         }
 
@@ -226,28 +226,28 @@ void LZWDekompresja(string fileName) {
     }
 }
 
-void ByteRunKompresja(vector<Uint8> wejscie, int dlugosc, string fileName) {
+void ByteRunKompresja(vector<Uint8> input, int length, string fileName) {
     int i = 0;
     vector<Sint8> resultArr;
 
-    while (i < dlugosc) {
-        if ((i < dlugosc - 1) && (wejscie[i] == wejscie[i + 1])){
+    while (i < length) {
+        if ((i < length - 1) && (input[i] == input[i + 1])){
             int j = 0;
-            while((i+  j < dlugosc - 1) && (wejscie[i + j] == wejscie[i + 1 + j]) && (j < 127)){
+            while((i+  j < length - 1) && (input[i + j] == input[i + 1 + j]) && (j < 127)){
                 j++;
             }
 
             resultArr.push_back(-j);
-            resultArr.push_back(wejscie[i + j]);
+            resultArr.push_back(input[i + j]);
 
             i += (j+1);
         } else {
             int j = 0;
-            while((i + j < dlugosc - 1) && ((wejscie[i + j] != wejscie[i + j + 1])) && (j < 128)){
+            while((i + j < length - 1) && ((input[i + j] != input[i + j + 1])) && (j < 128)){
                 j++;
             }
 
-            if((i+j == dlugosc - 1) && (j < 128)){
+            if((i+j == length - 1) && (j < 128)){
                 j++;
             }
 
@@ -255,7 +255,7 @@ void ByteRunKompresja(vector<Uint8> wejscie, int dlugosc, string fileName) {
 
 
             for(int k = 0; k < j; k++){
-                resultArr.push_back(wejscie[i + k]);
+                resultArr.push_back(input[i + k]);
             }
 
             i += j;
@@ -268,21 +268,21 @@ void ByteRunKompresja(vector<Uint8> wejscie, int dlugosc, string fileName) {
 
 void ByteRunDekompresja(string fileName){
     int j = 0;
-    vector<Sint8> wejscie = readVector<Sint8>(fileName);
-    int dlugosc = wejscie.size();
+    vector<Sint8> input = readVector<Sint8>(fileName);
+    int length = input.size();
     vector<Uint8> output;
-    while (j < dlugosc){
-        if(wejscie[j] < 0){
-            int iters = (-1) * wejscie[j] + 1;
+    while (j < length){
+        if(input[j] < 0){
+            int iters = (-1) * input[j] + 1;
             j++;
             for(int i = 0; i < iters; i ++){
-                output.push_back(wejscie[j]);
+                output.push_back(input[j]);
             }
         } else {
-            int iters = wejscie[j] + 1;
+            int iters = input[j] + 1;
             for(int i = 0; i < iters; i ++){
                 j++;
-                output.push_back(wejscie[j]);
+                output.push_back(input[j]);
             }
         }
         j++;
@@ -303,36 +303,36 @@ void ByteRunDekompresja(string fileName){
 }
 
 
-void RLEKompresja(vector<Uint8> wejscie, int dlugosc, string fileName){
+void RLEKompresja(vector<Uint8> input, int length, string fileName){
     int i = 0;
     vector<Uint8> resultArr;
 
-    while (i < dlugosc) {
+    while (i < length) {
 
-        if ((i < dlugosc - 1) && (wejscie[i] == wejscie[i + 1])){
+        if ((i < length - 1) && (input[i] == input[i + 1])){
 
             int j = 0;
-            while ((i + j < dlugosc - 1) && (wejscie[i + j] == wejscie[i + j + 1])
+            while ((i + j < length - 1) && (input[i + j] == input[i + j + 1])
                    && (j < 254)){
                 j++;
             }
 
-            // cout<<"("<<(j + 1)<<"), " << wejscie[i+j]<<", ";
+            // cout<<"("<<(j + 1)<<"), " << input[i+j]<<", ";
 
             resultArr.push_back((j+1));
-            resultArr.push_back(wejscie[i+j]);
+            resultArr.push_back(input[i+j]);
 
             i += (j+1);
         } else {
 
             int j = 0;
 
-            while ((i + j < dlugosc - 1) && (wejscie[i + j] != wejscie[i + j + 1])
+            while ((i + j < length - 1) && (input[i + j] != input[i + j + 1])
                    && (j < 254)){
                 j++;
             }
 
-            if( (i+j == dlugosc - 1) && (j < 254)){
+            if( (i+j == length - 1) && (j < 254)){
                 j++;
             }
 
@@ -341,8 +341,8 @@ void RLEKompresja(vector<Uint8> wejscie, int dlugosc, string fileName){
             resultArr.push_back(j);
 
             for(int k = 0; k < j; k++){
-                // cout << wejscie[i + k] << ", ";
-                resultArr.push_back(wejscie[i + k]);
+                // cout << input[i + k] << ", ";
+                resultArr.push_back(input[i + k]);
             }
 
             if (j % 2 != 0){
@@ -360,26 +360,26 @@ void RLEKompresja(vector<Uint8> wejscie, int dlugosc, string fileName){
 
 void RLEDekompresja(string fileName){
     int j = 0;
-    vector<Uint8> wejscie = readVector<Uint8>(fileName);
-    int dlugosc = wejscie.size();
+    vector<Uint8> input = readVector<Uint8>(fileName);
+    int length = input.size();
     vector<Uint8> output;
-    while (j < dlugosc){
-        //// cout <<"W" << wejscie[j] << " ";
-        if(wejscie[j] > 0){
-            int iter = wejscie[j];
+    while (j < length){
+        //// cout <<"W" << input[j] << " ";
+        if(input[j] > 0){
+            int iter = input[j];
             // // cout <<"I" << iter << " ";
             j++;
             for(int i = 0; i < iter; i++){
-                // cout << wejscie[j] << ", ";
-                output.push_back(wejscie[j]);
+                // cout << input[j] << ", ";
+                output.push_back(input[j]);
             }
-        } else if ( wejscie[j] == 0){
+        } else if ( input[j] == 0){
             j++;
-            int iter = wejscie[j];
+            int iter = input[j];
             for(int i = 0; i < iter; i++){
                 j++;
-                // cout << wejscie[j] << ", ";
-                output.push_back(wejscie[j]);
+                // cout << input[j] << ", ";
+                output.push_back(input[j]);
             }
 
             if(iter % 2 != 0){
@@ -413,25 +413,20 @@ struct token {
     token(Uint16 tokLength, Uint16 shift, Uint8 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
 };
 
-// Funkcja LZ77 - kompresuje wejściowy wektor danych
-void LZ77Kompresja(const vector<Uint8> input, int length, string filename) {
+void LZ77Kompresja(vector<Uint8> input, int length, string filename) {
     const int windowSize = 64000; // Rozmiar okna wyszukiwania
-    const int lookaheadBufferSize = 32000; // Rozmiar bufora podglądu
+    int lookaheadBufferSize;
     vector<token> resultArr;
     int position = 0;
+    int numOfMatches = 0;
 
     while (position < length) {
+        lookaheadBufferSize = windowSize - position;
         int matchDistance = 0;
         int matchLength = 0;
-        int searchStart;
+        int searchStart = 0;
         int searchEnd = position;
 
-        // Ustalenie granic okna wyszukiwania
-        if(position < windowSize) {
-            searchStart = 0;
-        } else {
-            searchStart = position - windowSize;
-        }
 
         // Wyszukiwanie najdłuższego dopasowania w oknie wyszukiwania
         for (int i = searchStart; i < searchEnd; i++) {
@@ -449,17 +444,22 @@ void LZ77Kompresja(const vector<Uint8> input, int length, string filename) {
         }
 
         // Jeśli nie znaleziono dopasowania, zapisujemy literę bezpośrednio
-        if (matchLength < 3) {
+        if (matchLength < 1) {
             resultArr.push_back(token((Uint16)0, (Uint16)0, (Uint8)input[position]));
             position++;
+            //cout << "RAW: ( " << (int)input[position] << " )" << endl;
+
         }
             // W przeciwnym razie zapisujemy parę (odległość, długość, następny znak)
         else {
             Uint8 nextChar = (position + matchLength < length) ? input[position + matchLength] : 0;
             resultArr.push_back(token((Uint16)matchLength, (Uint16)matchDistance, (Uint8)nextChar));
             position += matchLength + 1;
+            //cout << "( Len: " << (int)matchLength << ", Dist: " << (int)matchDistance << ", next: " << (int)nextChar << " )   Position: " << position << endl;
+            numOfMatches++;
         }
     }
+    cout << "NoM: " << numOfMatches << endl;
     saveVector<token>(resultArr, filename);
 }
 

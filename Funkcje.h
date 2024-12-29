@@ -35,7 +35,13 @@ void zbierzKoloryZObrazka();
 void byteRunDekompresja(string a);
 void byteRunKompresja(Uint8 wejscie[], int dlugosc, string a);
 
-
+/* Sets certain color to a pixel in the window
+ * @param   x   X coordinate of the pixel
+ * @param   y   Y coordinate of the pixel
+ * @param   R   value of red color in RGB model
+ * @param   G   value of green color in RGB model
+ * @param   B   value of blue color in RGB model
+ */
 void setPixel(int x, int y, Uint8 R, Uint8 G, Uint8 B);
 SDL_Color getPixel(int x, int y);
 void czyscEkran(Uint8 R, Uint8 G, Uint8 B);
