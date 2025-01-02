@@ -11,14 +11,14 @@ int ileKolorow = 0;
 SDL_Color paleta8k[256];
 SDL_Color paleta8s[256];
 
-SDL_Color obrazek[320*200];
-SDL_Color obrazek0[320*200];
+SDL_Color obrazek[64000];
+SDL_Color obrazek0[64000];
 
 Uint16 szerokoscObrazka = szerokosc;
 Uint16 wysokoscObrazka = wysokosc;
 
 SDL_Color paleta7DoPliku[128];
-Uint8 paleta7DoPlikuUint8[szerokosc/2*wysokosc/2];
+Uint8 paleta7DoPlikuUint8[64000];
 
 SDL_Color paleta7[128];
 

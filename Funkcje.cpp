@@ -87,13 +87,13 @@ void filtrPaetha(Uint8 tabela[320][200]){
 
 
 void Funkcja1() {
-    string filename;
-    cout << "Podaj nazwę pliku, który chcesz zapisać: ";
-    cin >> filename;
-
-    vector<Uint8> array = zczytajDaneBW();
-
-    saveVector(array, filename);
+//    string filename;
+//    cout << "Podaj nazwę pliku, który chcesz zapisać: ";
+//    cin >> filename;
+//
+//    vector<Uint8> array = zczytajDaneBW();
+//
+//    saveVector(array, filename);
     //LZWKompresja(array, array.size(), filename);
 
     SDL_UpdateWindowSurface(window);

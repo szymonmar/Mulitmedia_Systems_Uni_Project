@@ -8,11 +8,8 @@ using namespace std;
 
 tabBayera oriTabBayera;
 
-float normalize(int value) {
-    return static_cast<float>(value) / 255.0f;
-}
 
-Uint8 normalize2(int val, int max, int min) {
+Uint8 normalize(int val, int max, int min) {
     if(val > max) {
         val = max;
     } else if (val < min) {
@@ -21,9 +18,6 @@ Uint8 normalize2(int val, int max, int min) {
     return val;
 }
 
-int clamp(float value) {
-    return std::max(0, std::min(255, static_cast<int>(value)));
-}
 
 YUV::YUV(Uint8 y, Uint8 u, Uint8 v) : Y(y), U(u), V(v) {};
 
@@ -425,9 +419,9 @@ SDL_Color dithering565(int x, int y) {
     } else {
         B = floor((zakB-1)*8.25);
     }
-    kolor.r = normalize2(R, 255, 0);
-    kolor.g = normalize2(G, 255, 0);
-    kolor.b = normalize2(B, 255, 0);
+    kolor.r = normalize(R, 255, 0);
+    kolor.g = normalize(G, 255, 0);
+    kolor.b = normalize(B, 255, 0);
 
     return kolor;
 
@@ -467,9 +461,9 @@ SDL_Color dithering555(int x, int y) {
     } else {
         B = floor((zakB-1)*8.25);
     }
-    kolor.r = normalize2(R, 255, 0);
-    kolor.g = normalize2(G, 255, 0);
-    kolor.b = normalize2(B, 255, 0);
+    kolor.r = normalize(R, 255, 0);
+    kolor.g = normalize(G, 255, 0);
+    kolor.b = normalize(B, 255, 0);
 
     return kolor;
 
