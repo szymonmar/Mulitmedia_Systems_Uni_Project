@@ -17,6 +17,12 @@ void OdczytajModel(string a);
 void ZapiszByteRun(string a, int tryb);
 void OdczytajByteRun(string a, int tryb);
 
+/**
+ * Saves vector to the file
+ * @tparam T vector type
+ * @param v1 vector
+ * @param fileName name of the file (without extension)
+ */
 template <typename T>
 void saveVector(vector<T> v1, string fileName){
     ofstream output((fileName + ".z21").c_str(), ios::binary);
@@ -33,6 +39,12 @@ void saveVector(vector<T> v1, string fileName){
     output.close();
 };
 
+/**
+ * Reads values from file to a vector
+ * @tparam T vector type
+ * @param fileName name of the file (without extension)
+ * @return vector of values
+ */
 template <typename T>
 vector<T> readVector(string fileName){
     ifstream input((fileName + ".z21").c_str(), ios::binary | ios::ate);

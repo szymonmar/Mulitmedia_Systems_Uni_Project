@@ -138,8 +138,8 @@ void OdczytajPlik(string a){
                         paleta7ZPlikuUint8[x+i-2+offset] = paleta7ZPlikuUint7[x+i-2] >> 1;
                         paleta7ZPlikuUint8[x+i-2+offset] = paleta7ZPlikuUint8[x+i-2+offset] << 1;
                     }
-                    extractedBits = paleta7ZPlikuUint7[x+i-2] & ((1 << i) - 1); // ekstraktujemy 'i' ostanich bit�w poprzedniej warto�ci
-                    extractedBits = shiftByte(extractedBits, i);                          // odwracamy zekstrakowane bity
+                    extractedBits = paleta7ZPlikuUint7[x+i-2] & ((1 << i) - 1);             // ekstraktujemy 'i' ostanich bitów poprzedniej wartości
+                    extractedBits = shiftByte(extractedBits, i);                            // odwracamy zekstrakowane bity
 
                     paleta7ZPlikuUint8[x+i-1+offset] = paleta7ZPlikuUint7[x+i-1] >> i+1;
                     paleta7ZPlikuUint8[x+i-1+offset] = paleta7ZPlikuUint8[x+i-1+offset] << 1;
