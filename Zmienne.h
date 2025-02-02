@@ -141,6 +141,8 @@ extern Uint8 dithering;
 /**
  * Two-dimensional array containing a whole image used for filtering
  */
-extern int tabelaFiltr[320][200];
+extern Sint8 tabelaFiltrowana[320][200];
+extern Uint8 tabelaOdfiltrowana[320][200];
+
 
 #endif // SM2024_ZMIENNE_H_INCLUDED

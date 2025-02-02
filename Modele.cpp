@@ -424,7 +424,6 @@ SDL_Color dithering565(int x, int y) {
     kolor.b = normalize(B, 255, 0);
 
     return kolor;
-
 }
 
 SDL_Color dithering555(int x, int y) {

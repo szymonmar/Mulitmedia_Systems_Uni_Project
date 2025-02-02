@@ -4,19 +4,12 @@
 #include "MedianCut.h"
 #include "Pliki.h"
 #include "Modele.h"
+#include "Kompresja.h"
 #include <math.h>
 #include <list>
 #include <vector>
 
 using namespace std;
-
-
-struct slowo{
-    Uint16 kod =0;
-    Uint8 length = 0;
-    Uint8 element[4096];
-    bool wSlowniku = false;
-};
 
 int rozmiarSlownika = 0;
 slowo slownik[65535];
@@ -89,7 +82,7 @@ void wyswietlSlowo(slowo aktualneSlowo){
     cout<<endl;
 }
 
-int dodajDoSLownika(slowo nowy, bool czyWyswietlac = false){
+int dodajDoSLownika(slowo nowy, bool czyWyswietlac){
 
     if(rozmiarSlownika <65536){
         Uint16 nr = rozmiarSlownika;
@@ -125,7 +118,7 @@ void LZWinicjalizacja(){
 }
 
 
-void LZWKompresja(vector<Uint8> input, int length, string fileName){
+vector<Uint16> LZWKompresja(vector<Uint8> input, int length){
     cout << "Zapisywanie pliku z kompresją LZW..." << endl;
     LZWinicjalizacja();
     slowo aktualneSlowo = noweSlowo();
@@ -165,12 +158,12 @@ void LZWKompresja(vector<Uint8> input, int length, string fileName){
     }
 
     resultArr.push_back(aktualneSlowo.kod);
-    saveVector<Uint16>(resultArr, fileName);
 
+    return resultArr;
 }
 
-void LZWDekompresja(string fileName) {
-    vector<Uint16> skompresowane = readVector<Uint16>(fileName);
+vector<Uint8> LZWDekompresja(vector<Uint16> skompresowane) {
+    //vector<Uint16> skompresowane = readVector<Uint16>(fileName);
     int length = skompresowane.size();
 
     // Inicjalizacja słownika
@@ -209,12 +202,6 @@ void LZWDekompresja(string fileName) {
         poprzednieSlowo = obecneSlowo;
     }
 
-    // Wyświetlanie zdekompresowanego wyniku
-//    cout << "Zdekompresowane dane:" << endl;
-//    for (int x : wynik) {
-//        cout << x << ", ";
-//    }
-//    cout << endl;
     int k = 0;
     SDL_Color pixel;
     for(int x = 0; x < szerokosc/2; x++){
@@ -224,9 +211,11 @@ void LZWDekompresja(string fileName) {
             k++;
         }
     }
+
+    return wynik;
 }
 
-void ByteRunKompresja(vector<Uint8> input, int length, string fileName) {
+vector<Sint8> ByteRunKompresja(vector<Uint8> input, int length) {
     int i = 0;
     vector<Sint8> resultArr;
 
@@ -261,14 +250,12 @@ void ByteRunKompresja(vector<Uint8> input, int length, string fileName) {
             i += j;
         }
     }
-
-    saveVector<Sint8>(resultArr, fileName);
+    return resultArr;
 }
 
-
-void ByteRunDekompresja(string fileName){
+vector<Uint8> ByteRunDekompresja(vector<Sint8> input){
     int j = 0;
-    vector<Sint8> input = readVector<Sint8>(fileName);
+    //vector<Sint8> input = readVector<Sint8>(fileName);
     int length = input.size();
     vector<Uint8> output;
     while (j < length){
@@ -300,10 +287,10 @@ void ByteRunDekompresja(string fileName){
             break;
         }
     }
+    return output;
 }
 
-
-void RLEKompresja(vector<Uint8> input, int length, string fileName){
+vector<Uint8> RLEKompresja(vector<Uint8> input, int length){
     int i = 0;
     vector<Uint8> resultArr;
 
@@ -353,14 +340,13 @@ void RLEKompresja(vector<Uint8> input, int length, string fileName){
             i += j;
         }
     }
+    return resultArr;
 
-    // cout << "Kompresja udana\n";
-    saveVector<Uint8>(resultArr, fileName);
 }
 
-void RLEDekompresja(string fileName){
+vector<Uint8> RLEDekompresja(vector<Uint8> input){
     int j = 0;
-    vector<Uint8> input = readVector<Uint8>(fileName);
+    //vector<Uint8> input = readVector<Uint8>(fileName);
     int length = input.size();
     vector<Uint8> output;
     while (j < length){
@@ -403,23 +389,15 @@ void RLEDekompresja(string fileName){
             break;
         }
     }
+    return output;
 }
 
-struct token {
-    Uint16 tokLength;
-    Uint16 shift;
-    Uint8 rawValue;
-    token() : tokLength(0), shift(0), rawValue(0) {}
-    token(Uint16 tokLength, Uint16 shift, Uint8 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
-};
-
-void LZ77Kompresja(vector<Uint8> input, int length, string filename) {
+vector<token8> LZ77Kompresja(vector<Uint8> input, int length) {
     const int windowSize = 64000; // Rozmiar okna wyszukiwania
     int lookaheadBufferSize;
-    vector<token> resultArr;
+    vector<token8> resultArr;
     int position = 0;
     int numOfMatches = 0;
-
     while (position < length) {
         lookaheadBufferSize = windowSize - position;
         int matchDistance = 0;
@@ -445,7 +423,7 @@ void LZ77Kompresja(vector<Uint8> input, int length, string filename) {
 
         // Jeśli nie znaleziono dopasowania, zapisujemy literę bezpośrednio
         if (matchLength < 1) {
-            resultArr.push_back(token((Uint16)0, (Uint16)0, (Uint8)input[position]));
+            resultArr.push_back(token8((Uint16)0, (Uint16)0, (Uint8)input[position]));
             position++;
             //cout << "RAW: ( " << (int)input[position] << " )" << endl;
 
@@ -453,22 +431,94 @@ void LZ77Kompresja(vector<Uint8> input, int length, string filename) {
             // W przeciwnym razie zapisujemy parę (odległość, długość, następny znak)
         else {
             Uint8 nextChar = (position + matchLength < length) ? input[position + matchLength] : 0;
-            resultArr.push_back(token((Uint16)matchLength, (Uint16)matchDistance, (Uint8)nextChar));
+            resultArr.push_back(token8((Uint16)matchLength, (Uint16)matchDistance, (Uint8)nextChar));
             position += matchLength + 1;
             //cout << "( Len: " << (int)matchLength << ", Dist: " << (int)matchDistance << ", next: " << (int)nextChar << " )   Position: " << position << endl;
             numOfMatches++;
         }
     }
-    cout << "NoM: " << numOfMatches << endl;
-    saveVector<token>(resultArr, filename);
+    return resultArr;
 }
 
 // Funkcja LZ77 - dekompresuje wejściowy wektor danych
-void LZ77Dekompresja(string filename) {
-    vector<token> tokens = readVector<token>(filename);
+vector<Uint8> LZ77Dekompresja(vector<token8> tokens) {
+    //vector<token> tokens = readVector<token>(filename);
     vector<Uint8> output;
     int j = 0;
-    for (token tok : tokens) {
+    for (token8 tok : tokens) {
+        // Jeśli tokLength to 0, oznacza to, że zapisujemy surową wartość rawValue
+        if (tok.tokLength == 0) {
+            output.push_back(tok.rawValue);
+        } else {
+            // Zapisujemy odwołanie do wcześniejszych danych w strumieniu
+            int startPos = output.size() - tok.shift;
+            for (int i = 0; i < tok.tokLength; ++i) {
+                output.push_back(output[startPos + i]);
+            }
+
+            // Zapisujemy dodatkowy znak rawValue
+            output.push_back(tok.rawValue);
+        }
+
+    }
+
+    return output;
+}
+
+vector<token16> LZ77Kompresja(vector<Uint16> input, int length) {
+    const int windowSize = 64000; // Rozmiar okna wyszukiwania
+    int lookaheadBufferSize;
+    vector<token16> resultArr;
+    int position = 0;
+    int numOfMatches = 0;
+    while (position < length) {
+        lookaheadBufferSize = windowSize - position;
+        int matchDistance = 0;
+        int matchLength = 0;
+        int searchStart = 0;
+        int searchEnd = position;
+
+
+        // Wyszukiwanie najdłuższego dopasowania w oknie wyszukiwania
+        for (int i = searchStart; i < searchEnd; i++) {
+            int currentMatchLength = 0;
+            while (currentMatchLength < lookaheadBufferSize &&
+                   position + currentMatchLength < length &&
+                   input[i + currentMatchLength] == input[position + currentMatchLength]) {
+                currentMatchLength++;
+            }
+
+            if (currentMatchLength > matchLength) {
+                matchLength = currentMatchLength;
+                matchDistance = position - i;
+            }
+        }
+
+        // Jeśli nie znaleziono dopasowania, zapisujemy literę bezpośrednio
+        if (matchLength < 1) {
+            resultArr.push_back(token16((Uint16)0, (Uint16)0, (Uint16)input[position]));
+            position++;
+            //cout << "RAW: ( " << (int)input[position] << " )" << endl;
+
+        }
+            // W przeciwnym razie zapisujemy parę (odległość, długość, następny znak)
+        else {
+            Uint16 nextChar = (position + matchLength < length) ? input[position + matchLength] : 0;
+            resultArr.push_back(token16((Uint16)matchLength, (Uint16)matchDistance, (Uint16)nextChar));
+            position += matchLength + 1;
+            //cout << "( Len: " << (int)matchLength << ", Dist: " << (int)matchDistance << ", next: " << (int)nextChar << " )   Position: " << position << endl;
+            numOfMatches++;
+        }
+    }
+    return resultArr;
+}
+
+// Funkcja LZ77 - dekompresuje wejściowy wektor danych
+vector<Uint16> LZ77Dekompresja(vector<token16> tokens) {
+    //vector<token> tokens = readVector<token>(filename);
+    vector<Uint16> output;
+    int j = 0;
+    for (token16 tok : tokens) {
         // Jeśli tokLength to 0, oznacza to, że zapisujemy surową wartość rawValue
         if (tok.tokLength == 0) {
             output.push_back(tok.rawValue);
@@ -484,17 +534,423 @@ void LZ77Dekompresja(string filename) {
         }
     }
 
-    int k = 0;
-    for(int x = 0; x < szerokosc/2; x++){
-        for(int y = 0; y < wysokosc/2; y++){
-            if(k >= 64000) {
+    return output;
+}
+
+
+void wyswietlDane(macierz blok) {
+    cout << "Dane w macierzy: " << endl;
+    for(int y = 0; y < rozmiarBloku; y++) {
+        for(int x = 0; x < rozmiarBloku; x++){
+            cout << (int)blok.dane[x][y] << "   ";
+        }
+        cout << endl;
+    }
+}
+void wyswietlDCT(macierz blok) {
+    cout << "Macierz DCT: " << endl;
+    for(int y = 0; y < rozmiarBloku; y++) {
+        for(int x = 0; x < rozmiarBloku; x++){
+            cout << blok.dct[x][y] << "   ";
+        }
+        cout << endl;
+    }
+}
+
+macierz dct(Uint8 wartosci[rozmiarBloku][rozmiarBloku]) {
+    float wynik[rozmiarBloku][rozmiarBloku];
+
+    for(int v = 0; v < rozmiarBloku; ++v) {
+        for(int u = 0; u < rozmiarBloku; ++u) {
+            const double cu = (u == 0) ? 1.0 / sqrt(2) : 1.0;
+            const double cv = (v == 0) ? 1.0 / sqrt(2) : 1.0;
+            double wspolczynnikDCT = 0;
+
+            for(int y = 0; y < rozmiarBloku; ++y) {
+                for(int x = 0; x < rozmiarBloku; ++x) {
+                    double uCosFactor = cos((double)(2*x+1)* M_PI * (double)u / (2 * (double)rozmiarBloku));
+                    double vCosFactor = cos((double)(2*y+1)* M_PI * (double)v / (2 * (double)rozmiarBloku));
+                    double pixel = (double)wartosci[x][y];
+                    wspolczynnikDCT += pixel * uCosFactor *vCosFactor;
+                }
+            }
+            wspolczynnikDCT *= (2.0 / (double)rozmiarBloku) * cu * cv;
+            wynik[u][v] = wspolczynnikDCT;
+        }
+    }
+
+    macierz rezultat;
+    for(int j = 0; j < rozmiarBloku; j++) {
+        for(int i = 0; i < rozmiarBloku; i++) {
+            rezultat.dct[i][j] = wynik[i][j];
+            rezultat.dane[i][j] = wartosci[i][j];
+        }
+    }
+    return rezultat;
+}
+
+macierz idct(float DCT[rozmiarBloku][rozmiarBloku]) {
+    int wynik[rozmiarBloku][rozmiarBloku];
+
+    for(int x = 0; x < rozmiarBloku; ++x) {
+        for (int y = 0; y < rozmiarBloku; ++y) {
+            double pixel = 0;
+
+            for(int u = 0; u < rozmiarBloku; ++u) {
+                for(int v = 0; v < rozmiarBloku; ++v) {
+                    const double cu = (u == 0) ? 1.0 / sqrt(2) : 1.0;
+                    const double cv = (v == 0) ? 1.0 / sqrt(2) : 1.0;
+                    double uCosFactor = cos((double)(2*x+1)* M_PI * (double)u / (2 * (double)rozmiarBloku));
+                    double vCosFactor = cos((double)(2*y+1)* M_PI * (double)v / (2 * (double)rozmiarBloku));
+                    double wspolczynnikDCT = DCT[u][v];
+                    pixel += wspolczynnikDCT * uCosFactor * cu * vCosFactor * cv;
+                }
+            }
+            pixel *= (2.0 / (double)rozmiarBloku);
+            wynik[x][y] = round(pixel);
+        }
+    }
+
+    macierz rezultat;
+    for(int j = 0; j < rozmiarBloku; j++) {
+        for(int i = 0; i < rozmiarBloku; i++) {
+            if(wynik[i][j] > 255) wynik[i][j]=255;
+            if(wynik[i][j] < 0) wynik[i][j]=0;
+            rezultat.dane[i][j] = wynik[i][j];
+            rezultat.dct[i][j] = DCT[i][j];
+        }
+    }
+    return rezultat;
+}
+
+float findMaxABS(macierz blok, float lastMaxABS) {
+    float max = 0;
+    float min = 0;
+    float data;
+    for(int j = 0; j < rozmiarBloku; j++) {
+        for (int i = 0; i < rozmiarBloku; i++) {
+            data = blok.dct[i][j];
+            if(data > max) {
+                max = data;
+            }
+            if(data < min) {
+                min = data;
+            }
+        }
+    }
+    if((min * -1) > max) {
+        if((min * -1) > lastMaxABS) {
+            return min * -1;
+        } else {
+            return lastMaxABS;
+        }
+    } else {
+        if(max > lastMaxABS) {
+            return max;
+        } else {
+            return lastMaxABS;
+        }
+    }
+}
+
+DCToutput DCTKompresja(Uint8 tryb) {
+    macierz wejscie;
+    macierz blokDCT;
+    macierz wyjscie;
+    float maxABS;
+    float mnoznik;
+    vector<Uint8> tablicaDoKompresji;
+    vector<token8> tablicaPoKompresji;
+    vector<macierz> allBlocks;
+    vector<float> firstElements;
+
+    int c = 0;
+    int compressedSize = 0;
+
+    if(tryb & 0x80) /* Color */ {
+        if(tryb & 0x08) /* HSL */ {
+            cout << "HSL" << endl;
+        // po wysokosci -> 25 przebiegow
+            for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for(int x = 0; x < rozmiarBloku; x++) {
+                        for(int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = RGBtoHSL(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).H;
+                        }
+                    }
+
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
+                }
+            }
+            // po wysokosci -> 25 przebiegow
+            for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for(int x = 0; x < rozmiarBloku; x++) {
+                        for(int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = RGBtoHSL(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).S;
+                        }
+                    }
+
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
+                }
+            }
+            // po wysokosci -> 25 przebiegow
+            for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for(int x = 0; x < rozmiarBloku; x++) {
+                        for(int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = RGBtoHSL(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).L;
+                        }
+                    }
+
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
+                }
+            }
+        } else /* RGB */ {
+            cout << "RGB" << endl;
+            // po wysokosci -> 25 przebiegow
+            for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for(int x = 0; x < rozmiarBloku; x++) {
+                        for(int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = getPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).r;
+                        }
+                    }
+
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
+                }
+            }
+            // po wysokosci -> 25 przebiegow
+            for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for(int x = 0; x < rozmiarBloku; x++) {
+                        for(int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = getPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).g;
+                        }
+                    }
+
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
+                }
+            }
+            // po wysokosci -> 25 przebiegow
+            for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for(int x = 0; x < rozmiarBloku; x++) {
+                        for(int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = getPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).b;
+                        }
+                    }
+
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
+                }
+            }
+        }
+    } else /* BW */ {
+        // po wysokosci -> 25 przebiegow
+        for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+            // po szerokosci -> 40 przebiegow
+            for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                // pobranie danych w bloku
+                for(int x = 0; x < rozmiarBloku; x++) {
+                    for(int y = 0; y < rozmiarBloku; y++) {
+                        wejscie.dane[x][y] = getPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).r;
+                    }
+                }
+                // transformata
+                blokDCT = dct(wejscie.dane);
+                firstElements.push_back(blokDCT.dct[0][0]);
+                allBlocks.push_back(blokDCT);
+                maxABS = findMaxABS(blokDCT, maxABS);
+            }
+        }
+    }
+
+    mnoznik = maxABS / 128.0;
+
+    // kwantyzacja i normalizacja wspolczynnikow
+    for(int i = 0; i < allBlocks.size(); i++) {
+        for(int x = 0; x < rozmiarBloku; x++) {
+            for(int y = 0; y < rozmiarBloku; y++) {
+                if(x == 0 && y == 0) {
+                    continue;
+                }
+                allBlocks[i].dct[x][y] /= mnoznik;
+                allBlocks[i].dct[x][y] += 127.0;
+                allBlocks[i].dct[x][y] = round(allBlocks[i].dct[x][y]);
+            }
+        }
+    }
+
+    // zapis do tablicy do kompresji
+    for(int i = 0; i < allBlocks.size(); i++) {
+        int x = 1, y = 0;  // Start from (1,0) since (0,0) should be skipped
+        bool goingUp = true;
+
+        while (x >= 0 && x < 8 && y >= 0 && y < 8) {
+            // Process current element
+            tablicaDoKompresji.push_back((Uint8) allBlocks[i].dct[x][y]);
+
+            if (goingUp) {
+                if (x == 0 || y == 7) {  // Hit top or right boundary
+                    if (y == 7) {  // Hit right boundary
+                        x++;
+                    } else {  // Hit top boundary
+                        y++;
+                    }
+                    goingUp = false;  // Change direction
+                } else {
+                    x--;  // Move diagonally up-right
+                    y++;
+                }
+            } else {  // Going down
+                if (x == 7 || y == 0) {  // Hit bottom or left boundary
+                    if (x == 7) {  // Hit bottom boundary
+                        y++;
+                    } else {  // Hit left boundary
+                        x++;
+                    }
+                    goingUp = true;  // Change direction
+                } else {
+                    x++;  // Move diagonally down-left
+                    y--;
+                }
+            }
+
+            // Break if we go out of bounds
+            if (x >= 8 || y >= 8) {
                 break;
             }
-            setPixel(x, y, output[k], output[k], output[k]);
-            k++;
         }
-        if(k >= 64000) {
-            break;
+    }
+
+    tablicaPoKompresji = LZ77Kompresja(tablicaDoKompresji, tablicaDoKompresji.size());
+    DCToutput output;
+    output.mnoznik = mnoznik;
+    output.pierwszeWspolczynniki = firstElements;
+    output.reszta = tablicaPoKompresji;
+    return output;
+}
+
+void DCTDekompresja(DCToutput input, Uint8 tryb) {
+
+    float mnoznik;
+    vector<float> firstElements;
+    vector<Uint8> tablicaPoKompresji;
+    vector<Uint8> tablicaPoDekompresji;
+    macierz allBlocks[1000];
+    macierz outputAllBlocks[1000];
+
+    // dekompresja
+    tablicaPoDekompresji = LZ77Dekompresja(input.reszta);
+
+    if(tryb & 0x80) /* Color */ {
+        if(tryb & 0x08) /* HSL */ {
+
+        } else /* RGB */ {
+
+        }
+    } else /* No color */ {
+
+    }
+    int iii = 0;
+    for(int i = 0; i < 1000; i++) {
+        // Iterowanie po tablicy w zygzaku w odwrotnej kolejności
+        for (int d = 2 * rozmiarBloku - 2; d >= 0; --d) {
+            if (d % 2 == 0) {
+                // Kierunek "w dół" (przechodzenie po przekątnej w odwrotnym zygzaku)
+                for (int i = 0; i <= d; ++i) {
+                    int row = d - i;
+                    int col = i;
+                    if(row == 0 && col == 0) {
+                        continue;
+                    }
+                    if (row < rozmiarBloku && col < rozmiarBloku) {
+                        allBlocks[i].dct[row][col] = (float) tablicaPoDekompresji[iii];
+                        iii++;
+                    }
+                }
+            } else {
+                // Kierunek "w górę" (przechodzenie po przekątnej w odwrotnym zygzaku)
+                for (int i = 0; i <= d; ++i) {
+                    int row = i;
+                    int col = d - i;
+                    if(row == 0 && col == 0) {
+                        continue;
+                    }
+                    if (row < rozmiarBloku && col < rozmiarBloku) {
+                        allBlocks[i].dct[row][col] = (float) tablicaPoDekompresji[iii];
+                        iii++;
+                    }
+                }
+            }
+        }
+    }
+
+    // odwrócenie kwantyzacji i normalizacji
+
+    for(int i = 0; i < 1000; i++) {
+        for(int x = 0; x < 8; x++) {
+            for(int y = 0; y < 8; y++) {
+                allBlocks[i].dct[x][y] -= 127.0;
+                allBlocks[i].dct[x][y] *= mnoznik;
+            }
+        }
+        allBlocks[i].dct[0][0] = input.pierwszeWspolczynniki[i];
+    }
+
+    for(int i = 0; i < 1000; i++) {
+        outputAllBlocks[i] = idct(allBlocks[i].dct);
+    }
+
+    // wyjscie danych na ekran
+    // po wysokosci -> 25 przebiegow
+    iii = 0;
+    for(int k = 0; k < (wysokosc / rozmiarBloku); k++) {
+        // po szerokosci -> 40 przebiegow
+        for (int l = 0; l < (szerokosc / rozmiarBloku); l++) {
+            // pobranie danych w bloku
+            for (int x = 0; x < rozmiarBloku; x++) {
+                for (int y = 0; y < rozmiarBloku; y++) {
+                    //setPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku), outputAllBlocks[iii].dane.r, pixelA.g, pixelA.b);
+                }
+            }
+            iii++;
         }
     }
 }

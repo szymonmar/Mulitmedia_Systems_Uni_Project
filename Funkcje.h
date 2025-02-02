@@ -21,6 +21,7 @@ void Funkcja6();
 void Funkcja7();
 void Funkcja8();
 void Funkcja9();
+void Funkcja10();
 
 /** YUV - U & V subsampling
  */
@@ -127,5 +128,14 @@ void filtrUsredniajacy(Uint8 tabela[320][200]);
  * @param   tabela      image stored in a two-dimensional array
  */
 void filtrPaetha(Uint8 tabela[320][200]);
+
+
+vector<Uint8> filtrRoznicowy(vector<Uint8> input);
+
+vector<Uint8> reverseFiltrRoznicowy(vector<Uint8> input);
+
+vector<Uint16> filtrRoznicowy(vector<Uint16> input);
+
+vector<Uint16> reverseFiltrRoznicowy(vector<Uint16> input);
 
 #endif // SM2024_FUNKCJE_H_INCLUDED

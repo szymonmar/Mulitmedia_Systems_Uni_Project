@@ -17,9 +17,23 @@ using namespace std;
 #define tytul "SM2024 - Projekt - Zespol 21"
 
 int main(int argc, char* argv[]) {
+    tryb = 0b11000000;
+    int x = 1;
+    int y = 0;
+    int inc = 1;
+    int limit = 1;
 
 
-    cout << "\tMenu\n1.Obraz z paleta narzucona.\n2.Obraz w skali szarosci narzuconej\n3.Obraz w skali szarosci dedykowanej.\n4.Obraz z paleta wykryta\n5.Obraz z paleta dedykowana(MedianCut)\n6.Dithering\n7.Zapisz do pliku\n8.Odczytaj z pliku." << endl;
+    cout << "\n\n\tMenu"
+            "\n1.Wybór trybu COLOR / BW"
+            "\n2.Wybór trybu 16-bit / 24-bit"
+            "\n3.Wybór modelu barwnego RGB888 / HSL888"
+            "\n4.Dithering"
+            "\n5.Predykcja (filtr różnicowy)"
+            "\n6.Kompresja bezstratna (LZ77)"
+            "\n7.Kompresja stratna (Podpróbkowanie 420)"
+            "\n8.Kompresja stratna (DCT)"
+            "\n8.Odczytaj z pliku." << endl;
 
 
 
@@ -47,6 +61,7 @@ int main(int argc, char* argv[]) {
     SDL_Event event;
     // główna pętla programu
     while (SDL_WaitEvent(&event)) {
+
         // sprawdzamy czy pojawiło się zdarzenie
         switch (event.type) {
             case SDL_QUIT:
@@ -60,32 +75,21 @@ int main(int argc, char* argv[]) {
                     done = true;
                 if (event.key.keysym.sym == SDLK_1){
                     Funkcja1();
-                    tryb = 1;
-                    dithering = 0;
                 }
                 if (event.key.keysym.sym == SDLK_2){
                     Funkcja2();
-                    tryb=2;
-                    dithering = 0;
                 }
                 if (event.key.keysym.sym == SDLK_3){
                     Funkcja3();
-                    tryb = 3;
-                    dithering = 0;
                 }
                 if (event.key.keysym.sym == SDLK_4){
                     Funkcja4();
-                    tryb = 4;
-                    dithering = 0;
                 }
                 if (event.key.keysym.sym == SDLK_5){
                     Funkcja5();
-                    tryb = 5;
-                    dithering = 0;
                 }
                 if (event.key.keysym.sym == SDLK_6){
                     Funkcja6();
-                    dithering = 1;
                 }
                 if (event.key.keysym.sym == SDLK_7)
                     Funkcja7();
@@ -93,26 +97,48 @@ int main(int argc, char* argv[]) {
                     Funkcja8();
                 if (event.key.keysym.sym == SDLK_9)
                     Funkcja9();
-                if (event.key.keysym.sym == SDLK_a)
+                if (event.key.keysym.sym == SDLK_0)
+                    Funkcja10();
+                if (event.key.keysym.sym == SDLK_a) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek1.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_s)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_s) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek2.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_d)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_d) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek3.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_f)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_f) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek4.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_g)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_g) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek5.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_h)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_h) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek6.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_j)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_j) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek7.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_k)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_k) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek8.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_l)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_l) {
                     ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek9.bmp", 0, 0);
-                if (event.key.keysym.sym == SDLK_b)
+                    tryb = 0b11000000;
+                }
+                if (event.key.keysym.sym == SDLK_b) {
                     czyscEkran(0, 0, 0);
+                    tryb = 0b11000000;
+                }
                 else
                     break;
                }

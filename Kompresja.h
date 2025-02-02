@@ -7,6 +7,32 @@
 
 using namespace std;
 
+struct token8 {
+    Uint16 tokLength;
+    Uint16 shift;
+    Uint8 rawValue;
+    token8() : tokLength(0), shift(0), rawValue(0) {}
+    token8(Uint16 tokLength, Uint16 shift, Uint8 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
+};
+
+struct token16 {
+    Uint16 tokLength;
+    Uint16 shift;
+    Uint16 rawValue;
+    token16() : tokLength(0), shift(0), rawValue(0) {}
+    token16(Uint16 tokLength, Uint16 shift, Uint16 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
+};
+
+vector<token8> LZ77Kompresja(vector<Uint8> input, int length);
+
+// Funkcja LZ77 - dekompresuje wejściowy wektor danych
+vector<Uint8> LZ77Dekompresja(vector<token8> tokens);
+
+vector<token16> LZ77Kompresja(vector<Uint16> input, int length);
+
+// Funkcja LZ77 - dekompresuje wejściowy wektor danych
+vector<Uint16> LZ77Dekompresja(vector<token16> tokens);
+
 /** Stuct representing single word, used in LZW compression & decompression
  */
 struct slowo{
@@ -74,47 +100,62 @@ void LZWinicjalizacja();
  * @param   length      vector size
  * @param   fileName    name of a file to save compressed output to
  */
-void LZWKompresja(vector<Uint8> input, int length, string fileName);
+vector<Uint16> LZWKompresja(vector<Uint8> input, int length);
 
 /** LZW Decompression from a file
  * @param   fileName        name of a file to read compressed input from
  */
-void LZWDekompresja(string fileName);
-
-/** LZ77 Compression and save to file
- * @param   input       vector of Uint8 BW pixels to compress
- * @param   length      vector size
- * @param   filename    name of a file to save compressed output to
- */
-void LZ77Kompresja(vector<Uint8> input, int length, string filename);
-
-/** LZ77 Decompression from a file
- * @param   filename    name of a file to read a compressed input from
- */
-void LZ77Dekompresja(string filename);
+vector<Uint8> LZWDekompresja(vector<Uint16> skompresowane);
 
 /** ByteRun Compression and save to a file
  * @param   input       vector of Uint8 BW pixels to compress
  * @param   length      vector size
  * @param   fileName    name of a file to save compressed output to
  */
-void ByteRunKompresja(vector<Uint8> input, int length, string fileName);
+vector<Sint8> ByteRunKompresja(vector<Uint8> input, int length);
 
 /** ByteRun Decompression from a file
  * @param   fileName        name of a file to read a compressed input from
  */
-void ByteRunDekompresja(string fileName);
+vector<Uint8> ByteRunDekompresja(vector<Sint8> input);
 
 /** RLE Compression and save to a file
  * @param   input       vector of Uint8 BW pixels to compress
  * @param   length      vector size
  * @param   fileName    name of a file to save compressed output to
  */
-void RLEKompresja(vector<Uint8> input, int length, string fileName);
+vector<Uint8> RLEKompresja(vector<Uint8> input, int length);
 
 /** RLE Decompression from a file
  * @param   fileName        name of a file to read a compressed input from
  */
-void RLEDekompresja(string fileName);
+vector<Uint8> RLEDekompresja(vector<Uint8> input);
+
+const int rozmiarBloku = 8;
+
+struct macierz {
+    float dct[rozmiarBloku][rozmiarBloku];
+    Uint8 dane[rozmiarBloku][rozmiarBloku];
+};
+
+struct DCToutput {
+    float mnoznik;
+    vector<float> pierwszeWspolczynniki;
+    vector<token8> reszta;
+};
+
+void wyswietlDane(macierz blok);
+
+void wyswietlDCT(macierz blok);
+
+macierz dct(Uint8 wartosci[rozmiarBloku][rozmiarBloku]);
+
+macierz idct(float DCT[rozmiarBloku][rozmiarBloku]);
+
+float findMaxABS(macierz blok, float lastMaxABS);
+
+DCToutput DCTKompresja(Uint8 tryb);
+
+void DCTDekompresja(string filename);
 
 #endif //SM2024_PROJEKT_KOMPRESJA_H

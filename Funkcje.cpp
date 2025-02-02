@@ -21,381 +21,681 @@ vector<Uint8> zczytajDaneBW(){
     return output;
 }
 
-void filtrRoznicowy(Uint8 tabela[320][200]){
-    int roznica;
-    for(int x =0;x< szerokosc/2; x++){
-        for(int y=0; y <wysokosc/2; y++){
-            if (x == 0) {
-                tabelaFiltr[0][y] = tabela[0][y];
-            } else {
-                roznica = tabela[x][y] - tabela[x-1][y];
-                tabelaFiltr[x][y] = roznica;
-            }
-        }
+vector<Uint8> filtrRoznicowy(vector<Uint8> input){
+    vector<Uint8> output;
+    output.push_back(input[0]);
+    for(int i = 1; i < input.size(); i++) {
+        output.push_back(input[i] - input[i-1]);
     }
+    return output;
 }
 
-void roznicaLinii(Uint8 tabela[320][200]){
-    int roznica;
-    for(int x =0;x< szerokosc/2; x++){
-        for(int y=0; y <wysokosc/2; y++){
-            if (y == 0) {
-                tabelaFiltr[x][y] = tabela[x][y];
-            } else {
-                roznica = tabela[x][y] - tabela[x][y-1];
-                tabelaFiltr[x][y] = roznica;
-                cout << (int)tabela[x][y] << " - " << (int)tabela[x][y-1] << " = " << tabelaFiltr[x][y] << endl;
-            }
-        }
+vector<Uint8> reverseFiltrRoznicowy(vector<Uint8> input){
+    vector<Uint8> output;
+    output.push_back(input[0]);
+    for(int i = 1; i < input.size(); i++) {
+        output.push_back(input[i] + output[i-1]);
     }
+    return output;
 }
 
-void filtrUsredniajacy(Uint8 tabela[320][200]){
-    int roznica;
-    for(int x =0;x< szerokosc/2; x++){
-        for(int y=0; y <wysokosc/2; y++){
-            if (x == 0 || y == 0) {
-                tabelaFiltr[x][y] = tabela[x][y];
-            } else {
-                roznica = tabela[x][y] - ( (tabela[x][y-1] + tabela[x-1][y]) / 2 );
-                tabelaFiltr[x][y] = roznica;
-                cout << (int)tabela[x][y] << " - ((" << (int)tabela[x][y-1] << " + " << (int)tabela[x-1][y] << " ) / 2 )  = " << tabelaFiltr[x][y] << endl;
-            }
-        }
+vector<Uint16> filtrRoznicowy(vector<Uint16> input){
+    vector<Uint16> output;
+    output.push_back(input[0]);
+    for(int i = 1; i < input.size(); i++) {
+        output.push_back(input[i] - input[i-1]);
     }
+    return output;
 }
 
-void filtrPaetha(Uint8 tabela[320][200]){
-    int roznica;
-    int paeth, p;
-    for(int x =0;x< szerokosc/2; x++){
-        for(int y=0; y <wysokosc/2; y++){
-            if (x == 0 || y == 0) {
-                tabelaFiltr[x][y] = tabela[x][y];
-            } else {
-                paeth = (int)tabela[x-1][y] + (int)tabela[x][y-1] - (int)tabela[x-1][y-1];
-                p = min(min((int)abs(tabela[x-1][y] - paeth), (int)abs(tabela[x][y-1] - paeth)), (int)abs(tabela[x-1][y-1] - paeth));
-                roznica = tabela[x][y] - p;
-                tabelaFiltr[x][y] = roznica;
-                cout << "Paeth: " << paeth << "  p: " << p << endl;
-                cout << (int)tabela[x][y] << " - " << p << " = " << tabelaFiltr[x][y] << endl;
-            }
-        }
+vector<Uint16> reverseFiltrRoznicowy(vector<Uint16> input){
+    vector<Uint16> output;
+    output.push_back(input[0]);
+    for(int i = 1; i < input.size(); i++) {
+        output.push_back(input[i] + output[i-1]);
     }
+    return output;
 }
 
+void displayMainMenu() {
+    cout << "\n\n\tMenu"
+            "\n1.Wybór trybu COLOR / BW"
+            "\n2.Wybór trybu 16-bit / 24-bit"
+            "\n3.Wybór modelu barwnego RGB888 / HSL888"
+            "\n4.Dithering"
+            "\n5.Predykcja (filtr różnicowy)"
+            "\n6.Kompresja bezstratna (LZ77)"
+            "\n7.Kompresja stratna (Podpróbkowanie 420)"
+            "\n8.Kompresja stratna (DCT)"
+            "\n8.Odczytaj z pliku." << endl;
+}
 
-
+// USTAWIA TRYB color / bw
 void Funkcja1() {
-//    string filename;
-//    cout << "Podaj nazwę pliku, który chcesz zapisać: ";
-//    cin >> filename;
-//
-//    vector<Uint8> array = zczytajDaneBW();
-//
-//    saveVector(array, filename);
-    //LZWKompresja(array, array.size(), filename);
-
-    SDL_UpdateWindowSurface(window);
+    SDL_Event event;
+    cout << "\n\n\tWybierz tryb:\n1. Czarno-biały\n2. Kolorowy\n0. Zatwierdź\n";
+    while (SDL_WaitEvent(&event)) {
+        // sprawdzamy czy pojawiło się zdarzenie
+        switch (event.type) {
+            // sprawdzamy czy został wciśnięty klawisz
+            case SDL_KEYDOWN: {
+                // jeśli tryb bw
+                if (event.key.keysym.sym == SDLK_1) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            Uint8 bw = z24RGBna8BW(getPixel(x, y));
+                            SDL_Color bwSDL = z8BWna24RGB(bw);
+                            setPixel(x + szerokosc / 2, y, bwSDL.r, bwSDL.g, bwSDL.b);
+                        }
+                    }
+                    if(tryb & 0x80) {
+                        tryb -= 0b10000000;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli tryb color
+                if (event.key.keysym.sym == SDLK_2) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x, y);
+                            setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                        }
+                    }
+                    if(!(tryb & 0x80)) {
+                        tryb += 0b10000000;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli zatwierdź
+                if (event.key.keysym.sym == SDLK_0) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                            setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                            setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                        }
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    displayMainMenu();
+                    return;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
 }
 
+// USTAWIA TRYB 16-bit / 24-bit
 void Funkcja2() {
-    string filename;
-    cout << "Podaj nazwę pliku, który chcesz otworzyć: ";
-    cin >> filename;
-
-    //LZWDekompresja(filename);
-
-    vector<Uint8> array = readVector<Uint8>(filename);
-    int i = 0;
-    for(int x = 0; x < szerokosc / 2; x++) {
-        for(int y = 0; y < wysokosc / 2; y++) {
-            setPixel(x, y, array[i], array[i], array[i]);
-            i++;
+    SDL_Event event;
+    cout << "\n\n\tWybierz tryb:\n1. 16-bit\n2. 24-bit\n0. Zatwierdź\n";
+    while (SDL_WaitEvent(&event)) {
+        // sprawdzamy czy pojawiło się zdarzenie
+        switch (event.type) {
+            // sprawdzamy czy został wciśnięty klawisz
+            case SDL_KEYDOWN: {
+                // jeśli tryb 16-bit
+                if (event.key.keysym.sym == SDLK_1) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            Uint16 pixel = getRGB565(x, y);
+                            setRGB565(x + szerokosc / 2, y, pixel);
+                        }
+                    }
+                    if(tryb & 0x40) {
+                        tryb -= 0b01000000;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli tryb 24-bit
+                if (event.key.keysym.sym == SDLK_2) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x, y);
+                            setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                        }
+                    }
+                    if(!(tryb & 0x40)) {
+                        tryb += 0b01000000;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli zatwierdź
+                if (event.key.keysym.sym == SDLK_0) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                            setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                            setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                        }
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    displayMainMenu();
+                    return;
+                } else {
+                    break;
+                }
+            }
         }
     }
-    SDL_UpdateWindowSurface(window);
-
-//    SDL_Color kolor, tymczasowyKolor, newNewColor;
-//    Uint8 szary, nowySzary;
-//    int tymczasowySzary;
-//    int przesuniecie = 1;
-//    float bledy[(szerokosc/2)+2][(wysokosc/2)+2];
-//    memset(bledy, 0, sizeof(bledy));
-//    int blad = 0;
-//
-//
-//    for(int yy=0; yy<wysokosc/2; yy++) {
-//        for (int xx = 0; xx < szerokosc / 2; xx++) {
-//            kolor = getPixel(xx, yy);
-//
-//            szary = 0.299*kolor.r + 0.587*kolor.g + 0.114*kolor.b;
-//            tymczasowySzary = szary + bledy[xx + przesuniecie][yy];
-//            if(tymczasowySzary > 255) {
-//                tymczasowySzary = 255;
-//            }
-//            if(tymczasowySzary < 0) {
-//                tymczasowySzary = 0;
-//            }
-//
-//            tymczasowyKolor.r = tymczasowySzary;
-//            tymczasowyKolor.b = tymczasowySzary;
-//            tymczasowyKolor.g = tymczasowySzary;
-//
-//            szary = z24RGBna7BW(kolor);
-//            newNewColor = z7BWna24RGB(szary);
-//
-//            nowySzary = newNewColor.r;
-//
-//            blad = tymczasowySzary - nowySzary;
-//
-//            setPixel(xx + szerokosc/2, yy, newNewColor.r, newNewColor.g, newNewColor.b);
-//
-//            bledy[xx+1+przesuniecie][yy] += (blad*7.0/16.0);
-//            bledy[xx-1+przesuniecie][yy+1] += (blad*3.0/16.0);
-//            bledy[xx+przesuniecie][yy+1] += (blad*5.0/16.0);
-//            bledy[xx-1+przesuniecie][yy+1] += (blad*1.0/16.0);
-//        }
-//    }
-
-//    podprobkowanieYUV();
-
-    SDL_UpdateWindowSurface(window);
 }
 
+// WYBÓR MODELU BARWNEGO (RGB / HSL)
 void Funkcja3() {
-
-
-
-//    ileKubelkow = 0;
-//    int numer = 0;
-//    Uint8 szary = 0;
-//    SDL_Color kolor;
-//    int indeks = 0;
-//
-//    for (int y=0;y<wysokosc/2;y++)
-//    {
-//        for (int x=0;x<szerokosc/2;x++)
-//        {
-//            kolor = getPixel(x,y);
-//            szary = 0.299 * kolor.r + 0.587 * kolor.g + 0.114 * kolor.b;
-//            obrazek[numer] = {szary,szary,szary};
-//            numer++;
-//        }
-//    }
-//    SDL_UpdateWindowSurface(window);
-//    medianCutBW(0,numer-1,7);
-//
-//    for (int y=0;y<wysokosc/2;y++)
-//    {
-//        for (int x=0;x<szerokosc/2;x++)
-//        {
-//            kolor = getPixel(x,y);
-//            szary = 0.299 * kolor.r + 0.587 * kolor.g + 0.114 * kolor.b;
-//            indeks = znajdzSasiadaBW(szary);
-//            setPixel(x + szerokosc/2, y, paleta7[indeks].r, paleta7[indeks].g, paleta7[indeks].b);
-//
-//        }
-//    }
-//    narysujPalete(paleta7);
-//
-//    for(int x = 0; x < 128; x++){
-//        paleta7DoPliku[x] = paleta7[x];
-//        //cout << "R:" << (int)paleta7DoPliku[x].r << "G:" << (int)paleta7DoPliku[x].g << "B:" << (int)paleta7DoPliku[x].b << endl;
-//    }
-
-    vector<Uint8> inputData = zczytajDaneBW();
-    LZ77Kompresja(inputData, inputData.size(), "test");
-
-
-    SDL_UpdateWindowSurface(window);
-}
-
-void Funkcja4() {
-
-    string filename;
-    cout << "Podaj nazwę pliku, który chcesz otworzyć: ";
-    cin >> filename;
-
-    LZ77Dekompresja(filename);
-    SDL_UpdateWindowSurface(window);
-
-//    czyscPalete();
-//    int indexKoloru;
-//    SDL_Color kolor;
-//    int flag;
-//    for (int y = 0; y < wysokosc/2; y++) {
-//        for (int x = 0; x < szerokosc/2; x++) {
-//            kolor = getPixel(x, y);
-//            flag = sprawdzKolor(kolor);
-//            if (flag == -1) {
-//                break;
-//            }
-//        }
-//        if (flag == -1) {
-//            break;
-//        }
-//    }
-//    for (int y=0;y<wysokosc/2;y++)
-//    {
-//        for (int x=0;x<szerokosc/2;x++)
-//        {
-//            kolor = getPixel(x,y);
-//            indexKoloru = znajdzSasiada(kolor);
-//            setPixel(x + szerokosc/2, y, paleta7[indexKoloru].r, paleta7[indexKoloru].g, paleta7[indexKoloru].b);
-//        }
-//    }
-//    for(int x = 0; x < 128; x++){
-//        paleta7DoPliku[x] = paleta7[x];
-//        //cout << "R:" << (int)paleta7DoPliku[x].r << "G:" << (int)paleta7DoPliku[x].g << "B:" << (int)paleta7DoPliku[x].b << endl;
-//    }
-//    narysujPalete(paleta7);
-
-    //podprobkowanieYCBCR();
-
-
-    SDL_UpdateWindowSurface(window);
-}
-
-void Funkcja5() {
-
-//    ileKubelkow = 0;
-//    int numer = 0;
-//    SDL_Color kolor;
-//    int indeks = 0;
-//
-//    for (int y=0;y<wysokosc/2;y++)
-//    {
-//        for (int x=0;x<szerokosc/2;x++)
-//        {
-//            kolor = getPixel(x,y);
-//            obrazek[numer] = kolor;
-//            numer++;
-//        }
-//    }
-//    medianCut(0,numer-1,7);
-//
-//    for (int y=0;y<wysokosc/2;y++)
-//    {
-//        for (int x=0;x<szerokosc/2;x++)
-//        {
-//            kolor = getPixel(x,y);
-//            indeks = znajdzSasiada(kolor);
-//            setPixel(x + szerokosc/2, y, paleta7[indeks].r, paleta7[indeks].g, paleta7[indeks].b);
-//        }
-//    }
-//    narysujPalete(paleta7);
-//    for(int x = 0; x < 128; x++){
-//        paleta7DoPliku[x] = paleta7[x];
-//        //cout << "R:" << (int)paleta7DoPliku[x].r << "G:" << (int)paleta7DoPliku[x].g << "B:" << (int)paleta7DoPliku[x].b << endl;
-//    }
-
-    podprobkowanieHSL();
-
-    SDL_UpdateWindowSurface(window);
-}
-
-void Funkcja6() {
-
-    SDL_Color kolor, tymczasowyKolor, newNewColor;
-    Uint8 R, G, B, nowyR, nowyG, nowyB, kolor7bit;
-    int tempR, tempG, tempB;
-    int przesuniecie = 1;
-    float bledyR[(szerokosc/2)+2][(wysokosc/2)+2];
-    float bledyG[(szerokosc/2)+2][(wysokosc/2)+2];
-    float bledyB[(szerokosc/2)+2][(wysokosc/2)+2];
-    memset(bledyR, 0, sizeof(bledyR));
-    memset(bledyG, 0, sizeof(bledyG));
-    memset(bledyB, 0, sizeof(bledyB));
-    int bladR, bladG, bladB = 0;
-
-
-    for(int yy=0; yy<wysokosc/2; yy++) {
-        for (int xx = 0; xx < szerokosc / 2; xx++) {
-            kolor = getPixel(xx, yy);
-
-            R = kolor.r;
-            G = kolor.g;
-            B = kolor.b;
-
-            tempR = R + bledyR[xx + przesuniecie][yy];
-            tempG = G + bledyG[xx + przesuniecie][yy];
-            tempB = B + bledyB[xx + przesuniecie][yy];
-            if(tempR > 255) {
-                tempR = 255;
+    if(!(tryb & 0x40)) {
+        cout << "\n\nWybór modelu barwnego jest dostępny tylko w trybie 24-bit!\n\n";
+        return;
+    } else {
+        SDL_Event event;
+        cout << "\n\n\tWybierz model barwny:\n1. RGB888\n2. HSL888\n0. Zatwierdź\n";
+        while (SDL_WaitEvent(&event)) {
+            // sprawdzamy czy pojawiło się zdarzenie
+            switch (event.type) {
+                // sprawdzamy czy został wciśnięty klawisz
+                case SDL_KEYDOWN: {
+                    // jeśli RGB
+                    if (event.key.keysym.sym == SDLK_1) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x, y);
+                                setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                            }
+                        }
+                        if(tryb & 0x08) {
+                            tryb -= 0b00001000;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli HSL
+                    if (event.key.keysym.sym == SDLK_2) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                HSL hslPixel = RGBtoHSL(x, y);
+                                SDL_Color pixel = HSLtoRGB(hslPixel.H, hslPixel.S, hslPixel.L);
+                                setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                            }
+                        }
+                        if(!(tryb & 0x08)) {
+                            tryb += 0b00001000;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli zatwierdź
+                    if (event.key.keysym.sym == SDLK_0) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                                setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                                setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                            }
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        displayMainMenu();
+                        return;
+                    } else {
+                        break;
+                    }
+                }
             }
-            if(tempR < 0) {
-                tempR = 0;
-            }
-            if(tempG > 255) {
-                tempG = 255;
-            }
-            if(tempG < 0) {
-                tempG = 0;
-            }
-            if(tempB > 255) {
-                tempB = 255;
-            }
-            if(tempB < 0) {
-                tempB = 0;
-            }
-
-            tymczasowyKolor.r = tempR;
-            tymczasowyKolor.g = tempG;
-            tymczasowyKolor.b = tempB;
-            kolor7bit = z24RGBna7RGB(tymczasowyKolor);
-            newNewColor = z7RGBna24RGB(kolor7bit);
-
-            nowyR = newNewColor.r;
-            nowyG = newNewColor.g;
-            nowyB = newNewColor.b;
-
-            bladR = tempR - nowyR;
-            bladG = tempG - nowyG;
-            bladB = tempB - nowyB;
-
-            setPixel(xx + szerokosc/2, yy, nowyR, nowyG, nowyB);
-
-            bledyR[xx+1+przesuniecie][yy] += (bladR*7.0/16.0);
-            bledyR[xx-1+przesuniecie][yy+1] += (bladR*3.0/16.0);
-            bledyR[xx+przesuniecie][yy+1] += (bladR*5.0/16.0);
-            bledyR[xx-1+przesuniecie][yy+1] += (bladR*1.0/16.0);
-
-            bledyG[xx+1+przesuniecie][yy] += (bladG*7.0/16.0);
-            bledyG[xx-1+przesuniecie][yy+1] += (bladG*3.0/16.0);
-            bledyG[xx+przesuniecie][yy+1] += (bladG*5.0/16.0);
-            bledyG[xx-1+przesuniecie][yy+1] += (bladG*1.0/16.0);
-
-            bledyB[xx+1+przesuniecie][yy] += (bladB*7.0/16.0);
-            bledyB[xx-1+przesuniecie][yy+1] += (bladB*3.0/16.0);
-            bledyB[xx+przesuniecie][yy+1] += (bladB*5.0/16.0);
-            bledyB[xx-1+przesuniecie][yy+1] += (bladB*1.0/16.0);
         }
     }
-
-    SDL_UpdateWindowSurface(window);
 }
 
+// Dithering
+void Funkcja4() {
+    if(tryb & 0x40) {
+        cout << "\n\nDithering jest dostępny tylko w trybie 16-bit!\n\n";
+        return;
+    } else {
+        SDL_Event event;
+        cout << "\n\n\tWybierz:\n1. Dithering ON\n2. Dithering OFF\n0. Zatwierdź\n";
+        while (SDL_WaitEvent(&event)) {
+            // sprawdzamy czy pojawiło się zdarzenie
+            switch (event.type) {
+                // sprawdzamy czy został wciśnięty klawisz
+                case SDL_KEYDOWN: {
+                    // jeśli Dithering ON
+                    if (event.key.keysym.sym == SDLK_1) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = dithering565(x, y);
+                                setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                            }
+                        }
+                        if(!(tryb & 0x20)) {
+                            tryb += 0b00100000;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli Dithering OFF
+                    if (event.key.keysym.sym == SDLK_2) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x, y);
+                                setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                            }
+                        }
+                        if(tryb & 0x20) {
+                            tryb -= 0b00100000;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli zatwierdź
+                    if (event.key.keysym.sym == SDLK_0) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                                setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                                setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                            }
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        displayMainMenu();
+                        return;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Predykcja
+void Funkcja5() {
+    SDL_Event event;
+    cout << "\n\n\tWybierz:\n1. Filtr różnicowy ON\n2. Filtr różnicowy OFF\n0. Zatwierdź\n";
+    while (SDL_WaitEvent(&event)) {
+        // sprawdzamy czy pojawiło się zdarzenie
+        switch (event.type) {
+            // sprawdzamy czy został wciśnięty klawisz
+            case SDL_KEYDOWN: {
+                // jeśli Filtr różnicowy ON
+                if (event.key.keysym.sym == SDLK_1) {
+                    if(tryb & 0x40) {
+                        vector<Uint8> R;
+                        vector<Uint8> G;
+                        vector<Uint8> B;
+                        vector<Uint8> Rp;
+                        vector<Uint8> Gp;
+                        vector<Uint8> Bp;
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x, y);
+                                R.push_back(pixel.r);
+                                G.push_back(pixel.g);
+                                B.push_back(pixel.b);
+                            }
+                        }
+                        Rp = filtrRoznicowy(R);
+                        Gp = filtrRoznicowy(G);
+                        Bp = filtrRoznicowy(B);
+                        vector<Uint8> Rr = reverseFiltrRoznicowy(Rp);
+                        vector<Uint8> Gr = reverseFiltrRoznicowy(Gp);
+                        vector<Uint8> Br = reverseFiltrRoznicowy(Bp);
+                        int i = 0;
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                setPixel(x + szerokosc / 2, y, Rr[i], Gr[i], Br[i]);
+                                i++;
+                            }
+                        }
+                    } else {
+                        vector<Uint16> obraz;
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                obraz.push_back(getRGB565(x, y));
+                            }
+                        }
+                        vector<Uint16> obrazP = filtrRoznicowy(obraz);
+                        vector<Uint16> obrazR = reverseFiltrRoznicowy(obrazP);
+                        int i = 0;
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                setRGB565(x + szerokosc / 2, y, obrazR[i]);
+                                i++;
+                            }
+                        }
+                    }
+
+                    if(!(tryb & 0x10)) {
+                        tryb += 0b00010000;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli Filtr różnicowy OFF
+                if (event.key.keysym.sym == SDLK_2) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x, y);
+                            setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                        }
+                    }
+                    if(tryb & 0x10) {
+                        tryb -= 0b00010000;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli zatwierdź
+                if (event.key.keysym.sym == SDLK_0) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                            setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                            setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                        }
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    displayMainMenu();
+                    return;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+}
+
+// Kompresja bezstratna LZ77
+void Funkcja6() {
+    SDL_Event event;
+    cout << "\n\n\tWybierz:\n1. LZ77 ON\n2. LZ77 OFF\n0. Zatwierdź\n";
+    while (SDL_WaitEvent(&event)) {
+        // sprawdzamy czy pojawiło się zdarzenie
+        switch (event.type) {
+            // sprawdzamy czy został wciśnięty klawisz
+            case SDL_KEYDOWN: {
+                // jeśli LZ77 ON
+                if (event.key.keysym.sym == SDLK_1) {
+                    if (tryb & 0x40) {
+                        vector<Uint8> R;
+                        vector<Uint8> G;
+                        vector<Uint8> B;
+                        vector<token8> R77;
+                        vector<token8> G77;
+                        vector<token8> B77;
+                        for (int x = 0; x < szerokosc / 2; x++) {
+                            for (int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x, y);
+                                R.push_back(pixel.r);
+                                G.push_back(pixel.g);
+                                B.push_back(pixel.b);
+                            }
+                        }
+                        R77 = LZ77Kompresja(R, R.size());
+                        G77 = LZ77Kompresja(G, G.size());
+                        B77 = LZ77Kompresja(B, B.size());
+                        vector<Uint8> Rr = LZ77Dekompresja(R77);
+                        vector<Uint8> Gr = LZ77Dekompresja(G77);
+                        vector<Uint8> Br = LZ77Dekompresja(B77);
+                        int i = 0;
+                        for (int x = 0; x < szerokosc / 2; x++) {
+                            for (int y = 0; y < wysokosc / 2; y++) {
+                                setPixel(x + szerokosc / 2, y, Rr[i], Gr[i], Br[i]);
+                                i++;
+                            }
+                        }
+                    } else {
+                        vector<Uint16> obraz;
+                        for (int x = 0; x < szerokosc / 2; x++) {
+                            for (int y = 0; y < wysokosc / 2; y++) {
+                                obraz.push_back(getRGB565(x, y));
+                            }
+                        }
+                        vector<token16> obraz77 = LZ77Kompresja(obraz, obraz.size());
+                        vector<Uint16> obrazR = LZ77Dekompresja(obraz77);
+                        int i = 0;
+                        for (int x = 0; x < szerokosc / 2; x++) {
+                            for (int y = 0; y < wysokosc / 2; y++) {
+                                setRGB565(x + szerokosc / 2, y, obrazR[i]);
+                                i++;
+                            }
+                        }
+                    }
+
+                    if (!(tryb & 0x01)) {
+                        tryb += 0b00000001;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli LZ77 OFF
+                if (event.key.keysym.sym == SDLK_2) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x, y);
+                            setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                        }
+                    }
+                    if(tryb & 0x01) {
+                        tryb -= 0b00000001;
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    break;
+                }
+                // jeśli zatwierdź
+                if (event.key.keysym.sym == SDLK_0) {
+                    for(int x = 0; x < szerokosc / 2; x++) {
+                        for(int y = 0; y < wysokosc / 2; y++) {
+                            SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                            setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                            setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                        }
+                    }
+                    SDL_UpdateWindowSurface(window);
+                    displayMainMenu();
+                    return;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+}
+
+// Kompresja stratna podpróbkowanie 420
 void Funkcja7() {
-    string nazwa;
-    int tryb;
-    cout << "Podaj nazwe dla pliku " << endl;
-    cin >> nazwa;
-    cout << "Podaj w jakim trybie go zapisać: "
-            "\n1 - RGB888\n2 - YUV888\n3 - YIQ888\n4 - YCbCr888\n5 - HSL888"
-            "\n6 - RGB555\n7 - RGB565" << endl;
-    cin >> tryb;
-    //ZapiszPlik(nazwa);
-    ZapiszModel(nazwa, tryb + 9);
+    if(!(tryb & 0x40) || !(tryb & 0x08)) {
+        cout << "\n\nPodpróbkowanie jest dostępne tylko w trybie 24-bit HSL!\n\n";
+        return;
+    } else {
+        SDL_Event event;
+        cout << "\n\n\tWybierz:"
+                "\n1. Podpróbkowanie 420 składowej barwy H"
+                "\n2. Podpróbkowanie 420 składowej nasycenia S"
+                "\n3. Podpróbkowanie 420 składowych barwy i nasycenia HS"
+                "\n4. Podpróbkowanie 420 OFF"
+                "\n0. Zatwierdź\n";
+        while (SDL_WaitEvent(&event)) {
+            // sprawdzamy czy pojawiło się zdarzenie
+            switch (event.type) {
+                // sprawdzamy czy został wciśnięty klawisz
+                case SDL_KEYDOWN: {
+                    // jeśli Podpróbkowanie 420 (H) ON
+                    if (event.key.keysym.sym == SDLK_1) {
+                        for(int x = 0; x < szerokosc / 2; x = x + 2) {
+                            for(int y = 0; y < wysokosc / 2; y = y + 2) {
+                                pixele4HSL packet;
+                                packet.a = RGBtoHSL(x, y);
+                                packet.b = RGBtoHSL(x + 1, y);
+                                packet.c = RGBtoHSL(x, y + 1);
+                                packet.d = RGBtoHSL(x + 1, y + 1);
+                                pixele4HSL outputPacket = HSL_420(packet, 'h');
+                                SDL_Color a = HSLtoRGB(outputPacket.a.H, outputPacket.a.S, outputPacket.a.L);
+                                SDL_Color b = HSLtoRGB(outputPacket.b.H, outputPacket.b.S, outputPacket.b.L);
+                                SDL_Color c = HSLtoRGB(outputPacket.c.H, outputPacket.c.S, outputPacket.c.L);
+                                SDL_Color d = HSLtoRGB(outputPacket.d.H, outputPacket.d.S, outputPacket.d.L);
+                                setPixel(x + szerokosc / 2, y, a.r, a.g, a.b);
+                                setPixel(x + 1 + szerokosc / 2, y, b.r, b.g, b.b);
+                                setPixel(x + szerokosc / 2, y + 1, c.r, c.g, c.b);
+                                setPixel(x + 1 + szerokosc / 2, y + 1, d.r, d.g, d.b);
+                            }
+                        }
+                        if(!(tryb & 0x04)) {
+                            tryb += 0b00000100;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli Podpróbkowanie 420 (S) ON
+                    if (event.key.keysym.sym == SDLK_2) {
+                        for(int x = 0; x < szerokosc / 2; x = x + 2) {
+                            for(int y = 0; y < wysokosc / 2; y = y + 2) {
+                                pixele4HSL packet;
+                                packet.a = RGBtoHSL(x, y);
+                                packet.b = RGBtoHSL(x + 1, y);
+                                packet.c = RGBtoHSL(x, y + 1);
+                                packet.d = RGBtoHSL(x + 1, y + 1);
+                                pixele4HSL outputPacket = HSL_420(packet, 's');
+                                SDL_Color a = HSLtoRGB(outputPacket.a.H, outputPacket.a.S, outputPacket.a.L);
+                                SDL_Color b = HSLtoRGB(outputPacket.b.H, outputPacket.b.S, outputPacket.b.L);
+                                SDL_Color c = HSLtoRGB(outputPacket.c.H, outputPacket.c.S, outputPacket.c.L);
+                                SDL_Color d = HSLtoRGB(outputPacket.d.H, outputPacket.d.S, outputPacket.d.L);
+                                setPixel(x + szerokosc / 2, y, a.r, a.g, a.b);
+                                setPixel(x + 1 + szerokosc / 2, y, b.r, b.g, b.b);
+                                setPixel(x + szerokosc / 2, y + 1, c.r, c.g, c.b);
+                                setPixel(x + 1 + szerokosc / 2, y + 1, d.r, d.g, d.b);
+                            }
+                        }
+                        if(!(tryb & 0x04)) {
+                            tryb += 0b00000100;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli Podpróbkowanie 420 (HS) ON
+                    if (event.key.keysym.sym == SDLK_3) {
+                        for(int x = 0; x < szerokosc / 2; x = x + 2) {
+                            for(int y = 0; y < wysokosc / 2; y = y + 2) {
+                                pixele4HSL packet;
+                                packet.a = RGBtoHSL(x, y);
+                                packet.b = RGBtoHSL(x + 1, y);
+                                packet.c = RGBtoHSL(x, y + 1);
+                                packet.d = RGBtoHSL(x + 1, y + 1);
+                                pixele4HSL outputPacket = HSL_420(packet, 'h');
+                                packet = outputPacket;
+                                outputPacket = HSL_420(packet, 's');
+                                SDL_Color a = HSLtoRGB(outputPacket.a.H, outputPacket.a.S, outputPacket.a.L);
+                                SDL_Color b = HSLtoRGB(outputPacket.b.H, outputPacket.b.S, outputPacket.b.L);
+                                SDL_Color c = HSLtoRGB(outputPacket.c.H, outputPacket.c.S, outputPacket.c.L);
+                                SDL_Color d = HSLtoRGB(outputPacket.d.H, outputPacket.d.S, outputPacket.d.L);
+                                setPixel(x + szerokosc / 2, y, a.r, a.g, a.b);
+                                setPixel(x + 1 + szerokosc / 2, y, b.r, b.g, b.b);
+                                setPixel(x + szerokosc / 2, y + 1, c.r, c.g, c.b);
+                                setPixel(x + 1 + szerokosc / 2, y + 1, d.r, d.g, d.b);
+                            }
+                        }
+                        if(!(tryb & 0x04)) {
+                            tryb += 0b00000100;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli Podpróbkowanie 420 OFF
+                    if (event.key.keysym.sym == SDLK_4) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x, y);
+                                setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                            }
+                        }
+                        if(tryb & 0x04) {
+                            tryb -= 0b00000100;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli zatwierdź
+                    if (event.key.keysym.sym == SDLK_0) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                                setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                                setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                            }
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        displayMainMenu();
+                        return;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
+// DCT
 void Funkcja8() {
-    string nazwa;
-    cout << "\nPodaj nazwe pliku, ktory chcesz otworzyc " << endl;
-    cin >> nazwa;
-    OdczytajModel(nazwa);
-    SDL_UpdateWindowSurface(window);
-
+    if(!(tryb & 0x40)) {
+        cout << "\n\nDCT jest dostępne tylko w trybie 24-bit!\n\n";
+        return;
+    } else {
+        SDL_Event event;
+        cout << "\n\n\tWybierz:"
+                "\n1. DCT ON"
+                "\n2. DCT OFF"
+                "\n0. Zatwierdź\n";
+        while (SDL_WaitEvent(&event)) {
+            // sprawdzamy czy pojawiło się zdarzenie
+            switch (event.type) {
+                // sprawdzamy czy został wciśnięty klawisz
+                case SDL_KEYDOWN: {
+                    // jeśli DCT ON
+                    if (event.key.keysym.sym == SDLK_1) {
+                        DCToutput dct = DCTKompresja(tryb);
+                        cout << dct.mnoznik << endl;
+                        if(!(tryb & 0x02)) {
+                            tryb += 0b00000010;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli DCT OFF
+                    if (event.key.keysym.sym == SDLK_2) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x, y);
+                                setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                            }
+                        }
+                        if(tryb & 0x02) {
+                            tryb -= 0b00000010;
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        break;
+                    }
+                    // jeśli zatwierdź
+                    if (event.key.keysym.sym == SDLK_0) {
+                        for(int x = 0; x < szerokosc / 2; x++) {
+                            for(int y = 0; y < wysokosc / 2; y++) {
+                                SDL_Color pixel = getPixel(x + szerokosc / 2, y);
+                                setPixel(x, y, pixel.r, pixel.g, pixel.b);
+                                setPixel(x + szerokosc / 2, y, 0, 0, 0);
+                            }
+                        }
+                        SDL_UpdateWindowSurface(window);
+                        displayMainMenu();
+                        return;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Funkcja9() {
@@ -406,8 +706,12 @@ void Funkcja9() {
             tabela[x][y] = getPixel(x,y).r;
         }
     }
-    filtrPaetha(tabela);
+    //filtrPaetha(tabela);
     SDL_UpdateWindowSurface(window);
+}
+
+void Funkcja10() {
+
 }
 
 Uint8 z24RGBna7RGB(SDL_Color kolor) {

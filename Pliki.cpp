@@ -5,6 +5,8 @@
 #include "MedianCut.h"
 #include "Pliki.h"
 #include "Modele.h"
+#include "Kompresja.h"
+#include <vector>
 
 Uint8 shiftByte(Uint8 b, Uint8 shiftAmount) {
     b = b << 8 - shiftAmount;
@@ -87,29 +89,163 @@ void ZapiszPlik(string a){
 }
 
 
-void OdczytajPlik(string a){
+void OdczytajPlik(string filename){
     czyscEkran(0,0,0);
+
+    /** bits: [hasColor] [bits] [dithering] [prediction] [colorScheme] [subsampling] [dct] [lz77]
+     * bits: 0 = 16-bit / 1 = 24-bit
+     * colorScheme: 0 = rgb / 1 = hsl
+     */
+    Uint8 readMode;
+
     SDL_Color kolor;
     Uint8 kolorUint8;
     int counter = 0;
     char identyfikator[] = "    ";
     Uint16 szerokoscObrazka = 0;
     Uint16 wysokoscObrazka = 0;
-    Uint8 tryb = 0;
-    Uint8 dithering = 0;
     Uint8 rozmiarPalety = 0;
     Uint8 bitShiftedValue;
     Uint8 extractedBits, extractedBits2;
     Uint8 extractedBitsShifted;
     int offset = 0;
 
-    cout<<"\nOdczytujemy plik '"<< a <<".z21' uzywajac metody read()"<<endl;
-    ifstream wejscie((a + ".z21").c_str() ,ios::binary);
+    cout<<"\nOdczytujemy plik '"<< filename <<".z21'\n\n";
+    ifstream wejscie((filename + ".z21").c_str() ,ios::binary);
     wejscie.read((char*)&identyfikator,sizeof(char)*4);
     wejscie.read((char*)&szerokoscObrazka,sizeof(Uint16));
     wejscie.read((char*)&wysokoscObrazka,sizeof(Uint16));
-    wejscie.read((char*)&tryb,sizeof(Uint8));
-    wejscie.read((char*)&dithering,sizeof(Uint8));
+    wejscie.read((char*)&readMode,sizeof(Uint8));
+
+    if(readMode & 0x80) /* COLOR */ {
+        if(readMode & 0x40) /* 24-bit */ {
+            if(readMode & 0x02) /* DCT */ {
+                float mnoznik;
+                vector<float> firstFactors;
+                vector<token8> rest;
+                vector<Uint8> decompressedRest = LZ77Dekompresja(rest);
+                // PODZIAŁ NA BLOKI, DCT DEKOMPRESJA
+                // WYBÓR MODELU, WYŚWIETLANIE
+            } else /* no DCT */ {
+                if(readMode & 0x01) /* LZ77 */ {
+                    vector<token8> combinedInput;
+                    vector<Uint8> decompressedCombinedInput = LZ77Dekompresja(combinedInput);
+                } else /* no LZ77 */ {
+                    vector<Uint8> combinedInput;
+                    vector<Uint8> factor1;
+                    vector<Uint8> factor2;
+                    vector<Uint8> factor3;
+                    for(int i = 0; i < 64000; i++) {
+                        factor1.push_back(combinedInput[i]);
+                        factor2.push_back(combinedInput[i+64000]);
+                        factor3.push_back(combinedInput[i+128000]);
+                    }
+                    if(readMode & 0x10) /* Prediction */ {
+                        vector<Uint8> factor1reversed = reverseFiltrRoznicowy(factor1);
+                        vector<Uint8> factor2reversed = reverseFiltrRoznicowy(factor2);
+                        vector<Uint8> factor3reversed = reverseFiltrRoznicowy(factor3);
+                        if(readMode & 0x08) /* HSL */ {
+                            // WYŚWIETL DANE Z WEKTORów HSL color UINT8 (factor1reversed, factor2reversed, factor3reversed)
+                        } else /* RGB */ {
+                            // WYŚWIETL DANE Z WEKTORA RGB color UINT8 (factor1reversed, factor2reversed, factor3reversed)
+                        }
+                    } else /* no prediction */ {
+                        if(readMode & 0x08) /* HSL */ {
+                            // WYŚWIETL DANE Z WEKTORów HSL color UINT8 (factor1, factor2, factor3)
+                        } else /* RGB */ {
+                            // WYŚWIETL DANE Z WEKTORA RGB color UINT8 (factor1, factor2, factor3)
+                        }
+                    }
+                }
+
+            }
+        } else /* 16-bit */ {
+            if(readMode & 0x01) /* LZ77 */ {
+                vector<token16> inputToken;
+                vector<Uint16> decompressedInput = LZ77Dekompresja(inputToken);
+                if(readMode & 0x10) /* Prediction */ {
+                    vector<Uint16> decompressedInputNoPrediction = reverseFiltrRoznicowy(decompressedInput);
+                    // WYŚWIETL WEKTOR RGB565 UINT16 (decompressedInputNoPrediction)
+                } else /* no prediction */ {
+                    // WYŚWIETL WEKTRO RGB565 UINT16 (decompressedInput)
+                }
+            } else /* no LZ77 */ {
+                vector<Uint16> inputUint16;
+                if(readMode & 0x10) /* Prediction */ {
+                    vector<Uint16> decompressedInputNoPrediction = reverseFiltrRoznicowy(inputUint16);
+                    // WYŚWIETL WEKTOR RGB565 UINT16 (decompressedInputNoPrediction)
+                } else /* no prediction */ {
+                    // WYŚWIETL WEKTRO RGB565 UINT16 (inputUint16)
+                }
+            }
+        }
+    } else /* BW */{
+        if(readMode & 0x40) /* 24-bit */ {
+            if(readMode & 0x02) /* DCT */ {
+                float mnoznik;
+                vector<float> firstFactors;
+                vector<token8> dctTokens;
+                vector<Uint8> decompressedDctTokens = LZ77Dekompresja(dctTokens);
+
+
+            } else /* no DCT */ {
+                if(readMode & 0x01) /* LZ77 */ {
+                    vector<token8> combinedInput;
+                    vector<Uint8> decompressedCombinedInput = LZ77Dekompresja(combinedInput);
+                    if(readMode & 0x10) /* Prediction */ {
+                        vector<Uint8> decompInputNoPrediction = reverseFiltrRoznicowy(decompressedCombinedInput);
+                        if(readMode & 0x08) /* HSL */ {
+                            // WYŚWIETL DANE Z WEKTORA HSL BW UINT8 (0, 0, val)
+                        } else /* RGB */ {
+                            // WYŚWIETL DANE Z WEKTORA RGB BW UINT8 (val, val, val)
+                        }
+                    } else /* no prediction */ {
+                        if(readMode & 0x08) /* HSL */ {
+                            // WYŚWIETL DANE Z WEKTORA HSL BW UINT8 (0, 0, val)
+                        } else /* RGB */ {
+                            // WYŚWIETL DANE Z WEKTORA RGB BW UINT8 (val, val, val)
+                        }
+                    }
+                } else /* no LZ77 */ {
+                    vector<Uint8> combinedInput;
+                    if(readMode & 0x10) /* Prediction */ {
+                        vector<Uint8> decompInputNoPrediction = reverseFiltrRoznicowy(combinedInput);
+                        if(readMode & 0x08) /* HSL */ {
+                            // WYŚWIETL DANE Z WEKTORA HSL BW UINT8 (0, 0, val)
+                        } else /* RGB */ {
+                            // WYŚWIETL DANE Z WEKTORA RGB BW UINT8 (val, val, val)
+                        }
+                    } else /* no prediction */ {
+                        if(readMode & 0x08) /* HSL */ {
+                            // WYŚWIETL DANE Z WEKTORA HSL BW UINT8 (0, 0, val)
+                        } else /* RGB */ {
+                            // WYŚWIETL DANE Z WEKTORA RGB BW UINT8 (val, val, val)
+                        }
+                    }
+                }
+            }
+        } else /* 16-bit */ {
+            if(readMode & 0x01) /* LZ77 */ {
+                vector<token16> inputToken;
+                vector<Uint16> decompressedInput = LZ77Dekompresja(inputToken);
+                if(readMode & 0x10) /* Prediction */ {
+                    vector<Uint16> decompressedInputNoPrediction = reverseFiltrRoznicowy(decompressedInput);
+                    // WYŚWIETL WEKTOR RGB565 UINT16 (decompressedInputNoPrediction)
+                } else /* no prediction */ {
+                    // WYŚWIETL WEKTRO RGB565 UINT16 (decompressedInput)
+                }
+            } else /* no LZ77 */ {
+                vector<Uint16> inputUint16;
+                if(readMode & 0x10) /* Prediction */ {
+                    vector<Uint16> decompressedInputNoPrediction = reverseFiltrRoznicowy(inputUint16);
+                    // WYŚWIETL WEKTOR RGB565 UINT16 (decompressedInputNoPrediction)
+                } else /* no prediction */ {
+                    // WYŚWIETL WEKTRO RGB565 UINT16 (inputUint16)
+                }
+            }
+        }
+    }
+
 
     Uint8 paleta7ZPlikuUint7[szerokoscObrazka*wysokoscObrazka];
     Uint8 paleta7ZPlikuUint8[szerokoscObrazka*wysokoscObrazka];
