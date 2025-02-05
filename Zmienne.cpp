@@ -29,11 +29,8 @@ SDL_Color paleta[128];
 
 char identyfikator[] = "ESPJ";
 Uint8 tryb = 0;
-Uint8 dithering = 0;
 
 Uint8 obrazWTablicy[64000];
-
-int tabelaFiltr[320][200];
 
 DCToutput dctOutput;
 

@@ -17,7 +17,6 @@ vector<Uint8> zczytajDaneBW(){
             output.push_back(z24RGBna8BW(color));
         }
     }
-
     return output;
 }
 
@@ -357,6 +356,12 @@ void Funkcja5() {
                                     i++;
                                 }
                             }
+                            R.clear();
+                            G.clear();
+                            B.clear();
+                            Rp.clear();
+                            Gp.clear();
+                            Bp.clear();
                         } else {
                             vector<Uint8> R;
                             vector<Uint8> G;
@@ -385,6 +390,12 @@ void Funkcja5() {
                                     i++;
                                 }
                             }
+                            R.clear();
+                            G.clear();
+                            B.clear();
+                            Rp.clear();
+                            Gp.clear();
+                            Bp.clear();
                         }
                     } else {
                         vector<Uint16> obraz;
@@ -402,6 +413,9 @@ void Funkcja5() {
                                 i++;
                             }
                         }
+                        obraz.clear();
+                        obrazP.clear();
+                        obrazR.clear();
                     }
 
                     if(!(tryb & 0x10)) {
@@ -435,6 +449,9 @@ void Funkcja5() {
                     }
                     SDL_UpdateWindowSurface(window);
                     displayMainMenu();
+                    Rr.clear();
+                    Gr.clear();
+                    Br.clear();
                     return;
                 } else {
                     break;
@@ -488,6 +505,9 @@ void Funkcja6() {
                                     Ll.push_back(combined[i + 128000]);
                                 }
                                 combined.clear();
+                                H.clear();
+                                S.clear();
+                                L.clear();
                                 processed = true;
                             }
                             int i = 0;
@@ -503,9 +523,6 @@ void Funkcja6() {
                                 vector<Uint8> R;
                                 vector<Uint8> G;
                                 vector<Uint8> B;
-                                vector<token8> R77;
-                                vector<token8> G77;
-                                vector<token8> B77;
                                 for (int x = 0; x < szerokosc / 2; x++) {
                                     for (int y = 0; y < wysokosc / 2; y++) {
                                         SDL_Color pixel = getPixel(x, y);
@@ -524,6 +541,9 @@ void Funkcja6() {
                                     Br.push_back(combined[i + 128000]);
                                 }
                                 combined.clear();
+                                R.clear();
+                                G.clear();
+                                B.clear();
                                 processed = true;
                             }
                             int i = 0;
@@ -585,6 +605,13 @@ void Funkcja6() {
                         }
                     }
                     SDL_UpdateWindowSurface(window);
+                    Hh.clear();
+                    Ss.clear();
+                    Ll.clear();
+                    Rr.clear();
+                    Gr.clear();
+                    Br.clear();
+                    obrazR.clear();
                     displayMainMenu();
                     return;
                 } else {
@@ -599,6 +626,10 @@ void Funkcja6() {
 void Funkcja7() {
     if(!(tryb & 0x40) || !(tryb & 0x08)) {
         cout << "\n\nPodpróbkowanie jest dostępne tylko w trybie 24-bit HSL!\n\n";
+        displayMainMenu();
+        return;
+    } else if(tryb & 0x02) {
+        cout << "\n\nUżycie LZ77 po wykonaniu transformaty DCT jest niemożliwe!\n\n";
         displayMainMenu();
         return;
     } else {
@@ -845,6 +876,7 @@ void Funkcja8() {
                         }
                         SDL_UpdateWindowSurface(window);
                         displayMainMenu();
+                        outputAllBlocks.clear();
                         return;
                     } else {
                         break;

@@ -28,8 +28,6 @@ void ZapiszPlik(string a, Uint8 tryb){
     if(tryb & 0x02){
         DCToutput dct = dctOutput;
         wyjscie.write((char*)&dct.mnoznik, sizeof(float));
-        cout << dct.pierwszeWspolczynniki.size() << endl;
-        cout << dct.reszta.size() << endl;
         for(int i = 0; i < dct.pierwszeWspolczynniki.size(); i++) {
             wyjscie.write((char*)&dct.pierwszeWspolczynniki[i], sizeof(float));
         }
@@ -458,6 +456,8 @@ void OdczytajPlik(string filename){
                 input.mnoznik = mnoznik;
                 input.pierwszeWspolczynniki = firstFactors;
                 input.reszta = rest;
+                firstFactors.clear();
+                rest.clear();
                 vector<macierz> outputAllBlocks = DCTDekompresja(input, readMode);
                 // wyjscie danych na ekran
                 if(readMode & 0x08) /* HSL */ {
@@ -499,6 +499,7 @@ void OdczytajPlik(string filename){
                         }
                     }
                 }
+                outputAllBlocks.clear();
             } else /* no DCT */ {
                 if(readMode & 0x01) /* LZ77 */ {
                     token8 token8buff;
@@ -508,6 +509,7 @@ void OdczytajPlik(string filename){
                         combinedInput.push_back(token8buff);
                     }
                     vector<Uint8> decompressedCombinedInput = LZ77Dekompresja(combinedInput);
+                    combinedInput.clear();
                     if(readMode & 0x10) /* Prediction */ {
                         vector<Uint8> RH;
                         vector<Uint8> GS;
@@ -520,6 +522,9 @@ void OdczytajPlik(string filename){
                         vector<Uint8> RHrp = reverseFiltrRoznicowy(RH);
                         vector<Uint8> GSrp = reverseFiltrRoznicowy(GS);
                         vector<Uint8> BLrp = reverseFiltrRoznicowy(BL);
+                        RH.clear();
+                        GS.clear();
+                        BL.clear();
                         SDL_Color pixel;
                         int vectorIndex = 0;
                         for(int x = 0; x < szerokosc / 2; x++) {
@@ -535,6 +540,9 @@ void OdczytajPlik(string filename){
                                 vectorIndex++;
                             }
                         }
+                        RHrp.clear();
+                        GSrp.clear();
+                        BLrp.clear();
                     } else {
                         int vectorIndex = 0;
                         SDL_Color pixel;
@@ -554,6 +562,7 @@ void OdczytajPlik(string filename){
                             }
                         }
                     }
+                    decompressedCombinedInput.clear();
                 } else /* no LZ77 */ {
                     Uint8 buff;
                     vector<Uint8> combinedInput;
@@ -569,6 +578,7 @@ void OdczytajPlik(string filename){
                         factor2.push_back(combinedInput[i+64000]);
                         factor3.push_back(combinedInput[i+128000]);
                     }
+                    combinedInput.clear();
                     if(readMode & 0x10) /* Prediction */ {
                         vector<Uint8> factor1reversed = reverseFiltrRoznicowy(factor1);
                         vector<Uint8> factor2reversed = reverseFiltrRoznicowy(factor2);
@@ -590,6 +600,9 @@ void OdczytajPlik(string filename){
                                 vectorIndex++;
                             }
                         }
+                        factor1reversed.clear();
+                        factor2reversed.clear();
+                        factor3reversed.clear();
                     } else /* no prediction */ {
                         int vectorIndex = 0;
                         SDL_Color pixel;
@@ -609,6 +622,9 @@ void OdczytajPlik(string filename){
                             }
                         }
                     }
+                    factor1.clear();
+                    factor2.clear();
+                    factor3.clear();
                 }
             }
         } else /* 16-bit */ {
@@ -620,6 +636,7 @@ void OdczytajPlik(string filename){
                     inputToken.push_back(buff);
                 }
                 vector<Uint16> decompressedInput = LZ77Dekompresja(inputToken);
+                inputToken.clear();
                 if(readMode & 0x10) /* Prediction */ {
                     vector<Uint16> decompressedInputNoPrediction = reverseFiltrRoznicowy(decompressedInput);
                     int vectorIndex = 0;
@@ -629,6 +646,7 @@ void OdczytajPlik(string filename){
                             vectorIndex++;
                         }
                     }
+                    decompressedInputNoPrediction.clear();
                 } else /* no prediction */ {
                     int vectorIndex = 0;
                     for(int x = 0; x < szerokosc / 2; x++) {
@@ -637,6 +655,7 @@ void OdczytajPlik(string filename){
                             vectorIndex++;
                         }
                     }
+                    decompressedInput.clear();
                 }
             } else /* no LZ77 */ {
                 Uint16 buff;
@@ -654,6 +673,7 @@ void OdczytajPlik(string filename){
                             vectorIndex++;
                         }
                     }
+                    decompressedInputNoPrediction.clear();
                 } else /* no prediction */ {
                     int vectorIndex = 0;
                     for(int x = 0; x < szerokosc / 2; x++) {
@@ -662,6 +682,7 @@ void OdczytajPlik(string filename){
                             vectorIndex++;
                         }
                     }
+                    inputUint16.clear();
                 }
             }
         }
@@ -686,6 +707,8 @@ void OdczytajPlik(string filename){
                 input.mnoznik = mnoznik;
                 input.pierwszeWspolczynniki = firstFactors;
                 input.reszta = rest;
+                firstFactors.clear();
+                rest.clear();
                 vector<macierz> outputAllBlocks = DCTDekompresja(input, readMode);
                 // wyjscie na ekran
                 // po wysokosci -> 25 przebiegow
@@ -704,6 +727,7 @@ void OdczytajPlik(string filename){
                         }
                     }
                 }
+                outputAllBlocks.clear();
             } else /* no DCT */ {
                 if(readMode & 0x01) /* LZ77 */ {
                     token8 token8buff;
@@ -713,6 +737,7 @@ void OdczytajPlik(string filename){
                         combinedInput.push_back(token8buff);
                     }
                     vector<Uint8> decompressedCombinedInput = LZ77Dekompresja(combinedInput);
+                    combinedInput.clear();
                     if(readMode & 0x10) /* Prediction */ {
                         vector<Uint8> RHrp = reverseFiltrRoznicowy(decompressedCombinedInput);
                         SDL_Color pixel;
@@ -730,6 +755,7 @@ void OdczytajPlik(string filename){
                                 vectorIndex++;
                             }
                         }
+                        RHrp.clear();
                     } else {
                         SDL_Color pixel;
                         int vectorIndex = 0;
@@ -749,6 +775,7 @@ void OdczytajPlik(string filename){
                             }
                         }
                     }
+                    decompressedCombinedInput.clear();
                 } else /* no LZ77 */ {
                     Uint8 buff;
                     vector<Uint8> combinedInput;
@@ -773,6 +800,7 @@ void OdczytajPlik(string filename){
                                 vectorIndex++;
                             }
                         }
+                        RHrp.clear();
                     } else {
                         SDL_Color pixel;
                         int vectorIndex = 0;
@@ -792,6 +820,7 @@ void OdczytajPlik(string filename){
                             }
                         }
                     }
+                    combinedInput.clear();
                 }
             }
         } else /* 16-bit */ {
@@ -803,6 +832,7 @@ void OdczytajPlik(string filename){
                     inputToken.push_back(buff);
                 }
                 vector<Uint8> decompressedInput = LZ77Dekompresja(inputToken);
+                inputToken.clear();
                 if(readMode & 0x10) /* Prediction */ {
                     vector<Uint8> decompressedInputNoPrediction = reverseFiltrRoznicowy(decompressedInput);
                     int vectorIndex = 0;
@@ -814,6 +844,7 @@ void OdczytajPlik(string filename){
                             vectorIndex++;
                         }
                     }
+                    decompressedInputNoPrediction.clear();
                 } else /* no prediction */ {
                     int vectorIndex = 0;
                     for(int x = 0; x < szerokosc / 2; x++) {
@@ -823,7 +854,9 @@ void OdczytajPlik(string filename){
                                       decompressedInput[vectorIndex] >> 1);
                             vectorIndex++;
                         }
-                    }                }
+                    }
+                }
+                decompressedInput.clear();
             } else /* no LZ77 */ {
                 Uint8 buff;
                 vector<Uint8> inputUint8;
@@ -842,6 +875,7 @@ void OdczytajPlik(string filename){
                             vectorIndex++;
                         }
                     }
+                    decompressedInputNoPrediction.clear();
                 } else /* no prediction */ {
                     int vectorIndex = 0;
                     for(int x = 0; x < szerokosc / 2; x++) {
@@ -853,6 +887,7 @@ void OdczytajPlik(string filename){
                         }
                     }
                 }
+                inputUint8.clear();
             }
         }
     }
@@ -860,350 +895,4 @@ void OdczytajPlik(string filename){
     SDL_UpdateWindowSurface(window);
 }
 
-struct tabelaRGB{
-    Uint8 r[320][200];
-    Uint8 g[320][200];
-    Uint8 b[320][200];
-};
-
-void ZapiszModel(string a, int tryb){
-
-    SDL_Color color;
-    YUV yuv;
-    YIQ yiq;
-    YCbCr ycbcr;
-    HSL hsl;
-    tabelaRGB tabela;
-
-    cout<<"\nZapisujemy plik '"<< a<< ".z21' uzywajac metody write()"<<endl;
-    ofstream wyjscie((a + ".z21").c_str() , ios::binary);
-
-    wyjscie.write((char*)&identyfikator, sizeof(char)*4);
-    wyjscie.write((char*)&szerokoscObrazka, sizeof(Uint16));
-    wyjscie.write((char*)&wysokoscObrazka, sizeof(Uint16));
-    wyjscie.write((char*)&tryb, sizeof(Uint8));
-
-    // RGB888
-    if (tryb == 10) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                color = getPixel(x,y);
-                tabela.r[x][y] = color.r;
-                tabela.g[x][y] = color.g;
-                tabela.b[x][y] = color.b;
-                wyjscie.write((char*)&tabela.r[x][y], sizeof(Uint8));
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.g[x][y], sizeof(Uint8));
-            }
-        }
-
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.b[x][y], sizeof(Uint8));
-            }
-        }
-    }
-    // YUV888
-    else if (tryb == 11) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                yuv = RGBtoYUV(x,y);
-                tabela.r[x][y] = yuv.Y;
-                tabela.g[x][y] = yuv.U;
-                tabela.b[x][y] = yuv.V;
-                wyjscie.write((char*)&tabela.r[x][y], sizeof(Uint8));
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.g[x][y], sizeof(Uint8));
-            }
-        }
-
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.b[x][y], sizeof(Uint8));
-            }
-        }
-    }
-    // YIQ888
-    else if (tryb == 12) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                yiq = RGBtoYIQ(x,y);
-                tabela.r[x][y] = yiq.Y;
-                tabela.g[x][y] = yiq.I;
-                tabela.b[x][y] = yiq.Q;
-                wyjscie.write((char*)&tabela.r[x][y], sizeof(Uint8));
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.g[x][y], sizeof(Uint8));
-            }
-        }
-
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.b[x][y], sizeof(Uint8));
-            }
-        }
-    }
-    // YCbCr888
-    else if (tryb == 13) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                ycbcr = RGBtoYCbCr(x,y);
-                tabela.r[x][y] = ycbcr.Y;
-                tabela.g[x][y] = ycbcr.Cb;
-                tabela.b[x][y] = ycbcr.Cr;
-                wyjscie.write((char*)&tabela.r[x][y], sizeof(Uint8));
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.g[x][y], sizeof(Uint8));
-            }
-        }
-
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.b[x][y], sizeof(Uint8));
-            }
-        }
-    }
-    // HSL888
-    else if (tryb == 14) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                hsl = RGBtoHSL(x,y);
-                tabela.r[x][y] = hsl.H;
-                tabela.g[x][y] = hsl.S;
-                tabela.b[x][y] = hsl.L;
-                wyjscie.write((char*)&tabela.r[x][y], sizeof(Uint8));
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.g[x][y], sizeof(Uint8));
-            }
-        }
-
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wyjscie.write((char*)&tabela.b[x][y], sizeof(Uint8));
-            }
-        }
-    }
-    // RGB555
-    else if (tryb == 15) {
-        Uint16 rgb555;
-        for(int x =0; x<szerokosc/2; x++) {
-            for (int y = 0; y < wysokosc / 2; y++) {
-                rgb555 = getRGB555(x, y);
-                wyjscie.write((char*)&rgb555, sizeof(Uint16));
-            }
-        }
-    }
-    // RGB565
-    else if (tryb == 16) {
-        Uint16 rgb565;
-        for(int x =0; x<szerokosc/2; x++) {
-            for (int y = 0; y < wysokosc / 2; y++) {
-                rgb565 = getRGB565(x, y);
-                wyjscie.write((char*)&rgb565, sizeof(Uint16));
-            }
-        }
-    } else {
-        cout << "Nieprawidłowy typ!" << endl;
-    }
-
-    wyjscie.close();
-}
-
-void OdczytajModel(string a){
-    czyscEkran(0,0,0);
-    SDL_Color kolor;
-    YUV yuv;
-    YIQ yiq;
-    YCbCr ycbcr;
-    HSL hsl;
-    Uint8 kolorUint8;
-    int counter = 0;
-    char identyfikator[] = "    ";
-    Uint16 szerokoscObrazka = 0;
-    Uint16 wysokoscObrazka = 0;
-    Uint8 tryb = 0;
-    tabelaRGB tablica;
-
-    cout<<"\nOdczytujemy plik '"<< a <<".z21' uzywajac metody read()"<<endl;
-    ifstream wejscie((a + ".z21").c_str() ,ios::binary);
-    wejscie.read((char*)&identyfikator,sizeof(char)*4);
-    wejscie.read((char*)&szerokoscObrazka,sizeof(Uint16));
-    wejscie.read((char*)&wysokoscObrazka,sizeof(Uint16));
-    wejscie.read((char*)&tryb,sizeof(Uint8));
-
-    // RGB888
-    if(tryb == 10) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&kolor.r, sizeof(Uint8));
-                tablica.r[x][y] = kolor.r;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&kolor.g, sizeof(Uint8));
-                tablica.g[x][y] = kolor.g;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&kolor.b, sizeof(Uint8));
-                tablica.b[x][y] = kolor.b;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                setPixel(x,y, tablica.r[x][y], tablica.g[x][y], tablica.b[x][y]);
-
-            }
-        }
-    }
-    // YUV888
-    else if(tryb == 11) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&yuv.Y, sizeof(Uint8));
-                tablica.r[x][y] = yuv.Y;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&yuv.U, sizeof(Uint8));
-                tablica.g[x][y] = yuv.U;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&yuv.V, sizeof(Uint8));
-                tablica.b[x][y] = yuv.V;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                kolor = YUVtoRGB(tablica.r[x][y], tablica.g[x][y], tablica.b[x][y]);
-                setPixel(x,y, kolor.r, kolor.g, kolor.b);
-
-            }
-        }
-    } else if(tryb == 12) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&yiq.Y, sizeof(Uint8));
-                tablica.r[x][y] = yiq.Y;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&yiq.I, sizeof(Uint8));
-                tablica.g[x][y] = yiq.I;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&yiq.Q, sizeof(Uint8));
-                tablica.b[x][y] = yiq.Q;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                kolor = YIQtoRGB(tablica.r[x][y], tablica.g[x][y], tablica.b[x][y]);
-                setPixel(x,y, kolor.r, kolor.g, kolor.b);
-
-            }
-        }
-    } else if(tryb == 13) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&ycbcr.Y, sizeof(Uint8));
-                tablica.r[x][y] = ycbcr.Y;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&ycbcr.Cb, sizeof(Uint8));
-                tablica.g[x][y] = ycbcr.Cb;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&ycbcr.Cr, sizeof(Uint8));
-                tablica.b[x][y] = ycbcr.Cr;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                kolor = YCbCrtoRGB(tablica.r[x][y], tablica.g[x][y], tablica.b[x][y]);
-                setPixel(x,y, kolor.r, kolor.g, kolor.b);
-
-            }
-        }
-    } else if(tryb == 14) {
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&hsl.H, sizeof(Uint8));
-                tablica.r[x][y] = hsl.H;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&hsl.S, sizeof(Uint8));
-                tablica.g[x][y] = hsl.S;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                wejscie.read((char*)&hsl.L, sizeof(Uint8));
-                tablica.b[x][y] = hsl.L;
-            }
-        }
-        for(int x =0; x<szerokosc/2; x++){
-            for(int y = 0; y<wysokosc/2; y++){
-                kolor = HSLtoRGB(tablica.r[x][y], tablica.g[x][y], tablica.b[x][y]);
-                setPixel(x,y, kolor.r, kolor.g, kolor.b);
-
-            }
-        }
-    } else if(tryb == 15) {
-        Uint16 rgb555;
-        for(int x =0; x<szerokosc/2; x++) {
-            for (int y = 0; y < wysokosc / 2; y++) {
-                wejscie.read((char*)&rgb555, sizeof(Uint16));
-                setRGB555(x, y, rgb555);
-            }
-        }
-    } else if(tryb == 16) {
-        Uint16 rgb565;
-        for(int x =0; x<szerokosc/2; x++) {
-            for (int y = 0; y < wysokosc / 2; y++) {
-                wejscie.read((char*)&rgb565, sizeof(Uint16));
-                setRGB565(x, y, rgb565);
-            }
-        }
-    } else {
-        cout << "Nieprawidłowy typ!" << endl;
-    }
-    wejscie.close();
-
-
-    cout << "Odczyt z pliku\n";
-    cout << "Id: " << identyfikator << endl;
-    cout << "szerokosc: " << szerokoscObrazka << endl;
-    cout << "wysokosc: " << wysokoscObrazka << endl;
-    SDL_UpdateWindowSurface(window);
-}
 

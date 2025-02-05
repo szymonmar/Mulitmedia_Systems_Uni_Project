@@ -11,12 +11,6 @@ Uint8 shiftByte(Uint8 b, Uint8 shiftAmount);
 void ZapiszPlik(string a, Uint8 tryb);
 void OdczytajPlik(string a);
 
-void ZapiszModel(string a, int tryb);
-void OdczytajModel(string a);
-
-void ZapiszByteRun(string a, int tryb);
-void OdczytajByteRun(string a, int tryb);
-
 /**
  * Saves vector to the file
  * @tparam T vector type

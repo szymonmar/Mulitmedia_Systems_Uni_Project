@@ -202,16 +202,6 @@ vector<Uint8> LZWDekompresja(vector<Uint16> skompresowane) {
         poprzednieSlowo = obecneSlowo;
     }
 
-    int k = 0;
-    SDL_Color pixel;
-    for(int x = 0; x < szerokosc/2; x++){
-        for(int y = 0; y < wysokosc/2; y++){
-            pixel = z8BWna24RGB(wynik[k]);
-            setPixel(x, y, pixel.r, pixel.g, pixel.b);
-            k++;
-        }
-    }
-
     return wynik;
 }
 
@@ -273,19 +263,6 @@ vector<Uint8> ByteRunDekompresja(vector<Sint8> input){
             }
         }
         j++;
-    }
-    int k = 0;
-    for(int x = 0; x < szerokosc/2; x++){
-        for(int y = 0; y < wysokosc/2; y++){
-            if(k >= 64000) {
-                break;
-            }
-            setPixel(x, y, output[k], output[k], output[k]);
-            k++;
-        }
-        if(k >= 64000) {
-            break;
-        }
     }
     return output;
 }
@@ -863,10 +840,14 @@ DCToutput DCTKompresja(Uint8 tryb) {
     }
 
     tablicaPoKompresji = RLEKompresja(tablicaDoKompresji, tablicaDoKompresji.size());
+    allBlocks.clear();
+    tablicaDoKompresji.clear();
     DCToutput output;
     output.mnoznik = mnoznik;
     output.pierwszeWspolczynniki = firstElements;
     output.reszta = tablicaPoKompresji;
+    tablicaPoKompresji.clear();
+    firstElements.clear();
     return output;
 }
 
@@ -970,6 +951,8 @@ vector<macierz> DCTDekompresja(DCToutput input, Uint8 tryb) {
         }
     }
 
+    tablicaPoDekompresji.clear();
+
     // odwrócenie kwantyzacji i normalizacji
     for(int i = 0; i < allBlocks.size(); i++) {
         for(int x = 0; x < 8; x++) {
@@ -985,6 +968,8 @@ vector<macierz> DCTDekompresja(DCToutput input, Uint8 tryb) {
     for(int i = 0; i < allBlocks.size(); i++) {
         outputAllBlocks.push_back(idct(allBlocks[i].dct));
     }
+
+    allBlocks.clear();
 
     return outputAllBlocks;
 }

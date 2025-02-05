@@ -129,22 +129,6 @@ extern char identyfikator[];
  */
 extern Uint8 tryb;
 
-/**
- * Dithering mode used for file saving / reading
- */
-extern Uint8 dithering;
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-/* * * * * * * * * *  FILTERING  * * * * * * * * * * * * */
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-/**
- * Two-dimensional array containing a whole image used for filtering
- */
-extern Sint8 tabelaFiltrowana[320][200];
-extern Uint8 tabelaOdfiltrowana[320][200];
-
 
 extern DCToutput dctOutput;
 
