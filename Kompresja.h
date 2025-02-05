@@ -141,7 +141,7 @@ struct macierz {
 struct DCToutput {
     float mnoznik;
     vector<float> pierwszeWspolczynniki;
-    vector<token8> reszta;
+    vector<Uint8> reszta;
 };
 
 void wyswietlDane(macierz blok);
@@ -156,6 +156,6 @@ float findMaxABS(macierz blok, float lastMaxABS);
 
 DCToutput DCTKompresja(Uint8 tryb);
 
-void DCTDekompresja(string filename);
+vector<macierz> DCTDekompresja(DCToutput input, Uint8 tryb);
 
 #endif //SM2024_PROJEKT_KOMPRESJA_H

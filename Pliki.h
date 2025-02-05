@@ -8,7 +8,7 @@
 #include <SDL2/SDL.h>
 
 Uint8 shiftByte(Uint8 b, Uint8 shiftAmount);
-void ZapiszPlik(string a);
+void ZapiszPlik(string a, Uint8 tryb);
 void OdczytajPlik(string a);
 
 void ZapiszModel(string a, int tryb);

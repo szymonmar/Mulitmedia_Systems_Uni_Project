@@ -3,6 +3,7 @@
 #define ZMIENNE_H_INCLUDED
 
 #include <SDL2/SDL.h>
+#include "Kompresja.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /* * * * SDL_COLOR AND WINDOW CONSTANTS / VARIABLES  * * */
@@ -143,6 +144,12 @@ extern Uint8 dithering;
  */
 extern Sint8 tabelaFiltrowana[320][200];
 extern Uint8 tabelaOdfiltrowana[320][200];
+
+
+extern DCToutput dctOutput;
+
+extern vector<token16> LZ77output16;
+extern vector<token8> LZ77output8;
 
 
 #endif // SM2024_ZMIENNE_H_INCLUDED

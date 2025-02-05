@@ -23,6 +23,9 @@ int main(int argc, char* argv[]) {
     int inc = 1;
     int limit = 1;
 
+    cout << "\nUWAGA!\nW celu uzyskania optymalnego rozmiaru pliku oraz"
+            "\nzachowania wysokiej jakości obrazu wywołuj funkcje zgodnie"
+            "\nz kolejnością w menu głównym";
 
     cout << "\n\n\tMenu"
             "\n1.Wybór trybu COLOR / BW"
@@ -33,7 +36,8 @@ int main(int argc, char* argv[]) {
             "\n6.Kompresja bezstratna (LZ77)"
             "\n7.Kompresja stratna (Podpróbkowanie 420)"
             "\n8.Kompresja stratna (DCT)"
-            "\n8.Odczytaj z pliku." << endl;
+            "\n9.Zapis do pliku."
+            "\n0.Odczyt z pliku." << endl;
 
 
 
@@ -42,7 +46,7 @@ int main(int argc, char* argv[]) {
 		return EXIT_FAILURE;
     }
 
-    window = SDL_CreateWindow(tytul, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, szerokosc*2, wysokosc*2, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow(tytul, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, szerokosc*2, wysokosc, SDL_WINDOW_SHOWN);
 
     if (window == NULL) {
         printf("SDL_CreateWindow Error: %s\n", SDL_GetError());

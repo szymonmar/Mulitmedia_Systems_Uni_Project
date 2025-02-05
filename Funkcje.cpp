@@ -67,7 +67,8 @@ void displayMainMenu() {
             "\n6.Kompresja bezstratna (LZ77)"
             "\n7.Kompresja stratna (Podpróbkowanie 420)"
             "\n8.Kompresja stratna (DCT)"
-            "\n8.Odczytaj z pliku." << endl;
+            "\n9.Zapis do pliku."
+            "\n0.Odczyt z pliku." << endl;
 }
 
 // USTAWIA TRYB color / bw
@@ -189,6 +190,7 @@ void Funkcja2() {
 void Funkcja3() {
     if(!(tryb & 0x40)) {
         cout << "\n\nWybór modelu barwnego jest dostępny tylko w trybie 24-bit!\n\n";
+        displayMainMenu();
         return;
     } else {
         SDL_Event event;
@@ -252,6 +254,7 @@ void Funkcja3() {
 void Funkcja4() {
     if(tryb & 0x40) {
         cout << "\n\nDithering jest dostępny tylko w trybie 16-bit!\n\n";
+        displayMainMenu();
         return;
     } else {
         SDL_Event event;
@@ -314,6 +317,9 @@ void Funkcja4() {
 void Funkcja5() {
     SDL_Event event;
     cout << "\n\n\tWybierz:\n1. Filtr różnicowy ON\n2. Filtr różnicowy OFF\n0. Zatwierdź\n";
+    vector<Uint8> Rr;
+    vector<Uint8> Gr;
+    vector<Uint8> Br;
     while (SDL_WaitEvent(&event)) {
         // sprawdzamy czy pojawiło się zdarzenie
         switch (event.type) {
@@ -322,31 +328,62 @@ void Funkcja5() {
                 // jeśli Filtr różnicowy ON
                 if (event.key.keysym.sym == SDLK_1) {
                     if(tryb & 0x40) {
-                        vector<Uint8> R;
-                        vector<Uint8> G;
-                        vector<Uint8> B;
-                        vector<Uint8> Rp;
-                        vector<Uint8> Gp;
-                        vector<Uint8> Bp;
-                        for(int x = 0; x < szerokosc / 2; x++) {
-                            for(int y = 0; y < wysokosc / 2; y++) {
-                                SDL_Color pixel = getPixel(x, y);
-                                R.push_back(pixel.r);
-                                G.push_back(pixel.g);
-                                B.push_back(pixel.b);
+                        if(tryb & 0x08) {
+                            vector<Uint8> R;
+                            vector<Uint8> G;
+                            vector<Uint8> B;
+                            vector<Uint8> Rp;
+                            vector<Uint8> Gp;
+                            vector<Uint8> Bp;
+                            for(int x = 0; x < szerokosc / 2; x++) {
+                                for(int y = 0; y < wysokosc / 2; y++) {
+                                    HSL hsl = RGBtoHSL(x, y);
+                                    R.push_back(hsl.H);
+                                    G.push_back(hsl.S);
+                                    B.push_back(hsl.L);
+                                }
                             }
-                        }
-                        Rp = filtrRoznicowy(R);
-                        Gp = filtrRoznicowy(G);
-                        Bp = filtrRoznicowy(B);
-                        vector<Uint8> Rr = reverseFiltrRoznicowy(Rp);
-                        vector<Uint8> Gr = reverseFiltrRoznicowy(Gp);
-                        vector<Uint8> Br = reverseFiltrRoznicowy(Bp);
-                        int i = 0;
-                        for(int x = 0; x < szerokosc / 2; x++) {
-                            for(int y = 0; y < wysokosc / 2; y++) {
-                                setPixel(x + szerokosc / 2, y, Rr[i], Gr[i], Br[i]);
-                                i++;
+                            Rp = filtrRoznicowy(R);
+                            Gp = filtrRoznicowy(G);
+                            Bp = filtrRoznicowy(B);
+                            Rr = reverseFiltrRoznicowy(Rp);
+                            Gr = reverseFiltrRoznicowy(Gp);
+                            Br = reverseFiltrRoznicowy(Bp);
+                            int i = 0;
+                            for(int x = 0; x < szerokosc / 2; x++) {
+                                for(int y = 0; y < wysokosc / 2; y++) {
+                                    SDL_Color pixel = HSLtoRGB(Rr[i], Gr[i], Br[i]);
+                                    setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                                    i++;
+                                }
+                            }
+                        } else {
+                            vector<Uint8> R;
+                            vector<Uint8> G;
+                            vector<Uint8> B;
+                            vector<Uint8> Rp;
+                            vector<Uint8> Gp;
+                            vector<Uint8> Bp;
+                            for(int x = 0; x < szerokosc / 2; x++) {
+                                for(int y = 0; y < wysokosc / 2; y++) {
+                                    SDL_Color pixel = getPixel(x, y);
+                                    R.push_back(pixel.r);
+                                    G.push_back(pixel.g);
+                                    B.push_back(pixel.b);
+                                }
+                            }
+                            Rp = filtrRoznicowy(R);
+                            Gp = filtrRoznicowy(G);
+                            Bp = filtrRoznicowy(B);
+                            Rr = reverseFiltrRoznicowy(Rp);
+                            Gr = reverseFiltrRoznicowy(Gp);
+                            Br = reverseFiltrRoznicowy(Bp);
+                            int i = 0;
+                            for(int x = 0; x < szerokosc / 2; x++) {
+                                for(int y = 0; y < wysokosc / 2; y++) {
+                                    setPixel(x + szerokosc / 2, y, Rr[i], Gr[i], Br[i]);
+                                    i++;
+                                }
                             }
                         }
                     } else {
@@ -410,7 +447,15 @@ void Funkcja5() {
 // Kompresja bezstratna LZ77
 void Funkcja6() {
     SDL_Event event;
+    bool processed = false;
     cout << "\n\n\tWybierz:\n1. LZ77 ON\n2. LZ77 OFF\n0. Zatwierdź\n";
+    vector<Uint8> Hh;
+    vector<Uint8> Ss;
+    vector<Uint8> Ll;
+    vector<Uint8> Rr;
+    vector<Uint8> Gr;
+    vector<Uint8> Br;
+    vector<Uint16> obrazR;
     while (SDL_WaitEvent(&event)) {
         // sprawdzamy czy pojawiło się zdarzenie
         switch (event.type) {
@@ -419,42 +464,89 @@ void Funkcja6() {
                 // jeśli LZ77 ON
                 if (event.key.keysym.sym == SDLK_1) {
                     if (tryb & 0x40) {
-                        vector<Uint8> R;
-                        vector<Uint8> G;
-                        vector<Uint8> B;
-                        vector<token8> R77;
-                        vector<token8> G77;
-                        vector<token8> B77;
-                        for (int x = 0; x < szerokosc / 2; x++) {
-                            for (int y = 0; y < wysokosc / 2; y++) {
-                                SDL_Color pixel = getPixel(x, y);
-                                R.push_back(pixel.r);
-                                G.push_back(pixel.g);
-                                B.push_back(pixel.b);
+                        if(tryb & 0x08) {
+                            if (!processed) {
+                                HSL hsl;
+                                vector<Uint8> H;
+                                vector<Uint8> S;
+                                vector<Uint8> L;
+                                for (int x = 0; x < szerokosc / 2; x++) {
+                                    for (int y = 0; y < wysokosc / 2; y++) {
+                                        hsl = RGBtoHSL(x, y);
+                                        H.push_back(hsl.H);
+                                        S.push_back(hsl.S);
+                                        L.push_back(hsl.L);
+                                    }
+                                }
+                                H.insert(H.end(), S.begin(), S.end());
+                                H.insert(H.end(), L.begin(), L.end());
+                                LZ77output8 = LZ77Kompresja(H, H.size());
+                                vector<Uint8> combined = LZ77Dekompresja(LZ77output8);
+                                for(int i = 0; i < 64000; i++) {
+                                    Hh.push_back(combined[i]);
+                                    Ss.push_back(combined[i + 64000]);
+                                    Ll.push_back(combined[i + 128000]);
+                                }
+                                combined.clear();
+                                processed = true;
                             }
-                        }
-                        R77 = LZ77Kompresja(R, R.size());
-                        G77 = LZ77Kompresja(G, G.size());
-                        B77 = LZ77Kompresja(B, B.size());
-                        vector<Uint8> Rr = LZ77Dekompresja(R77);
-                        vector<Uint8> Gr = LZ77Dekompresja(G77);
-                        vector<Uint8> Br = LZ77Dekompresja(B77);
-                        int i = 0;
-                        for (int x = 0; x < szerokosc / 2; x++) {
-                            for (int y = 0; y < wysokosc / 2; y++) {
-                                setPixel(x + szerokosc / 2, y, Rr[i], Gr[i], Br[i]);
-                                i++;
+                            int i = 0;
+                            for (int x = 0; x < szerokosc / 2; x++) {
+                                for (int y = 0; y < wysokosc / 2; y++) {
+                                    SDL_Color pixel = HSLtoRGB(Hh[i], Ss[i], Ll[i]);
+                                    setPixel(x + szerokosc / 2, y, pixel.r, pixel.g, pixel.b);
+                                    i++;
+                                }
+                            }
+                        } else {
+                            if(!processed) {
+                                vector<Uint8> R;
+                                vector<Uint8> G;
+                                vector<Uint8> B;
+                                vector<token8> R77;
+                                vector<token8> G77;
+                                vector<token8> B77;
+                                for (int x = 0; x < szerokosc / 2; x++) {
+                                    for (int y = 0; y < wysokosc / 2; y++) {
+                                        SDL_Color pixel = getPixel(x, y);
+                                        R.push_back(pixel.r);
+                                        G.push_back(pixel.g);
+                                        B.push_back(pixel.b);
+                                    }
+                                }
+                                R.insert(R.end(), G.begin(), G.end());
+                                R.insert(R.end(), B.begin(), B.end());
+                                LZ77output8 = LZ77Kompresja(R, R.size());
+                                vector<Uint8> combined = LZ77Dekompresja(LZ77output8);
+                                for(int i = 0; i < 64000; i++) {
+                                    Rr.push_back(combined[i]);
+                                    Gr.push_back(combined[i + 64000]);
+                                    Br.push_back(combined[i + 128000]);
+                                }
+                                combined.clear();
+                                processed = true;
+                            }
+                            int i = 0;
+                            for (int x = 0; x < szerokosc / 2; x++) {
+                                for (int y = 0; y < wysokosc / 2; y++) {
+                                    setPixel(x + szerokosc / 2, y, Rr[i], Gr[i], Br[i]);
+                                    i++;
+                                }
                             }
                         }
                     } else {
-                        vector<Uint16> obraz;
-                        for (int x = 0; x < szerokosc / 2; x++) {
-                            for (int y = 0; y < wysokosc / 2; y++) {
-                                obraz.push_back(getRGB565(x, y));
+                        if(!processed) {
+                            vector<Uint16> obraz;
+                            for (int x = 0; x < szerokosc / 2; x++) {
+                                for (int y = 0; y < wysokosc / 2; y++) {
+                                    obraz.push_back(getRGB565(x, y));
+                                }
                             }
+                            LZ77output16 = LZ77Kompresja(obraz, obraz.size());
+                            obraz.clear();
+                            obrazR = LZ77Dekompresja(LZ77output16);
+                            processed = true;
                         }
-                        vector<token16> obraz77 = LZ77Kompresja(obraz, obraz.size());
-                        vector<Uint16> obrazR = LZ77Dekompresja(obraz77);
                         int i = 0;
                         for (int x = 0; x < szerokosc / 2; x++) {
                             for (int y = 0; y < wysokosc / 2; y++) {
@@ -463,7 +555,6 @@ void Funkcja6() {
                             }
                         }
                     }
-
                     if (!(tryb & 0x01)) {
                         tryb += 0b00000001;
                     }
@@ -508,6 +599,7 @@ void Funkcja6() {
 void Funkcja7() {
     if(!(tryb & 0x40) || !(tryb & 0x08)) {
         cout << "\n\nPodpróbkowanie jest dostępne tylko w trybie 24-bit HSL!\n\n";
+        displayMainMenu();
         return;
     } else {
         SDL_Event event;
@@ -641,8 +733,11 @@ void Funkcja7() {
 void Funkcja8() {
     if(!(tryb & 0x40)) {
         cout << "\n\nDCT jest dostępne tylko w trybie 24-bit!\n\n";
+        displayMainMenu();
         return;
     } else {
+        bool processed;
+        vector<macierz> outputAllBlocks;
         SDL_Event event;
         cout << "\n\n\tWybierz:"
                 "\n1. DCT ON"
@@ -655,8 +750,70 @@ void Funkcja8() {
                 case SDL_KEYDOWN: {
                     // jeśli DCT ON
                     if (event.key.keysym.sym == SDLK_1) {
-                        DCToutput dct = DCTKompresja(tryb);
-                        cout << dct.mnoznik << endl;
+                        if(!processed) {
+                            dctOutput = DCTKompresja(tryb);
+                            outputAllBlocks = DCTDekompresja(dctOutput, tryb);
+                            processed = true;
+                        }
+                        // wyjscie danych na ekran
+                        if(tryb & 0x80) /* Color */ {
+                            if(tryb & 0x08) /* HSL */ {
+                                // po wysokosci -> 25 przebiegow
+                                for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                                    // po szerokosci -> 40 przebiegow
+                                    for (int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                                        // pobranie danych w bloku
+                                        for (int x = 0; x < rozmiarBloku; x++) {
+                                            for (int y = 0; y < rozmiarBloku; y++) {
+                                                SDL_Color pixel = HSLtoRGB(outputAllBlocks[(k * 40) + l].dane[x][y],
+                                                                           outputAllBlocks[(k * 40) + l + 1000].dane[x][y],
+                                                                           outputAllBlocks[(k * 40) + l + 2000].dane[x][y]);
+                                                setPixel(x + (l * rozmiarBloku) + szerokosc / 2,
+                                                         y + (k * rozmiarBloku),
+                                                         pixel.r,
+                                                         pixel.g,
+                                                         pixel.b);
+
+                                            }
+                                        }
+                                    }
+                                }
+                            } else /* RGB */ {
+                                // po wysokosci -> 25 przebiegow
+                                for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                                    // po szerokosci -> 40 przebiegow
+                                    for (int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                                        // pobranie danych w bloku
+                                        for (int x = 0; x < rozmiarBloku; x++) {
+                                            for (int y = 0; y < rozmiarBloku; y++) {
+                                                setPixel(x + (l * rozmiarBloku) + szerokosc / 2,
+                                                         y + (k * rozmiarBloku),
+                                                         outputAllBlocks[(k * 40) + l].dane[x][y],
+                                                         outputAllBlocks[(k * 40) + l + 1000].dane[x][y],
+                                                         outputAllBlocks[(k * 40) + l + 2000].dane[x][y]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else /* NO COLOR */ {
+                            // po wysokosci -> 25 przebiegow
+                            for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                                // po szerokosci -> 40 przebiegow
+                                for (int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                                    // pobranie danych w bloku
+                                    for (int x = 0; x < rozmiarBloku; x++) {
+                                        for (int y = 0; y < rozmiarBloku; y++) {
+                                            setPixel(x + (l * rozmiarBloku) + szerokosc / 2,
+                                                     y + (k * rozmiarBloku),
+                                                     outputAllBlocks[(k * 40) + l].dane[x][y],
+                                                     outputAllBlocks[(k * 40) + l].dane[x][y],
+                                                     outputAllBlocks[(k * 40) + l].dane[x][y]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         if(!(tryb & 0x02)) {
                             tryb += 0b00000010;
                         }
@@ -698,20 +855,24 @@ void Funkcja8() {
     }
 }
 
+// zapis do pliku
 void Funkcja9() {
-
-    Uint8 tabela[320][200];
-    for(int x =0;x< szerokosc/2; x=x+2){
-        for(int y=0; y <wysokosc/2; y=y+2){
-            tabela[x][y] = getPixel(x,y).r;
-        }
-    }
-    //filtrPaetha(tabela);
+    string filename;
+    cout << "\n\tPodaj nazwę pliku do zapisu (bez rozszerzenia):" << endl;
+    cin >> filename;
+    ZapiszPlik(filename, tryb);
+    displayMainMenu();
     SDL_UpdateWindowSurface(window);
 }
 
+// odczyt z pliku
 void Funkcja10() {
-
+    string filename;
+    cout << "\n\tPodaj nazwę pliku do odczytu (bez rozszerzenia):" << endl;
+    cin >> filename;
+    OdczytajPlik(filename);
+    displayMainMenu();
+    SDL_UpdateWindowSurface(window);
 }
 
 Uint8 z24RGBna7RGB(SDL_Color kolor) {

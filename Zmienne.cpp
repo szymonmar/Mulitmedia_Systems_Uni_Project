@@ -14,8 +14,8 @@ SDL_Color paleta8s[256];
 SDL_Color obrazek[64000];
 SDL_Color obrazek0[64000];
 
-Uint16 szerokoscObrazka = szerokosc;
-Uint16 wysokoscObrazka = wysokosc;
+Uint16 szerokoscObrazka = 320;
+Uint16 wysokoscObrazka = 200;
 
 SDL_Color paleta7DoPliku[128];
 Uint8 paleta7DoPlikuUint8[64000];
@@ -34,4 +34,9 @@ Uint8 dithering = 0;
 Uint8 obrazWTablicy[64000];
 
 int tabelaFiltr[320][200];
+
+DCToutput dctOutput;
+
+vector<token16> LZ77output16;
+vector<token8> LZ77output8;
 

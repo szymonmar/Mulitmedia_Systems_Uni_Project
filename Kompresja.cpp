@@ -375,20 +375,6 @@ vector<Uint8> RLEDekompresja(vector<Uint8> input){
         j++;
     }
 
-
-    int k = 0;
-    for(int x = 0; x < szerokosc/2; x++){
-        for(int y = 0; y < wysokosc/2; y++){
-            if(k >= 64000) {
-                break;
-            }
-            setPixel(x, y, output[k], output[k], output[k]);
-            k++;
-        }
-        if(k >= 64000) {
-            break;
-        }
-    }
     return output;
 }
 
@@ -444,7 +430,6 @@ vector<token8> LZ77Kompresja(vector<Uint8> input, int length) {
 vector<Uint8> LZ77Dekompresja(vector<token8> tokens) {
     //vector<token> tokens = readVector<token>(filename);
     vector<Uint8> output;
-    int j = 0;
     for (token8 tok : tokens) {
         // Jeśli tokLength to 0, oznacza to, że zapisujemy surową wartość rawValue
         if (tok.tokLength == 0) {
@@ -459,7 +444,6 @@ vector<Uint8> LZ77Dekompresja(vector<token8> tokens) {
             // Zapisujemy dodatkowy znak rawValue
             output.push_back(tok.rawValue);
         }
-
     }
 
     return output;
@@ -660,7 +644,7 @@ DCToutput DCTKompresja(Uint8 tryb) {
     float maxABS;
     float mnoznik;
     vector<Uint8> tablicaDoKompresji;
-    vector<token8> tablicaPoKompresji;
+    vector<Uint8> tablicaPoKompresji;
     vector<macierz> allBlocks;
     vector<float> firstElements;
 
@@ -669,7 +653,6 @@ DCToutput DCTKompresja(Uint8 tryb) {
 
     if(tryb & 0x80) /* Color */ {
         if(tryb & 0x08) /* HSL */ {
-            cout << "HSL" << endl;
         // po wysokosci -> 25 przebiegow
             for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
                 // po szerokosci -> 40 przebiegow
@@ -725,7 +708,6 @@ DCToutput DCTKompresja(Uint8 tryb) {
                 }
             }
         } else /* RGB */ {
-            cout << "RGB" << endl;
             // po wysokosci -> 25 przebiegow
             for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
                 // po szerokosci -> 40 przebiegow
@@ -782,21 +764,41 @@ DCToutput DCTKompresja(Uint8 tryb) {
             }
         }
     } else /* BW */ {
-        // po wysokosci -> 25 przebiegow
-        for(int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
-            // po szerokosci -> 40 przebiegow
-            for(int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
-                // pobranie danych w bloku
-                for(int x = 0; x < rozmiarBloku; x++) {
-                    for(int y = 0; y < rozmiarBloku; y++) {
-                        wejscie.dane[x][y] = getPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).r;
+        if(tryb & 0x08) /* HSL */ {
+            // po wysokosci -> 25 przebiegow
+            for (int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for (int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for (int x = 0; x < rozmiarBloku; x++) {
+                        for (int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = RGBtoHSL(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).L;
+                        }
                     }
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
                 }
-                // transformata
-                blokDCT = dct(wejscie.dane);
-                firstElements.push_back(blokDCT.dct[0][0]);
-                allBlocks.push_back(blokDCT);
-                maxABS = findMaxABS(blokDCT, maxABS);
+            }
+        } else {
+            // po wysokosci -> 25 przebiegow
+            for (int k = 0; k < (wysokosc / 2 / rozmiarBloku); k++) {
+                // po szerokosci -> 40 przebiegow
+                for (int l = 0; l < (szerokosc / 2 / rozmiarBloku); l++) {
+                    // pobranie danych w bloku
+                    for (int x = 0; x < rozmiarBloku; x++) {
+                        for (int y = 0; y < rozmiarBloku; y++) {
+                            wejscie.dane[x][y] = getPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku)).r;
+                        }
+                    }
+                    // transformata
+                    blokDCT = dct(wejscie.dane);
+                    firstElements.push_back(blokDCT.dct[0][0]);
+                    allBlocks.push_back(blokDCT);
+                    maxABS = findMaxABS(blokDCT, maxABS);
+                }
             }
         }
     }
@@ -816,6 +818,7 @@ DCToutput DCTKompresja(Uint8 tryb) {
             }
         }
     }
+
 
     // zapis do tablicy do kompresji
     for(int i = 0; i < allBlocks.size(); i++) {
@@ -859,7 +862,7 @@ DCToutput DCTKompresja(Uint8 tryb) {
         }
     }
 
-    tablicaPoKompresji = LZ77Kompresja(tablicaDoKompresji, tablicaDoKompresji.size());
+    tablicaPoKompresji = RLEKompresja(tablicaDoKompresji, tablicaDoKompresji.size());
     DCToutput output;
     output.mnoznik = mnoznik;
     output.pierwszeWspolczynniki = firstElements;
@@ -867,92 +870,123 @@ DCToutput DCTKompresja(Uint8 tryb) {
     return output;
 }
 
-void DCTDekompresja(DCToutput input, Uint8 tryb) {
+vector<macierz> DCTDekompresja(DCToutput input, Uint8 tryb) {
 
-    float mnoznik;
-    vector<float> firstElements;
-    vector<Uint8> tablicaPoKompresji;
     vector<Uint8> tablicaPoDekompresji;
-    macierz allBlocks[1000];
-    macierz outputAllBlocks[1000];
+    vector<macierz> allBlocks;
+    vector<macierz> outputAllBlocks;
 
     // dekompresja
-    tablicaPoDekompresji = LZ77Dekompresja(input.reszta);
-
+    tablicaPoDekompresji = RLEDekompresja(input.reszta);
     if(tryb & 0x80) /* Color */ {
-        if(tryb & 0x08) /* HSL */ {
+        int vectorIndex = 0;
+        for(int i = 0; i < 3000; i++) {
+            macierz m;
+            int x = 1, y = 0;  // Start from (1,0) since (0,0) should be skipped
+            bool goingUp = true;
 
-        } else /* RGB */ {
+            while (x >= 0 && x < 8 && y >= 0 && y < 8) {
+                // Process current element
+                m.dct[x][y] = tablicaPoDekompresji[vectorIndex];
+                vectorIndex++;
 
-        }
-    } else /* No color */ {
-
-    }
-    int iii = 0;
-    for(int i = 0; i < 1000; i++) {
-        // Iterowanie po tablicy w zygzaku w odwrotnej kolejności
-        for (int d = 2 * rozmiarBloku - 2; d >= 0; --d) {
-            if (d % 2 == 0) {
-                // Kierunek "w dół" (przechodzenie po przekątnej w odwrotnym zygzaku)
-                for (int i = 0; i <= d; ++i) {
-                    int row = d - i;
-                    int col = i;
-                    if(row == 0 && col == 0) {
-                        continue;
+                if (goingUp) {
+                    if (x == 0 || y == 7) {  // Hit top or right boundary
+                        if (y == 7) {  // Hit right boundary
+                            x++;
+                        } else {  // Hit top boundary
+                            y++;
+                        }
+                        goingUp = false;  // Change direction
+                    } else {
+                        x--;  // Move diagonally up-right
+                        y++;
                     }
-                    if (row < rozmiarBloku && col < rozmiarBloku) {
-                        allBlocks[i].dct[row][col] = (float) tablicaPoDekompresji[iii];
-                        iii++;
+                } else {  // Going down
+                    if (x == 7 || y == 0) {  // Hit bottom or left boundary
+                        if (x == 7) {  // Hit bottom boundary
+                            y++;
+                        } else {  // Hit left boundary
+                            x++;
+                        }
+                        goingUp = true;  // Change direction
+                    } else {
+                        x++;  // Move diagonally down-left
+                        y--;
                     }
                 }
-            } else {
-                // Kierunek "w górę" (przechodzenie po przekątnej w odwrotnym zygzaku)
-                for (int i = 0; i <= d; ++i) {
-                    int row = i;
-                    int col = d - i;
-                    if(row == 0 && col == 0) {
-                        continue;
-                    }
-                    if (row < rozmiarBloku && col < rozmiarBloku) {
-                        allBlocks[i].dct[row][col] = (float) tablicaPoDekompresji[iii];
-                        iii++;
-                    }
+
+                // Break if we go out of bounds
+                if (x >= 8 || y >= 8) {
+                    break;
                 }
             }
+            allBlocks.push_back(m);
+        }
+    } else /* No color */ {
+        macierz m;
+        int vectorIndex = 0;
+        for(int i = 0; i < 1000; i++) {
+            int x = 1, y = 0;  // Start from (1,0) since (0,0) should be skipped
+            bool goingUp = true;
+
+            while (x >= 0 && x < 8 && y >= 0 && y < 8) {
+                // Process current element
+                m.dct[x][y] = tablicaPoDekompresji[vectorIndex];
+                vectorIndex++;
+
+                if (goingUp) {
+                    if (x == 0 || y == 7) {  // Hit top or right boundary
+                        if (y == 7) {  // Hit right boundary
+                            x++;
+                        } else {  // Hit top boundary
+                            y++;
+                        }
+                        goingUp = false;  // Change direction
+                    } else {
+                        x--;  // Move diagonally up-right
+                        y++;
+                    }
+                } else {  // Going down
+                    if (x == 7 || y == 0) {  // Hit bottom or left boundary
+                        if (x == 7) {  // Hit bottom boundary
+                            y++;
+                        } else {  // Hit left boundary
+                            x++;
+                        }
+                        goingUp = true;  // Change direction
+                    } else {
+                        x++;  // Move diagonally down-left
+                        y--;
+                    }
+                }
+
+                // Break if we go out of bounds
+                if (x >= 8 || y >= 8) {
+                    break;
+                }
+            }
+            allBlocks.push_back(m);
         }
     }
 
     // odwrócenie kwantyzacji i normalizacji
-
-    for(int i = 0; i < 1000; i++) {
+    for(int i = 0; i < allBlocks.size(); i++) {
         for(int x = 0; x < 8; x++) {
             for(int y = 0; y < 8; y++) {
                 allBlocks[i].dct[x][y] -= 127.0;
-                allBlocks[i].dct[x][y] *= mnoznik;
+                allBlocks[i].dct[x][y] *= input.mnoznik;
             }
         }
         allBlocks[i].dct[0][0] = input.pierwszeWspolczynniki[i];
     }
 
-    for(int i = 0; i < 1000; i++) {
-        outputAllBlocks[i] = idct(allBlocks[i].dct);
+
+    for(int i = 0; i < allBlocks.size(); i++) {
+        outputAllBlocks.push_back(idct(allBlocks[i].dct));
     }
 
-    // wyjscie danych na ekran
-    // po wysokosci -> 25 przebiegow
-    iii = 0;
-    for(int k = 0; k < (wysokosc / rozmiarBloku); k++) {
-        // po szerokosci -> 40 przebiegow
-        for (int l = 0; l < (szerokosc / rozmiarBloku); l++) {
-            // pobranie danych w bloku
-            for (int x = 0; x < rozmiarBloku; x++) {
-                for (int y = 0; y < rozmiarBloku; y++) {
-                    //setPixel(x + (l * rozmiarBloku), y + (k * rozmiarBloku), outputAllBlocks[iii].dane.r, pixelA.g, pixelA.b);
-                }
-            }
-            iii++;
-        }
-    }
+    return outputAllBlocks;
 }
 
 
