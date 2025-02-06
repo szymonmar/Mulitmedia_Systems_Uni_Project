@@ -635,9 +635,9 @@ void Funkcja7() {
     } else {
         SDL_Event event;
         cout << "\n\n\tWybierz:"
-                "\n1. Podpróbkowanie 420 składowej barwy H"
-                "\n2. Podpróbkowanie 420 składowej nasycenia S"
-                "\n3. Podpróbkowanie 420 składowych barwy i nasycenia HS"
+                "\n1. Podpróbkowanie 420 składowej barwy S"
+                "\n2. Podpróbkowanie 420 składowej nasycenia L"
+                "\n3. Podpróbkowanie 420 składowych barwy i nasycenia SL"
                 "\n4. Podpróbkowanie 420 OFF"
                 "\n0. Zatwierdź\n";
         while (SDL_WaitEvent(&event)) {
@@ -654,7 +654,7 @@ void Funkcja7() {
                                 packet.b = RGBtoHSL(x + 1, y);
                                 packet.c = RGBtoHSL(x, y + 1);
                                 packet.d = RGBtoHSL(x + 1, y + 1);
-                                pixele4HSL outputPacket = HSL_420(packet, 'h');
+                                pixele4HSL outputPacket = HSL_420(packet, 's');
                                 SDL_Color a = HSLtoRGB(outputPacket.a.H, outputPacket.a.S, outputPacket.a.L);
                                 SDL_Color b = HSLtoRGB(outputPacket.b.H, outputPacket.b.S, outputPacket.b.L);
                                 SDL_Color c = HSLtoRGB(outputPacket.c.H, outputPacket.c.S, outputPacket.c.L);
@@ -680,7 +680,7 @@ void Funkcja7() {
                                 packet.b = RGBtoHSL(x + 1, y);
                                 packet.c = RGBtoHSL(x, y + 1);
                                 packet.d = RGBtoHSL(x + 1, y + 1);
-                                pixele4HSL outputPacket = HSL_420(packet, 's');
+                                pixele4HSL outputPacket = HSL_420(packet, 'l');
                                 SDL_Color a = HSLtoRGB(outputPacket.a.H, outputPacket.a.S, outputPacket.a.L);
                                 SDL_Color b = HSLtoRGB(outputPacket.b.H, outputPacket.b.S, outputPacket.b.L);
                                 SDL_Color c = HSLtoRGB(outputPacket.c.H, outputPacket.c.S, outputPacket.c.L);
@@ -706,9 +706,9 @@ void Funkcja7() {
                                 packet.b = RGBtoHSL(x + 1, y);
                                 packet.c = RGBtoHSL(x, y + 1);
                                 packet.d = RGBtoHSL(x + 1, y + 1);
-                                pixele4HSL outputPacket = HSL_420(packet, 'h');
+                                pixele4HSL outputPacket = HSL_420(packet, 's');
                                 packet = outputPacket;
-                                outputPacket = HSL_420(packet, 's');
+                                outputPacket = HSL_420(packet, 'l');
                                 SDL_Color a = HSLtoRGB(outputPacket.a.H, outputPacket.a.S, outputPacket.a.L);
                                 SDL_Color b = HSLtoRGB(outputPacket.b.H, outputPacket.b.S, outputPacket.b.L);
                                 SDL_Color c = HSLtoRGB(outputPacket.c.H, outputPacket.c.S, outputPacket.c.L);

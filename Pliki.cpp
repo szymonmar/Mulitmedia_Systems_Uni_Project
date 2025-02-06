@@ -1,7 +1,6 @@
 // funkcje do operacji na plikach
 #include "Funkcje.h"
 #include "Zmienne.h"
-#include "Paleta.h"
 #include "MedianCut.h"
 #include "Pliki.h"
 #include "Modele.h"
@@ -17,10 +16,10 @@ void ZapiszPlik(string a, Uint8 tryb){
     Uint8 kolor1, extractedBits;
     int counter = 0;
 
-    cout<<"\nZapisujemy plik '"<< a<< ".z21' uzywajac metody write()"<<endl;
+    cout<<"\nZapisujemy plik '"<< a<< ".z21' uzywajac metody write()..."<<endl;
     ofstream wyjscie((a + ".z21").c_str() , ios::binary);
 
-    wyjscie.write((char*)&identyfikator, sizeof(char)*4);
+    wyjscie.write((char*)&identyfikator, sizeof(char)*3);
     wyjscie.write((char*)&szerokoscObrazka, sizeof(Uint16));
     wyjscie.write((char*)&wysokoscObrazka, sizeof(Uint16));
     wyjscie.write((char*)&tryb, sizeof(Uint8));
@@ -384,7 +383,7 @@ void OdczytajPlik(string filename){
 
     cout<<"\nOdczytujemy plik '"<< filename <<".z21'\n\n";
     ifstream wejscie((filename + ".z21").c_str() ,ios::binary);
-    wejscie.read((char*)&identyfikator,sizeof(char)*4);
+    wejscie.read((char*)&identyfikator,sizeof(char)*3);
     wejscie.read((char*)&szerokoscObrazka,sizeof(Uint16));
     wejscie.read((char*)&wysokoscObrazka,sizeof(Uint16));
     wejscie.read((char*)&readMode,sizeof(Uint8));

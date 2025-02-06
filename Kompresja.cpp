@@ -356,24 +356,22 @@ vector<Uint8> RLEDekompresja(vector<Uint8> input){
 }
 
 vector<token8> LZ77Kompresja(vector<Uint8> input, int length) {
-    const int windowSize = 64000; // Rozmiar okna wyszukiwania
-    int lookaheadBufferSize;
+    const int windowSize = 4096;  // Reduced window size for better performance
+    const int minMatch = 3;       // Minimum match length
     vector<token8> resultArr;
     int position = 0;
-    int numOfMatches = 0;
+
     while (position < length) {
-        lookaheadBufferSize = windowSize - position;
+        int searchStart = max(0, position - windowSize);
+        int searchEnd = position;
         int matchDistance = 0;
         int matchLength = 0;
-        int searchStart = 0;
-        int searchEnd = position;
 
-
-        // Wyszukiwanie najdłuższego dopasowania w oknie wyszukiwania
+        // Search for longest match
         for (int i = searchStart; i < searchEnd; i++) {
             int currentMatchLength = 0;
-            while (currentMatchLength < lookaheadBufferSize &&
-                   position + currentMatchLength < length &&
+            while (position + currentMatchLength < length &&
+                   currentMatchLength < windowSize &&
                    input[i + currentMatchLength] == input[position + currentMatchLength]) {
                 currentMatchLength++;
             }
@@ -384,20 +382,14 @@ vector<token8> LZ77Kompresja(vector<Uint8> input, int length) {
             }
         }
 
-        // Jeśli nie znaleziono dopasowania, zapisujemy literę bezpośrednio
-        if (matchLength < 1) {
-            resultArr.push_back(token8((Uint16)0, (Uint16)0, (Uint8)input[position]));
+        // Output token based on match length
+        if (matchLength < minMatch) {
+            resultArr.push_back(token8(0, 0, input[position]));
             position++;
-            //cout << "RAW: ( " << (int)input[position] << " )" << endl;
-
-        }
-            // W przeciwnym razie zapisujemy parę (odległość, długość, następny znak)
-        else {
+        } else {
             Uint8 nextChar = (position + matchLength < length) ? input[position + matchLength] : 0;
-            resultArr.push_back(token8((Uint16)matchLength, (Uint16)matchDistance, (Uint8)nextChar));
+            resultArr.push_back(token8(matchLength, matchDistance, nextChar));
             position += matchLength + 1;
-            //cout << "( Len: " << (int)matchLength << ", Dist: " << (int)matchDistance << ", next: " << (int)nextChar << " )   Position: " << position << endl;
-            numOfMatches++;
         }
     }
     return resultArr;

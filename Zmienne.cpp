@@ -27,7 +27,7 @@ int ileKubelkow;
 
 SDL_Color paleta[128];
 
-char identyfikator[] = "ESPJ";
+char identyfikator[] = "ESP";
 Uint8 tryb = 0;
 
 Uint8 obrazWTablicy[64000];
