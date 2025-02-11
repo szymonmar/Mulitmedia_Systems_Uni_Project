@@ -1,12 +1,9 @@
 // podstawowe funkcje
 #include "Funkcje.h"
 #include "Zmienne.h"
-#include "Paleta.h"
-#include "MedianCut.h"
 #include "Pliki.h"
 #include "Modele.h"
 #include "Kompresja.h"
-#include <math.h>
 #include <vector>
 
 vector<Uint8> zczytajDaneBW(){
@@ -907,64 +904,6 @@ void Funkcja10() {
     SDL_UpdateWindowSurface(window);
 }
 
-Uint8 z24RGBna7RGB(SDL_Color kolor) {
-    Uint8 R,G,B,kolor7bit;
-    int nowyR, nowyG, nowyB;
-
-    R=kolor.r;
-    G=kolor.g;
-    B=kolor.b;
-
-    nowyR=round(R*3.0/255.0);
-    nowyG=round(G*7.0/255.0);
-    nowyB=round(B*3.0/255.0);
-
-    kolor7bit = (nowyR<<6) | (nowyG<<3) | (nowyB<<1);
-
-    return kolor7bit;
-}
-
-SDL_Color z7RGBna24RGB(Uint8 kolor7bit){
-    //RRGGGBB0
-    int R,G,B,nowyR,nowyG,nowyB;
-    SDL_Color kolor24RGB;
-    nowyR = (kolor7bit & (0b11000000)) >> 6;
-    nowyG = (kolor7bit & (0b00111000)) >> 3;
-    nowyB = (kolor7bit & (0b00000110)) >> 1;
-
-
-    R= nowyR*255.0/3.0;
-    G= nowyG*255.0/7.0;
-    B= nowyB*255.0/3.0;
-
-    kolor24RGB.r = R;
-    kolor24RGB.g = G;
-    kolor24RGB.b = B;
-
-    return kolor24RGB;
-}
-
-
-Uint8 z24RGBna7BW (SDL_Color kolor) {
-
-    Uint8 szary8bit = 0.299*kolor.r + 0.587*kolor.g + 0.114*kolor.b;
-    Uint8 szary7bit = round(szary8bit * 127.0/255.0);
-
-    return szary7bit;
-
-}
-
-SDL_Color z7BWna24RGB (Uint8 szary7bit) {
-    SDL_Color kolor;
-    Uint8 szary8bit = szary7bit*255.0/127.0;
-    kolor.r = szary8bit;
-    kolor.g = szary8bit;
-    kolor.b = szary8bit;
-
-    return kolor;
-
-}
-
 Uint8 z24RGBna8BW (SDL_Color kolor) {
     Uint8 szary8bit = 0.299*kolor.r + 0.587*kolor.g + 0.114*kolor.b;
     return szary8bit;
@@ -978,22 +917,6 @@ SDL_Color z8BWna24RGB (Uint8 szary8bit) {
 
     return kolor;
 }
-
-void zbierzKoloryZObrazka() {
-    int n = 0;
-    for(int l = 0; l < 25; l++) {
-        for (int k = 0; k < 40; k++) {
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    SDL_Color kolor = getPixel(k*8+j, l*8+i);
-                    obrazWTablicy[n] = z24RGBna7RGB(kolor);
-                    n++;
-                }
-            }
-        }
-    }
-}
-
 
 void setPixel(int x, int y, Uint8 R, Uint8 G, Uint8 B)
 {
@@ -1176,102 +1099,6 @@ void ladujBMP(char const* nazwa, int x, int y) {
         SDL_UpdateWindowSurface(window);
     }
 
-}
-
-void podprobkowanieYUV() {
-    pixele4YUV pix4yuv, retYuv;
-    SDL_Color pixA, pixB, pixC, pixD;
-    for(int i = 0; i <= szerokosc / 2; i = i + 2) {
-        for (int k = 0; k <= wysokosc / 2; k = k + 2) {
-            pix4yuv.a = RGBtoYUV(i,k);
-            pix4yuv.b = RGBtoYUV(i + 1,k);
-            pix4yuv.c = RGBtoYUV(i,k + 1);
-            pix4yuv.d = RGBtoYUV(i + 1, k + 1);
-
-            // te funkcje sie nazywają 420, ale tak naprawde one tylko usredniaja wiec uzywam ich też w 4:1:1
-            retYuv = YUV_420(YUV_420(pix4yuv, 'u'), 'v');
-            pixA = YUVtoRGB(retYuv.a.Y, retYuv.a.U, retYuv.a.V);
-            pixB = YUVtoRGB(retYuv.b.Y, retYuv.b.U, retYuv.b.V);
-            pixC = YUVtoRGB(retYuv.c.Y, retYuv.c.U, retYuv.c.V);
-            pixD = YUVtoRGB(retYuv.d.Y, retYuv.d.U, retYuv.d.V);
-            setPixel(i + szerokosc / 2, k, pixA.r, pixA.g, pixA.b);
-            setPixel(i + 1 + szerokosc / 2 , k , pixB.r, pixB.g, pixB.b);
-            setPixel(i + szerokosc / 2, k + 1, pixC.r, pixC.g, pixC.b);
-            setPixel(i + 1 + szerokosc / 2, k + 1, pixD.r, pixD.g, pixD.b);
-        }
-    }
-}
-
-void podprobkowanieYIQ() {
-    pixele4YIQ pix4, ret;
-    SDL_Color pixA, pixB, pixC, pixD;
-    for(int i = 0; i <= szerokosc / 2; i = i + 2) {
-        for (int k = 0; k <= wysokosc / 2; k = k + 2) {
-            pix4.a = RGBtoYIQ(i,k);
-            pix4.b = RGBtoYIQ(i + 1,k);
-            pix4.c = RGBtoYIQ(i,k + 1);
-            pix4.d = RGBtoYIQ(i + 1, k + 1);
-
-            // te funkcje sie nazywają 420, ale tak naprawde one tylko usredniaja wiec uzywam ich też w 4:1:1
-            ret = YIQ_420(YIQ_420(pix4, 'i'), 'q');
-            pixA = YIQtoRGB(ret.a.Y, ret.a.I, ret.a.Q);
-            pixB = YIQtoRGB(ret.b.Y, ret.b.I, ret.b.Q);
-            pixC = YIQtoRGB(ret.c.Y, ret.c.I, ret.c.Q);
-            pixD = YIQtoRGB(ret.d.Y, ret.d.I, ret.d.Q);
-            setPixel(i + szerokosc / 2, k, pixA.r, pixA.g, pixA.b);
-            setPixel(i + 1 + szerokosc / 2 , k , pixB.r, pixB.g, pixB.b);
-            setPixel(i + szerokosc / 2, k + 1, pixC.r, pixC.g, pixC.b);
-            setPixel(i + 1 + szerokosc / 2, k + 1, pixD.r, pixD.g, pixD.b);
-        }
-    }
-}
-
-void podprobkowanieYCBCR() {
-    pixele4YCbCr pix4, ret;
-    SDL_Color pixA, pixB, pixC, pixD;
-    for(int i = 0; i <= szerokosc / 2; i = i + 2) {
-        for (int k = 0; k <= wysokosc / 2; k = k + 2) {
-            pix4.a = RGBtoYCbCr(i,k);
-            pix4.b = RGBtoYCbCr(i + 1,k);
-            pix4.c = RGBtoYCbCr(i,k + 1);
-            pix4.d = RGBtoYCbCr(i + 1, k + 1);
-
-            // te funkcje sie nazywają 420, ale tak naprawde one tylko usredniaja wiec uzywam ich też w 4:1:1
-            ret = YCbCr_420(YCbCr_420(pix4, 'cb'), 'cr');
-            pixA = YCbCrtoRGB(ret.a.Y, ret.a.Cb, ret.a.Cr);
-            pixB = YCbCrtoRGB(ret.b.Y, ret.b.Cb, ret.b.Cr);
-            pixC = YCbCrtoRGB(ret.c.Y, ret.c.Cb, ret.c.Cr);
-            pixD = YCbCrtoRGB(ret.d.Y, ret.d.Cb, ret.d.Cr);
-            setPixel(i + szerokosc / 2, k, pixA.r, pixA.g, pixA.b);
-            setPixel(i + 1 + szerokosc / 2 , k , pixB.r, pixB.g, pixB.b);
-            setPixel(i + szerokosc / 2, k + 1, pixC.r, pixC.g, pixC.b);
-            setPixel(i + 1 + szerokosc / 2, k + 1, pixD.r, pixD.g, pixD.b);
-        }
-    }
-}
-
-void podprobkowanieHSL() {
-    pixele4HSL pix4, ret;
-    SDL_Color pixA, pixB, pixC, pixD;
-    for(int i = 0; i <= szerokosc / 2; i = i + 2) {
-        for (int k = 0; k <= wysokosc / 2; k = k + 2) {
-            pix4.a = RGBtoHSL(i,k);
-            pix4.b = RGBtoHSL(i + 1,k);
-            pix4.c = RGBtoHSL(i,k + 1);
-            pix4.d = RGBtoHSL(i + 1, k + 1);
-
-            // te funkcje sie nazywają 420, ale tak naprawde one tylko usredniaja wiec uzywam ich też w 4:1:1
-            ret = HSL_420(pix4, 'l');
-            pixA = HSLtoRGB(ret.a.H, ret.a.S, ret.a.L);
-            pixB = HSLtoRGB(ret.b.H, ret.b.S, ret.b.L);
-            pixC = HSLtoRGB(ret.c.H, ret.c.S, ret.c.L);
-            pixD = HSLtoRGB(ret.d.H, ret.d.S, ret.d.L);
-            setPixel(i + szerokosc / 2, k, pixA.r, pixA.g, pixA.b);
-            setPixel(i + 1 + szerokosc / 2 , k , pixB.r, pixB.g, pixB.b);
-            setPixel(i + szerokosc / 2, k + 1, pixC.r, pixC.g, pixC.b);
-            setPixel(i + 1 + szerokosc / 2, k + 1, pixD.r, pixD.g, pixD.b);
-        }
-    }
 }
 
 

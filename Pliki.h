@@ -7,9 +7,18 @@
 #include <fstream>
 #include <SDL2/SDL.h>
 
-Uint8 shiftByte(Uint8 b, Uint8 shiftAmount);
-void ZapiszPlik(string a, Uint8 tryb);
-void OdczytajPlik(string a);
+/**
+ * Saves .z21 file (image output from the app)
+ * @param filename filename
+ * @param tryb image mode
+ */
+void ZapiszPlik(string filename, Uint8 tryb);
+
+/**
+ * Reads image data from .z21 file
+ * @param filename filename
+ */
+void OdczytajPlik(string filename);
 
 /**
  * Saves vector to the file

@@ -1,23 +1,18 @@
 // funkcje do operacji na plikach
 #include "Funkcje.h"
 #include "Zmienne.h"
-#include "MedianCut.h"
 #include "Pliki.h"
 #include "Modele.h"
 #include "Kompresja.h"
 #include <vector>
 
-Uint8 shiftByte(Uint8 b, Uint8 shiftAmount) {
-    b = b << 8 - shiftAmount;
-    return b;
-}
 
-void ZapiszPlik(string a, Uint8 tryb){
+void ZapiszPlik(string filename, Uint8 tryb){
     Uint8 kolor1, extractedBits;
     int counter = 0;
 
-    cout<<"\nZapisujemy plik '"<< a<< ".z21' uzywajac metody write()..."<<endl;
-    ofstream wyjscie((a + ".z21").c_str() , ios::binary);
+    cout<<"\nZapisujemy plik '"<< filename << ".z21' uzywajac metody write()..."<<endl;
+    ofstream wyjscie((filename + ".z21").c_str() , ios::binary);
 
     wyjscie.write((char*)&identyfikator, sizeof(char)*3);
     wyjscie.write((char*)&szerokoscObrazka, sizeof(Uint16));

@@ -1,8 +1,5 @@
 #include "Funkcje.h"
 #include "Zmienne.h"
-#include "Paleta.h"
-#include "MedianCut.h"
-#include "Pliki.h"
 #include "Modele.h"
 #include "Kompresja.h"
 #include <math.h>
@@ -10,262 +7,6 @@
 #include <vector>
 
 using namespace std;
-
-int rozmiarSlownika = 0;
-slowo slownik[65535];
-
-slowo noweSlowo(){
-    slowo noweSlowo;
-    noweSlowo.kod = 0;
-    noweSlowo.length = 0;
-    noweSlowo.wSlowniku = false;
-    return noweSlowo;
-}
-
-slowo noweSlowo(Uint8 znak){
-    slowo noweSlowo;
-    noweSlowo.kod=0;
-    noweSlowo.length=1;
-    noweSlowo.element[0]=znak;
-    noweSlowo.wSlowniku=false;
-    return noweSlowo;
-}
-
-slowo polaczSlowo(slowo aktualneSlowo, Uint8 znak){
-    slowo noweSlowo;
-
-    if(aktualneSlowo.length<4096){
-        noweSlowo.kod=0;
-        noweSlowo.length = aktualneSlowo.length+1;
-        noweSlowo.wSlowniku = false;
-        copy(begin(aktualneSlowo.element), end(aktualneSlowo.element), begin(noweSlowo.element));
-        noweSlowo.element[aktualneSlowo.length] = znak;
-        return noweSlowo;
-    }
-    else{
-        cout<<"UWAGA! przepelnienie rozmiaru znakow w pojedynczym slowie"<<endl;
-        noweSlowo.kod =0;
-        noweSlowo.length=0;
-        noweSlowo.wSlowniku=false;
-        noweSlowo.element[0] = znak;
-        return noweSlowo;
-    }
-}
-
-bool porownajSlowa(slowo slowo1, slowo slowo2){
-    if(slowo1.length!=slowo2.length)
-        return false;
-    for(int s=0; s<slowo1.length; s++){
-        if(slowo1.element[s] != slowo2.element[s])
-            return false;
-    }
-    return true;
-}
-
-int znajdzWSlowniku(slowo szukany){
-    for(int nr=0; nr<rozmiarSlownika; nr++)
-        if(porownajSlowa(slownik[nr], szukany))
-            return nr;
-    return -1;
-}
-
-void wyswietlSlowo(slowo aktualneSlowo){
-    if(aktualneSlowo.wSlowniku)
-        cout<<"["<<aktualneSlowo.kod<<"] ";
-    else
-        cout<<"[X] ";
-    for(int s=0; s<aktualneSlowo.length; s++){
-        cout<<(int)aktualneSlowo.element[s];
-        if(s<aktualneSlowo.length-1)
-            cout<<", ";
-    }
-    cout<<endl;
-}
-
-int dodajDoSLownika(slowo nowy, bool czyWyswietlac){
-
-    if(rozmiarSlownika <65536){
-        Uint16 nr = rozmiarSlownika;
-        slownik[nr].kod = nr;
-        slownik[nr].length = nowy.length;
-
-        copy(begin(nowy.element), end(nowy.element), begin(slownik[nr].element));
-        slownik[nr].wSlowniku = true;
-        if(czyWyswietlac)
-            wyswietlSlowo(slownik[nr]);
-        rozmiarSlownika++;
-        return nr;
-    }
-    return -1;
-}
-
-void LZWinicjalizacja(){
-    rozmiarSlownika = 0;
-
-    for(int s=0; s<65536; s++){
-        slownik[s].kod = 0;
-        slownik[s].length=0;
-        slownik[s].wSlowniku = false;
-        memset(slownik[s].element, 0, sizeof(slownik[s].element));
-    }
-
-    slowo noweSlowo;
-    for(int s=0; s<256; s++){
-        noweSlowo.length =1;
-        noweSlowo.element[0] = s;
-        noweSlowo.kod = dodajDoSLownika(noweSlowo, false);
-    }
-}
-
-
-vector<Uint16> LZWKompresja(vector<Uint8> input, int length){
-    cout << "Zapisywanie pliku z kompresją LZW..." << endl;
-    LZWinicjalizacja();
-    slowo aktualneSlowo = noweSlowo();
-    slowo slowoZnak;
-    Uint8 znak;
-    int kod;
-    int i=0;
-    vector<Uint16> resultArr;
-    while(i<length){
-
-        znak=input[i];
-        slowoZnak = polaczSlowo(aktualneSlowo, znak);
-
-
-        kod=znajdzWSlowniku(slowoZnak);
-
-        if(kod<0){
-
-            resultArr.push_back(aktualneSlowo.kod);
-            dodajDoSLownika(slowoZnak, false);
-            if(znajdzWSlowniku(slowoZnak)>0){
-                slowoZnak.kod = znajdzWSlowniku(slowoZnak);
-
-            }
-
-            aktualneSlowo = noweSlowo(znak);
-            aktualneSlowo.kod = znajdzWSlowniku(aktualneSlowo);
-            aktualneSlowo.wSlowniku = true;
-        }
-        else{
-            aktualneSlowo = slowoZnak;
-            aktualneSlowo.kod = znajdzWSlowniku(aktualneSlowo);
-            aktualneSlowo.wSlowniku = true;
-        }
-
-        i++;
-    }
-
-    resultArr.push_back(aktualneSlowo.kod);
-
-    return resultArr;
-}
-
-vector<Uint8> LZWDekompresja(vector<Uint16> skompresowane) {
-    //vector<Uint16> skompresowane = readVector<Uint16>(fileName);
-    int length = skompresowane.size();
-
-    // Inicjalizacja słownika
-    LZWinicjalizacja();
-
-    vector<Uint8> wynik; // Wektor do przechowywania zdekompresowanego wyniku
-
-    int poprzedniKod = skompresowane[0]; // Pierwszy kod w danych skompresowanych
-    wynik.push_back(slownik[poprzedniKod].element[0]); // Dodaj pierwszy element do wyniku
-
-    slowo poprzednieSlowo = slownik[poprzedniKod];
-    slowo noweSlowo;
-
-    for (int i = 1; i < length; i++) {
-        int obecnyKod = skompresowane[i];
-        slowo obecneSlowo;
-
-        // Jeśli kod istnieje w słowniku
-        if (obecnyKod < rozmiarSlownika) {
-            obecneSlowo = slownik[obecnyKod];
-        } else {
-            // Kod nie istnieje w słowniku (specjalny przypadek)
-            obecneSlowo = polaczSlowo(poprzednieSlowo, poprzednieSlowo.element[0]);
-        }
-
-        // Dodaj słowo do wyniku
-        for (int j = 0; j < obecneSlowo.length; j++) {
-            wynik.push_back(obecneSlowo.element[j]);
-        }
-
-        // Dodaj nowe słowo do słownika
-        noweSlowo = polaczSlowo(poprzednieSlowo, obecneSlowo.element[0]);
-        dodajDoSLownika(noweSlowo, false);
-
-        // Ustaw obecne słowo jako poprzednie na następnej iteracji
-        poprzednieSlowo = obecneSlowo;
-    }
-
-    return wynik;
-}
-
-vector<Sint8> ByteRunKompresja(vector<Uint8> input, int length) {
-    int i = 0;
-    vector<Sint8> resultArr;
-
-    while (i < length) {
-        if ((i < length - 1) && (input[i] == input[i + 1])){
-            int j = 0;
-            while((i+  j < length - 1) && (input[i + j] == input[i + 1 + j]) && (j < 127)){
-                j++;
-            }
-
-            resultArr.push_back(-j);
-            resultArr.push_back(input[i + j]);
-
-            i += (j+1);
-        } else {
-            int j = 0;
-            while((i + j < length - 1) && ((input[i + j] != input[i + j + 1])) && (j < 128)){
-                j++;
-            }
-
-            if((i+j == length - 1) && (j < 128)){
-                j++;
-            }
-
-            resultArr.push_back(j - 1);
-
-
-            for(int k = 0; k < j; k++){
-                resultArr.push_back(input[i + k]);
-            }
-
-            i += j;
-        }
-    }
-    return resultArr;
-}
-
-vector<Uint8> ByteRunDekompresja(vector<Sint8> input){
-    int j = 0;
-    //vector<Sint8> input = readVector<Sint8>(fileName);
-    int length = input.size();
-    vector<Uint8> output;
-    while (j < length){
-        if(input[j] < 0){
-            int iters = (-1) * input[j] + 1;
-            j++;
-            for(int i = 0; i < iters; i ++){
-                output.push_back(input[j]);
-            }
-        } else {
-            int iters = input[j] + 1;
-            for(int i = 0; i < iters; i ++){
-                j++;
-                output.push_back(input[j]);
-            }
-        }
-        j++;
-    }
-    return output;
-}
 
 vector<Uint8> RLEKompresja(vector<Uint8> input, int length){
     int i = 0;
@@ -395,7 +136,6 @@ vector<token8> LZ77Kompresja(vector<Uint8> input, int length) {
     return resultArr;
 }
 
-// Funkcja LZ77 - dekompresuje wejściowy wektor danych
 vector<Uint8> LZ77Dekompresja(vector<token8> tokens) {
     //vector<token> tokens = readVector<token>(filename);
     vector<Uint8> output;
@@ -466,7 +206,6 @@ vector<token16> LZ77Kompresja(vector<Uint16> input, int length) {
     return resultArr;
 }
 
-// Funkcja LZ77 - dekompresuje wejściowy wektor danych
 vector<Uint16> LZ77Dekompresja(vector<token16> tokens) {
     //vector<token> tokens = readVector<token>(filename);
     vector<Uint16> output;
@@ -488,26 +227,6 @@ vector<Uint16> LZ77Dekompresja(vector<token16> tokens) {
     }
 
     return output;
-}
-
-
-void wyswietlDane(macierz blok) {
-    cout << "Dane w macierzy: " << endl;
-    for(int y = 0; y < rozmiarBloku; y++) {
-        for(int x = 0; x < rozmiarBloku; x++){
-            cout << (int)blok.dane[x][y] << "   ";
-        }
-        cout << endl;
-    }
-}
-void wyswietlDCT(macierz blok) {
-    cout << "Macierz DCT: " << endl;
-    for(int y = 0; y < rozmiarBloku; y++) {
-        for(int x = 0; x < rozmiarBloku; x++){
-            cout << blok.dct[x][y] << "   ";
-        }
-        cout << endl;
-    }
 }
 
 macierz dct(Uint8 wartosci[rozmiarBloku][rozmiarBloku]) {

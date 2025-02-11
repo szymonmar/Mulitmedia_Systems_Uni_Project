@@ -3,10 +3,12 @@
 
 #include "Modele.h"
 #include <vector>
-
-
 using namespace std;
 
+/**
+ * Output token struct for LZ77 compression, uses 8-bit raw value
+ * (best for 8-bit B&W, RGB888 or HSL888 models)
+ */
 struct token8 {
     Uint16 tokLength;
     Uint16 shift;
@@ -15,6 +17,10 @@ struct token8 {
     token8(Uint16 tokLength, Uint16 shift, Uint8 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
 };
 
+/**
+ * Output token struct for LZ77 compression, uses 16-bit raw value
+ * (best for RGB565 model)
+ */
 struct token16 {
     Uint16 tokLength;
     Uint16 shift;
@@ -23,139 +29,113 @@ struct token16 {
     token16(Uint16 tokLength, Uint16 shift, Uint16 rawValue): shift(shift), tokLength(tokLength), rawValue(rawValue) {};
 };
 
+/**
+ * LZ77 Compression for Uint8 input
+ * @param input     vector of Uint8 values to compress
+ * @param length    input vector length
+ * @return          vector of token8 structures
+ */
 vector<token8> LZ77Kompresja(vector<Uint8> input, int length);
 
-// Funkcja LZ77 - dekompresuje wejściowy wektor danych
+/**
+ * LZ77 Decompression for Uint8 output
+ * @param tokens    vector of token8 structures to decompress
+ * @return          vector of Uint8 values
+ */
 vector<Uint8> LZ77Dekompresja(vector<token8> tokens);
 
+/**
+ * LZ77 Compression for Uint16 input
+ * @param input     vector of Uint16 values to compress
+ * @param length    input vector length
+ * @return          vector of token16 structures
+ */
 vector<token16> LZ77Kompresja(vector<Uint16> input, int length);
 
-// Funkcja LZ77 - dekompresuje wejściowy wektor danych
+/**
+ * LZ77 Decompression for Uint16 output
+ * @param tokens    vector of token16 structures to decompress
+ * @return          vector of Uint16 values
+ */
 vector<Uint16> LZ77Dekompresja(vector<token16> tokens);
 
-/** Stuct representing single word, used in LZW compression & decompression
- */
-struct slowo{
-    Uint16 kod =0;
-    Uint8 length = 0;
-    Uint8 element[4096];
-    bool wSlowniku = false;
-};
-
-/** Default constructor for slowo struct,
- * creating an empty slowo
- */
-slowo noweSlowo();
-
-/** Constructor for slowo struct,
- * creating a slowo with one element
- * @param   znak        starting element for a slowo
- */
-slowo noweSlowo(Uint8 znak);
-
-/** For adding elements to slowo struct
- * @param   aktualneSlowo       slowo struct
- * @param   znak                element to add
- * @return  slowo               slowo struct with a new element
- */
-slowo polaczSlowo(slowo aktualneSlowo, Uint8 znak);
-
-/** For comparing two words (slowo structs)
- * @param   slowo1      1st word
- * @param   slowo2      2nd word
- * @return  true        if words are identical;
- *          false       if words are not identical
- */
-bool porownajSlowa(slowo slowo1, slowo slowo2);
-
-/** Finds words in dictionary
- * @param   szukany     word to look for
- * @return  index of a word     if the word exists
- *          -1                  if word not found
- */
-int znajdzWSlowniku(slowo szukany);
-
-/** Prints word to a console
- * @param   aktualneSlowo   word to print
- */
-void wyswietlSlowo(slowo aktualneSlowo);
-
-/** Adds a word to a dictionary
- * @param   slowo           word to add
- * @param   czyWyswietlac   true to print the added word
- *                          false not to print
- *                          (default: false)
- * @return  index of the word in a dictionary
- *          -1 if dictionary overflow
- */
-int dodajDoSLownika(slowo nowy, bool czyWyswietlac = false);
-
-/** Init function for LZW compression, sets up the dictionary
- * runs always before compression / decompression
- */
-void LZWinicjalizacja();
-
-/** LZW Compression and save to file
- * @param   input       vector of Uint8 BW pixels to compress
+/** RLE Compression
+ * @param   input       vector of Uint8 pixels to compress
  * @param   length      vector size
- * @param   fileName    name of a file to save compressed output to
- */
-vector<Uint16> LZWKompresja(vector<Uint8> input, int length);
-
-/** LZW Decompression from a file
- * @param   fileName        name of a file to read compressed input from
- */
-vector<Uint8> LZWDekompresja(vector<Uint16> skompresowane);
-
-/** ByteRun Compression and save to a file
- * @param   input       vector of Uint8 BW pixels to compress
- * @param   length      vector size
- * @param   fileName    name of a file to save compressed output to
- */
-vector<Sint8> ByteRunKompresja(vector<Uint8> input, int length);
-
-/** ByteRun Decompression from a file
- * @param   fileName        name of a file to read a compressed input from
- */
-vector<Uint8> ByteRunDekompresja(vector<Sint8> input);
-
-/** RLE Compression and save to a file
- * @param   input       vector of Uint8 BW pixels to compress
- * @param   length      vector size
- * @param   fileName    name of a file to save compressed output to
  */
 vector<Uint8> RLEKompresja(vector<Uint8> input, int length);
 
-/** RLE Decompression from a file
- * @param   fileName        name of a file to read a compressed input from
+/** RLE Decompression
+ * @param   input       vector of Uint8 values to decompress
  */
 vector<Uint8> RLEDekompresja(vector<Uint8> input);
 
+/**
+ * Block size for DCT
+ */
 const int rozmiarBloku = 8;
 
+/**
+ * Struct used to perform DCT
+ */
 struct macierz {
     float dct[rozmiarBloku][rozmiarBloku];
     Uint8 dane[rozmiarBloku][rozmiarBloku];
 };
 
+/**
+ * Output struct for DCT algorithm, contains all the data to save to a file
+ * float mnoznik - multiplier for quantisation
+ * vector<float> pierwszeWspolczynniki - first elements of each DCT matrix
+ * vector<Uint8> reszta - rest of the DCT matrices elements
+ */
 struct DCToutput {
     float mnoznik;
     vector<float> pierwszeWspolczynniki;
     vector<Uint8> reszta;
 };
 
-void wyswietlDane(macierz blok);
-
-void wyswietlDCT(macierz blok);
-
+/**
+ * Performs dct algorithm on a block of data
+ * @param wartosci block of Uint8 data
+ * @return macierz struct
+ */
 macierz dct(Uint8 wartosci[rozmiarBloku][rozmiarBloku]);
 
+/**
+ * Reverses dct algorithm on a block of data
+ * @param DCT DCT matrix
+ * @return macierz struct
+ */
 macierz idct(float DCT[rozmiarBloku][rozmiarBloku]);
 
+/**
+ * Finds max absolute value of a macierz struct / many macierz structs
+ * @param blok macierz struct
+ * @param lastMaxABS last found max absolute value to compare
+ * @return max absolute value
+ */
 float findMaxABS(macierz blok, float lastMaxABS);
 
+/**
+ * Reads an image from the left side of the front-end and compresses the
+ * whole image using DTC algorithm, then compressing DTC matrices elements
+ * using RLE algorithm
+ * @param tryb image mode
+ * @return DTCoutput struct
+ */
 DCToutput DCTKompresja(Uint8 tryb);
 
+/**
+ * Decompresses DTCoutput to a vector of matrices of size rozmiarBloku x rozmiarBloku
+ * Decompressed vector contains:
+ * matrices of 8-bit BW values (if tryb says image is b&w)
+ * or
+ * matrices of 8-bit color factors, first all values of red, then all values of blue, then all values of green etc.
+ * @param input input struct
+ * @param tryb image mode
+ * @return
+ */
 vector<macierz> DCTDekompresja(DCToutput input, Uint8 tryb);
 
 #endif //SM2024_PROJEKT_KOMPRESJA_H

@@ -1,12 +1,6 @@
 // główny plik projektu
 #include "Zmienne.h"
 #include "Funkcje.h"
-#include "Paleta.h"
-#include "MedianCut.h"
-#include "Modele.h"
-
-#include <exception>
-#include <string.h>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
