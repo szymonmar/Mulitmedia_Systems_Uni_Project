@@ -349,7 +349,7 @@ void ZapiszPlik(string filename, Uint8 tryb){
         }
     }
 
-    cout << "Zapisano plik " << a << ".z21" << endl << endl;
+    cout << "Zapisano plik " << filename << ".z21" << endl << endl;
 
     wyjscie.close();
 }

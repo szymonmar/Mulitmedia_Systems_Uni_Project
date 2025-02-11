@@ -5,6 +5,8 @@
 #include "Modele.h"
 #include "Kompresja.h"
 #include <vector>
+#include <filesystem>
+
 
 vector<Uint8> zczytajDaneBW(){
     vector<Uint8> output;
@@ -1081,7 +1083,10 @@ SDL_Color getPixelSurface(int x, int y, SDL_Surface *surface) {
 
 
 void ladujBMP(char const* nazwa, int x, int y) {
-    SDL_Surface* bmp = SDL_LoadBMP(nazwa);
+    filesystem::path currentpath = filesystem::current_path();
+    filesystem::path parentpath = currentpath.parent_path();
+    filesystem::path finalpath = parentpath += nazwa;
+    SDL_Surface* bmp = SDL_LoadBMP(finalpath.string().c_str());
     if (!bmp)
     {
         printf("Unable to load bitmap: %s\n", SDL_GetError());

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <filesystem>
 #include <SDL2/SDL.h>
 using namespace std;
 
@@ -98,39 +99,39 @@ int main(int argc, char* argv[]) {
                 if (event.key.keysym.sym == SDLK_0)
                     Funkcja10();
                 if (event.key.keysym.sym == SDLK_a) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek1.bmp", 0, 0);
+                    ladujBMP("/obrazek1.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_s) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek2.bmp", 0, 0);
+                    ladujBMP("/obrazek2.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_d) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek3.bmp", 0, 0);
+                    ladujBMP("/obrazek3.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_f) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek4.bmp", 0, 0);
+                    ladujBMP("/obrazek4.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_g) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek5.bmp", 0, 0);
+                    ladujBMP("/obrazek5.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_h) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek6.bmp", 0, 0);
+                    ladujBMP("/obrazek6.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_j) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek7.bmp", 0, 0);
+                    ladujBMP("/obrazek7.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_k) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek8.bmp", 0, 0);
+                    ladujBMP("/obrazek8.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_l) {
-                    ladujBMP("/Users/macbookpro/Desktop/SM/SM2024-Projekt/obrazek9.bmp", 0, 0);
+                    ladujBMP("/obrazek9.bmp", 0, 0);
                     tryb = 0b11000000;
                 }
                 if (event.key.keysym.sym == SDLK_b) {
